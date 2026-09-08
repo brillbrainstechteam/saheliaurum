@@ -567,7 +567,7 @@ section[id]{scroll-margin-top:118px}
   .tl{text-align:left;padding:0 0 30px 30px;border-left:1px solid rgba(201,162,75,.3)}
   .tl::before{position:absolute;left:-7px;top:4px;margin:0}
   .bespoke__visual{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .bespoke__img{position:static;width:auto;transform:none;border-width:5px}
+  .bespoke__img{position:relative;width:auto;transform:none;border-width:5px}
   .bespoke__steps{gap:14px 24px}
   .moments__scroller{height:auto}
   .moments__sticky{position:static;height:auto}
