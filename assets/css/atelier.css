@@ -1,0 +1,218 @@
+/*
+   SAHELI AURUM — ATELIER CUT
+   Faceted Heirloom × Private Viewing × Goldsmith's Table
+   Activated only with ?theme=atelier so the original remains intact.
+*/
+
+html.theme-atelier{
+  --ivory:#f1f3ef;
+  --ivory-2:#f8f8f4;
+  --paper:#e2e5de;
+  --ink:#161a17;
+  --ink-soft:#525b55;
+  --line:#c9cec7;
+  --gold:#ae8737;
+  --gold-2:#c5a154;
+  --gold-3:#e2ca8d;
+  --gold-deep:#76581f;
+  --emerald:#0b3329;
+  --emerald-2:#155745;
+  --charcoal:#111512;
+  --charcoal-2:#080b09;
+  --cream-on-dark:#eef0e8;
+  --maxw:1400px;
+  --gutter:clamp(22px,4.5vw,76px);
+}
+
+html.theme-atelier body{background:var(--ivory);color:var(--ink)}
+html.theme-atelier body::before{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;border:1px solid rgba(174,135,55,.34)}
+html.theme-atelier .wrap{max-width:var(--maxw)}
+html.theme-atelier .section{padding-block:clamp(88px,11vw,168px);border-bottom:1px solid var(--line)}
+html.theme-atelier .section--tint{background:var(--ivory-2)}
+html.theme-atelier .display{font-size:clamp(2.5rem,5.5vw,5.8rem);line-height:.93}
+html.theme-atelier .eyebrow{font-size:.7rem;letter-spacing:.3em;color:var(--gold-deep)}
+html.theme-atelier .eyebrow::before{content:"◇";font-size:1.1em}
+html.theme-atelier .btn{min-height:50px;border-radius:0;font-size:.72rem;letter-spacing:.17em}
+html.theme-atelier .btn--gold{background:var(--gold-2);box-shadow:none}
+html.theme-atelier .btn--gold:hover{background:var(--gold-3)}
+html.theme-atelier .btn--outline,html.theme-atelier .btn--ghost{border-color:currentColor}
+
+/* Header: a quiet showroom fascia with an oxblood provenance strip. */
+html.theme-atelier .announce{background:#5a1023;color:#f2dfb1}
+html.theme-atelier .announce__inner{justify-content:space-between;font-size:.64rem;padding-block:8px}
+html.theme-atelier .announce__dot{margin-left:auto}
+html.theme-atelier .site-header{border-bottom-color:rgba(255,255,255,.22)}
+html.theme-atelier .site-header__inner{padding-block:22px}
+html.theme-atelier .brand__mark{width:32px;height:32px}
+html.theme-atelier .brand__name{font-size:1.25rem;letter-spacing:.22em}
+html.theme-atelier .brand__legacy{font-size:.52rem}
+html.theme-atelier .nav{gap:clamp(16px,2.1vw,34px)}
+html.theme-atelier .nav a{font-size:.68rem;letter-spacing:.2em}
+html.theme-atelier .site-header.scrolled{background:rgba(241,243,239,.96);border-bottom-color:var(--line);box-shadow:none}
+
+/* Hero: the jewellery remains the primary object; copy occupies a strict left bay. */
+html.theme-atelier .hero{min-height:clamp(820px,112svh,1180px);border-bottom:10px solid var(--emerald)}
+html.theme-atelier .hero__media img{object-position:64% 60%}
+html.theme-atelier .hero__scrim{background:
+  linear-gradient(90deg,rgba(7,11,8,.9) 0%,rgba(7,11,8,.66) 27%,rgba(7,11,8,.2) 46%,transparent 66%),
+  linear-gradient(0deg,rgba(7,11,8,.55),transparent 48%,rgba(7,11,8,.28))}
+html.theme-atelier .hero::before{content:"PRIVATE VIEW / 01";position:absolute;right:var(--gutter);top:156px;z-index:3;color:#fff;font-family:var(--f-ui);font-size:.66rem;letter-spacing:.28em;writing-mode:vertical-rl}
+html.theme-atelier .hero::after{content:"";position:absolute;right:clamp(44px,8vw,150px);top:26%;width:clamp(170px,20vw,350px);aspect-ratio:1;border:1px solid rgba(226,202,141,.55);transform:rotate(45deg);z-index:1;pointer-events:none}
+html.theme-atelier .hero__inner{padding-top:180px;padding-bottom:clamp(80px,11vh,140px)}
+html.theme-atelier .hero__copy{width:min(570px,42vw);padding-left:clamp(0px,2vw,28px);border-left:1px solid rgba(226,202,141,.58)}
+html.theme-atelier .hero__title{font-size:clamp(3.2rem,5.5vw,5.9rem);line-height:.91;max-width:8.4ch}
+html.theme-atelier .hero__title em{color:#f2dfb1}
+html.theme-atelier .hero__lede{max-width:38ch;font-size:1.14rem;line-height:1.55}
+html.theme-atelier .hero__scroll{right:auto;left:var(--gutter);align-items:flex-start}
+
+/* Heritage becomes a provenance ledger rather than a conventional introduction. */
+html.theme-atelier .discover{background:var(--charcoal);color:var(--cream-on-dark);position:relative;overflow:hidden}
+html.theme-atelier .discover::after{content:"1984";position:absolute;right:-.03em;top:.05em;font-family:var(--f-display);font-size:clamp(9rem,28vw,29rem);line-height:.7;color:rgba(226,202,141,.055);pointer-events:none}
+html.theme-atelier .discover__grid{grid-template-columns:.72fr 1.28fr;gap:clamp(50px,10vw,160px);position:relative;z-index:1}
+html.theme-atelier .discover__intro{position:sticky;top:150px}
+html.theme-atelier .discover .display{color:#fff}
+html.theme-atelier .discover__body{border-top:1px solid rgba(226,202,141,.45);padding-top:30px}
+html.theme-atelier .discover__body>p,html.theme-atelier .discover__body .lede{color:var(--cream-on-dark)}
+html.theme-atelier .discover__body .lede{font-size:clamp(1.5rem,2.5vw,2.25rem);line-height:1.35}
+html.theme-atelier .discover .link-arrow{color:var(--gold-3)}
+html.theme-atelier .essence{position:relative;z-index:1;background:transparent;border-color:rgba(226,202,141,.25)}
+html.theme-atelier .essence li{background:transparent;border-top:1px solid rgba(226,202,141,.25);min-height:190px;justify-content:flex-end}
+html.theme-atelier .essence__k{color:var(--gold-3)}
+html.theme-atelier .essence__v{color:#fff;font-size:clamp(2rem,3vw,3.2rem)}
+html.theme-atelier .essence__l{color:rgba(238,240,232,.68)}
+
+/* Collections use catalogue numbers, precise rules and faceted image masks. */
+html.theme-atelier .collections{background:var(--ivory-2)}
+html.theme-atelier .collections__head{grid-template-columns:1.3fr .7fr;align-items:start}
+html.theme-atelier .collections__sub{border-top:1px solid var(--gold);padding-top:22px}
+html.theme-atelier .collections__grid{gap:1px;background:var(--line);grid-auto-rows:250px;border:1px solid var(--line)}
+html.theme-atelier .col-card{border:0;border-radius:0;background:var(--ivory-2)!important}
+html.theme-atelier .col-card--tone{padding:28px}
+html.theme-atelier .col-card--tone::before{height:1px;width:64px;top:28px;left:auto;right:28px;transform:rotate(-45deg);transform-origin:right}
+html.theme-atelier .col-card--feature,html.theme-atelier .col-card--image{background:#111!important}
+html.theme-atelier .col-card--feature .col-card__media,html.theme-atelier .col-card--image .col-card__media{clip-path:polygon(0 0,94% 0,100% 12%,100% 100%,0 100%)}
+html.theme-atelier .col-card--feature .col-card__body,html.theme-atelier .col-card--image .col-card__overlay{background:linear-gradient(transparent,rgba(5,8,6,.9));padding:34px}
+html.theme-atelier .col-card__no{letter-spacing:.3em}
+
+/* Cinematic chapters read like numbered private-viewing rooms. */
+html.theme-atelier .moments,html.theme-atelier .moments__intro,html.theme-atelier .moments__outro{background:#5a1023}
+html.theme-atelier .moments__intro{border-bottom:1px solid rgba(226,202,141,.28)}
+html.theme-atelier .moments__intro .wrap{display:grid;grid-template-columns:180px 1fr;align-items:end}
+html.theme-atelier .mscene__copy{text-align:left;left:var(--gutter);right:auto;max-width:760px;border-left:1px solid var(--gold-3);padding-left:28px}
+html.theme-atelier .mscene__copy p{font-size:clamp(2.7rem,6vw,6rem);line-height:.92}
+html.theme-atelier .moments__nav{left:auto;right:var(--gutter);transform:none;flex-direction:column;bottom:12vh}
+html.theme-atelier .moments__nav li{width:2px;height:28px}
+
+/* Craft is presented as a working ledger. */
+html.theme-atelier .section--dark{background:var(--charcoal-2)}
+html.theme-atelier .craft{border-bottom:8px solid var(--gold)}
+html.theme-atelier .craft__grid{grid-template-columns:.82fr 1.18fr;gap:0;border:1px solid rgba(226,202,141,.26)}
+html.theme-atelier .craft__media{aspect-ratio:1;border-radius:0;clip-path:polygon(0 0,100% 0,88% 100%,0 100%)}
+html.theme-atelier .craft__copy{padding:clamp(34px,6vw,92px)}
+html.theme-atelier .craft__steps{grid-template-columns:repeat(2,1fr);border:1px solid rgba(226,202,141,.2)}
+html.theme-atelier .cstep{min-height:240px;display:grid;grid-template-columns:72px 1fr;align-content:end;border-radius:0}
+html.theme-atelier .cstep__no{grid-row:1/3;font-size:3rem}
+html.theme-atelier .cstep h3,html.theme-atelier .cstep p{grid-column:2}
+html.theme-atelier .craft__sign{text-align:right}
+
+/* Bespoke combines the calm salon with visible workshop provenance. */
+html.theme-atelier .section--emerald{background:var(--emerald)}
+html.theme-atelier .bespoke__grid{grid-template-columns:.85fr 1.15fr}
+html.theme-atelier .bespoke__intro{padding-right:clamp(20px,5vw,72px)}
+html.theme-atelier .bespoke__visual{min-height:580px;border:1px solid rgba(226,202,141,.38)}
+html.theme-atelier .bespoke__img{border:0;box-shadow:none;transform:none}
+html.theme-atelier .bespoke__img--sketch{width:48%;left:4%;top:7%}
+html.theme-atelier .bespoke__img--final{width:58%;right:3%;bottom:5%;clip-path:polygon(12% 0,100% 0,100% 100%,0 100%,0 12%)}
+html.theme-atelier .bespoke__steps{border-top:1px solid rgba(226,202,141,.34);padding-top:30px}
+html.theme-atelier .bespoke__steps span{background:transparent;color:var(--gold-3);border:1px solid currentColor;transform:rotate(45deg);border-radius:0}
+
+/* Bridal and trust retain emotional scale while becoming more composed. */
+html.theme-atelier .bride{min-height:92vh;display:flex;align-items:flex-end;border-bottom:8px solid #5a1023}
+html.theme-atelier .bride__media img{object-position:52% 30%}
+html.theme-atelier .bride__scrim{background:linear-gradient(90deg,rgba(8,11,9,.88),rgba(8,11,9,.5) 44%,rgba(8,11,9,.08) 72%)}
+html.theme-atelier .bride__inner{margin-left:0;max-width:760px;padding-left:calc(var(--gutter) + 26px);border-left:1px solid var(--gold-3)}
+html.theme-atelier .bride__worlds li{border-radius:0;background:rgba(7,10,8,.35)}
+html.theme-atelier .promise__list{gap:1px;background:var(--line);border:1px solid var(--line)}
+html.theme-atelier .promise__list li{background:var(--ivory-2);padding:38px 24px;align-items:flex-start;text-align:left;min-height:260px;justify-content:flex-end}
+html.theme-atelier .promise__list svg{width:28px;height:28px}
+
+/* Privileges and locations become clean service tables, not decorative cards. */
+html.theme-atelier .privileges__grid{gap:1px;background:var(--line);border:1px solid var(--line)}
+html.theme-atelier .scheme{border:0;border-radius:0;box-shadow:none}
+html.theme-atelier .scheme:hover{transform:none;box-shadow:none}
+html.theme-atelier .scheme__media{aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 88%,88% 100%,0 100%)}
+html.theme-atelier .scheme__body{min-height:300px}
+html.theme-atelier .legacy{background:var(--emerald);border-bottom:8px solid var(--gold)}
+html.theme-atelier .timeline::before{background:var(--gold-3)}
+html.theme-atelier .store{border-radius:0;background:var(--ivory-2);border-left:4px solid var(--emerald)}
+html.theme-atelier .appt{border-radius:0;background:var(--emerald);border-color:var(--gold)}
+
+/* Inner pages use the same faceted gallery architecture. */
+html.theme-atelier .page-hero{min-height:88svh;border-bottom:8px solid var(--emerald)}
+html.theme-atelier .page-hero>img{clip-path:polygon(0 0,100% 0,100% 100%,8% 100%,0 88%)}
+html.theme-atelier .page-hero__scrim{background:linear-gradient(90deg,rgba(8,11,9,.9),rgba(8,11,9,.48) 44%,rgba(8,11,9,.08) 72%)}
+html.theme-atelier .page-hero__inner{margin-left:0;max-width:900px;padding-left:calc(var(--gutter) + 28px);border-left:1px solid var(--gold-3)}
+html.theme-atelier .page-title{font-size:clamp(3.2rem,7vw,7rem);line-height:.88;max-width:10ch}
+html.theme-atelier .split-story{grid-template-columns:.65fr 1.35fr}
+html.theme-atelier .credo-grid{gap:1px}
+html.theme-atelier .credo{border-radius:0;min-height:310px}
+html.theme-atelier .collection-directory{gap:0;border:1px solid var(--line)}
+html.theme-atelier .collection-line{border-bottom:1px solid var(--line);transition:background .3s,color .3s}
+html.theme-atelier .collection-line:hover{background:var(--emerald);color:#fff}
+html.theme-atelier .collection-line:hover h2,html.theme-atelier .collection-line:hover p,html.theme-atelier .collection-line:hover span,html.theme-atelier .collection-line:hover a{color:inherit}
+html.theme-atelier .collection-line img,html.theme-atelier .gem-swatch{clip-path:polygon(12% 0,100% 0,100% 88%,88% 100%,0 100%,0 12%);border-radius:0}
+html.theme-atelier .shop-board,html.theme-atelier .edit-grid{gap:1px;background:var(--line);border:1px solid var(--line)}
+html.theme-atelier .shop-panel,html.theme-atelier .edit-card{border-radius:0;border:0}
+html.theme-atelier .world-card{border-radius:0;clip-path:polygon(0 0,94% 0,100% 9%,100% 100%,0 100%)}
+html.theme-atelier .bespoke-path{gap:0}
+html.theme-atelier .bespoke-path li{min-height:340px;border-right:1px solid var(--line)}
+html.theme-atelier .consultation-band{border-radius:0;border-left:5px solid var(--gold);background:var(--emerald);color:#fff}
+html.theme-atelier .consultation-band p:last-child{color:rgba(255,255,255,.74)}
+html.theme-atelier .site-footer{background:var(--charcoal-2);border-top:8px solid var(--gold)}
+
+/* A discreet bridge back to the untouched original. */
+html.theme-atelier .view-switch{position:fixed;left:18px;bottom:18px;z-index:90;background:#f1f3ef;color:#161a17;border:1px solid #ae8737;padding:11px 16px;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 10px 32px rgba(0,0,0,.2)}
+html.theme-atelier .view-switch:hover{background:#161a17;color:#fff}
+
+@media (max-width:860px){
+  html.theme-atelier .hero{min-height:1000px}
+  html.theme-atelier .hero__media img{object-position:61% 54%}
+  html.theme-atelier .hero::after{right:-80px;top:18%;width:260px}
+  html.theme-atelier .hero__copy{width:min(590px,76vw)}
+  html.theme-atelier .discover__grid,html.theme-atelier .craft__grid,html.theme-atelier .bespoke__grid,html.theme-atelier .split-story{grid-template-columns:1fr}
+  html.theme-atelier .discover__intro{position:static}
+  html.theme-atelier .moments__intro .wrap{display:block}
+  html.theme-atelier .craft__media{clip-path:polygon(0 0,100% 0,100% 88%,88% 100%,0 100%)}
+  html.theme-atelier .bespoke__visual{min-height:500px}
+  html.theme-atelier .page-hero__inner{margin-left:auto}
+}
+
+@media (max-width:620px){
+  html.theme-atelier .announce__inner{justify-content:center}
+  html.theme-atelier .hero{min-height:1020px}
+  html.theme-atelier .hero__media img{object-position:59% 50%}
+  html.theme-atelier .hero::before{display:none}
+  html.theme-atelier .hero::after{top:20%;right:-118px;width:240px}
+  html.theme-atelier .hero__scrim{background:linear-gradient(0deg,rgba(7,11,8,.94),rgba(7,11,8,.48) 52%,rgba(7,11,8,.08) 76%)}
+  html.theme-atelier .hero__inner{padding-bottom:46px}
+  html.theme-atelier .hero__copy{width:100%;padding-left:18px}
+  html.theme-atelier .hero__title{font-size:clamp(3rem,14vw,4.35rem)}
+  html.theme-atelier .essence,html.theme-atelier .craft__steps{grid-template-columns:1fr}
+  html.theme-atelier .essence li{min-height:140px}
+  html.theme-atelier .cstep{min-height:190px}
+  html.theme-atelier .moments__intro .display{font-size:clamp(2.5rem,13vw,4rem)}
+  html.theme-atelier .mscene__copy{left:20px;right:20px;bottom:8vh;padding-left:18px}
+  html.theme-atelier .bespoke__visual{min-height:390px}
+  html.theme-atelier .bespoke__steps span{transform:none}
+  html.theme-atelier .bride__inner{padding-left:calc(var(--gutter) + 18px)}
+  html.theme-atelier .promise__list{grid-template-columns:1fr}
+  html.theme-atelier .promise__list li{min-height:190px}
+  html.theme-atelier .page-hero{min-height:78svh}
+  html.theme-atelier .page-hero__inner{padding-left:calc(var(--gutter) + 18px)}
+  html.theme-atelier .view-switch{left:10px;bottom:10px;padding:9px 12px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html.theme-atelier .col-card--feature .col-card__media img,
+  html.theme-atelier .col-card--image .col-card__media img{transform:none!important}
+}

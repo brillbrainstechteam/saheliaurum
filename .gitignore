@@ -1,0 +1,11 @@
+# Source materials — large and not part of the deployed site
+images_catalogue/
+*.docx
+
+# Tooling
+.vercel/
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
