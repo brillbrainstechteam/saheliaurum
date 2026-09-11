@@ -1,5 +1,7 @@
 # Source materials — large and not part of the deployed site
 images_catalogue/
+assets/new content/
+assets/img/collections/_check_heroes.jpg
 *.docx
 
 # Tooling

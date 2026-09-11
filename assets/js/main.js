@@ -155,4 +155,57 @@
       if (ok) ok.hidden = false;
     });
   }
+
+  /* lightbox for collection galleries */
+  var lb = document.getElementById("lightbox");
+  if (lb) {
+    var lbImg = document.getElementById("lbImg");
+    var lbCap = document.getElementById("lbCap");
+    var group = [];
+    var gi = 0;
+    function lbShow(i) {
+      gi = (i + group.length) % group.length;
+      var it = group[gi];
+      lbImg.src = it.src;
+      lbImg.alt = it.alt || "";
+      if (lbCap) lbCap.textContent = it.cap || "";
+    }
+    function lbOpen(items, i) {
+      group = items;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      lbShow(i);
+    }
+    function lbClose() {
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      lbImg.src = "";
+    }
+    document.querySelectorAll("[data-lightbox]").forEach(function (band) {
+      var btns = [].slice.call(band.querySelectorAll(".zoomable"));
+      var name = band.id || "";
+      var items = btns.map(function (b) {
+        var im = b.querySelector("img");
+        return { src: b.getAttribute("data-src") || (im && im.src), alt: im ? im.alt : "", cap: im ? im.alt : "" };
+      });
+      btns.forEach(function (b, idx) {
+        b.addEventListener("click", function () { lbOpen(items, idx); });
+      });
+    });
+    var c = document.getElementById("lbClose");
+    var n = document.getElementById("lbNext");
+    var p = document.getElementById("lbPrev");
+    if (c) c.addEventListener("click", lbClose);
+    if (n) n.addEventListener("click", function () { lbShow(gi + 1); });
+    if (p) p.addEventListener("click", function () { lbShow(gi - 1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lbClose(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") lbClose();
+      else if (e.key === "ArrowRight") lbShow(gi + 1);
+      else if (e.key === "ArrowLeft") lbShow(gi - 1);
+    });
+  }
 })();
