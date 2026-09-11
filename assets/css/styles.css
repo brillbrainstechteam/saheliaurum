@@ -699,3 +699,14 @@ section[id]{scroll-margin-top:118px}
 .world-card--img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,8,6,.88),rgba(6,8,6,.12) 62%);z-index:1}
 .world-card--img span,.world-card--img h2{position:relative;z-index:2;color:#fff}
 .world-card--img span{color:var(--gold-3)}
+
+/* ---- image protection deterrents ---- */
+img{
+  -webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none;
+  -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+  -webkit-touch-callout:none;
+}
+.leaf__media,.hero__media,.bride__media,.world,.colgrid__item,.col-band__featbtn,.gitem,.split__media,
+.scheme__media,.shop-panel--image,.marquee--gallery .marquee__item,.craft__media,.page-hero{
+  -webkit-touch-callout:none;
+}

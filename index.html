@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/styles.css" />
 <link rel="stylesheet" href="assets/css/atelier.css" />
-<script>if(new URLSearchParams(location.search).get("theme")==="atelier")document.documentElement.classList.add("theme-atelier");</script>
+<script src="assets/js/theme.js"></script>
 </head>
 <body>
 
@@ -33,7 +33,7 @@
       <span></span><span></span><span></span>
     </button>
 
-    <a class="brand" href="index.html" aria-label="Saheli Aurum home">
+    <a class="brand" href="/" aria-label="Saheli Aurum home">
       <svg class="brand__mark" viewBox="0 0 44 44" aria-hidden="true">
         <g fill="none" stroke="currentColor" stroke-width="1.1">
           <path d="M22 6 C25 13 31 15 38 15 C31 17 25 21 22 30 C19 21 13 17 6 15 C13 15 19 13 22 6 Z"/>
@@ -47,16 +47,16 @@
     </a>
 
     <nav class="nav" id="primaryNav" aria-label="Primary">
-      <a href="about.html">About</a>
-      <a href="collections.html">Collections</a>
-      <a href="shop.html">Shop</a>
-      <a href="bridal.html">Bridal</a>
-      <a href="bespoke.html">Bespoke</a>
-      <a href="stores.html">Stores</a>
+      <a href="about">About</a>
+      <a href="collections">Collections</a>
+      <a href="shop">Shop</a>
+      <a href="bridal">Bridal</a>
+      <a href="bespoke">Bespoke</a>
+      <a href="stores">Stores</a>
     </nav>
 
     <div class="site-header__cta">
-        <a class="btn btn--ghost btn--sm" href="stores.html#appointment">Book an Appointment</a>
+        <a class="btn btn--ghost btn--sm" href="stores#appointment">Book an Appointment</a>
     </div>
   </div>
 </header>
@@ -76,8 +76,8 @@
         <h1 class="hero__title reveal">Indian craftsmanship,<br /><em>contemporary</em> luxury.</h1>
         <p class="hero__lede reveal">From a single room in Chhattisgarh to a modern jewellery house — Saheli Aurum creates pieces worthy of life's most meaningful moments.</p>
         <div class="hero__actions reveal">
-          <a class="btn btn--gold" href="collections.html">Explore the Collections</a>
-          <a class="btn btn--outline-light" href="stores.html#appointment">Book an Appointment</a>
+          <a class="btn btn--gold" href="collections">Explore the Collections</a>
+          <a class="btn btn--outline-light" href="stores#appointment">Book an Appointment</a>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
       <div class="discover__body reveal">
         <p class="lede">In 1984, Mr. Sunil Jain began with a simple belief — to offer jewellery of exceptional design, with uncompromising purity and honest value. What began in a single room grew, through generations of trust, into a name cherished across Chhattisgarh.</p>
         <p>Today, Saheli Aurum carries that legacy forward: more refined, more contemporary, yet deeply rooted in everything that made Saheli what it is.</p>
-        <a class="link-arrow" href="about.html">Read our story <span aria-hidden="true">→</span></a>
+        <a class="link-arrow" href="about">Read our story <span aria-hidden="true">→</span></a>
       </div>
     </div>
     <div class="wrap">
@@ -137,54 +137,54 @@
     </div>
 
     <div class="wrap colgrid reveal">
-      <a class="colgrid__item colgrid__item--feature" href="collections.html#inara">
+      <a class="colgrid__item colgrid__item--feature" href="collections#inara">
         <img src="assets/img/collections/inara-hero.webp" alt="Inara open polki jewellery" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">01</span><span class="colgrid__name">Inara</span><span class="colgrid__tag">Open Polki Elegance</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#riva">
+      <a class="colgrid__item" href="collections#riva">
         <img src="assets/img/collections/riva-hero.webp" alt="Riva polki classics" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">02</span><span class="colgrid__name">Riva</span><span class="colgrid__tag">Polki Classics</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#royalis">
+      <a class="colgrid__item" href="collections#royalis">
         <img src="assets/img/collections/royalis-hero.webp" alt="Royalis heritage gold" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">03</span><span class="colgrid__name">Royalis</span><span class="colgrid__tag">Timeless Heritage Art</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#bomat">
+      <a class="colgrid__item" href="collections#bomat">
         <img src="assets/img/collections/bomat-hero.webp" alt="Bomat antique artistry" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">04</span><span class="colgrid__name">Bomat</span><span class="colgrid__tag">The Antique Artistry</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#rajsa">
+      <a class="colgrid__item" href="collections#rajsa">
         <img src="assets/img/collections/rajasa-hero.webp" alt="Rajsa royal gold" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">05</span><span class="colgrid__name">Rajsa</span><span class="colgrid__tag">The Royal Touch</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#rosette">
+      <a class="colgrid__item" href="collections#rosette">
         <img src="assets/img/collections/rosette-hero.webp" alt="Rosette rose gold" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">06</span><span class="colgrid__name">Rosette</span><span class="colgrid__tag">Rose Gold Affair</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#nia">
+      <a class="colgrid__item" href="collections#nia">
         <img src="assets/img/collections/nia-hero.webp" alt="Nia light diamonds" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">07</span><span class="colgrid__name">Nia</span><span class="colgrid__tag">It's Lite. It's a Delight.</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#etern">
+      <a class="colgrid__item" href="collections#etern">
         <img src="assets/img/collections/etern-hero.webp" alt="Etern handcrafted diamonds" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">08</span><span class="colgrid__name">Etern</span><span class="colgrid__tag">Handcraft Diamonds</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#ekam">
+      <a class="colgrid__item" href="collections#ekam">
         <img src="assets/img/collections/ekam-hero.webp" alt="Ekam limited masterpieces" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">09</span><span class="colgrid__name">Ekam</span><span class="colgrid__tag">Limited Masterpieces</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#glint">
+      <a class="colgrid__item" href="collections#glint">
         <img src="assets/img/collections/glint-hero.webp" alt="Glint diamond glam" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">10</span><span class="colgrid__name">Glint</span><span class="colgrid__tag">The Diamonds Glam</span></span>
       </a>
-      <a class="colgrid__item" href="collections.html#shubh-ratna">
+      <a class="colgrid__item" href="collections#shubh-ratna">
         <img src="assets/img/hero_detail.jpg" alt="Shubh Ratna gemstone jewellery" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">11</span><span class="colgrid__name">Shubh Ratna</span><span class="colgrid__tag">The Right Gemstone</span></span>
       </a>
     </div>
 
     <div class="wrap center">
-      <a class="btn btn--outline reveal" href="collections.html">View all collections</a>
+      <a class="btn btn--outline reveal" href="collections">View all collections</a>
     </div>
   </section>
 
@@ -277,7 +277,7 @@
         <h2 class="display display--light">Your story.<br /><em>Your jewellery.</em></h2>
         <p class="bespoke__lede">Some stories deserve something that belongs to no one else. Our bespoke experience transforms your ideas, inspirations and emotions into jewellery created especially for you.</p>
         <p class="bespoke__oneofone">One story. One creation. One of one.</p>
-        <a class="btn btn--gold" href="bespoke.html#consultation">Begin a Bespoke Consultation</a>
+        <a class="btn btn--gold" href="bespoke#consultation">Begin a Bespoke Consultation</a>
       </div>
       <div class="bespoke__visual reveal">
         <figure class="bespoke__img bespoke__img--sketch"><img src="assets/img/bespoke_sketch.jpg" alt="Hand-drawn design sketch of a necklace" loading="lazy" /><figcaption>The sketch</figcaption></figure>
@@ -310,8 +310,8 @@
         <span>Roka</span><span>Engagement</span><span>Haldi</span><span>Mehendi</span><span>Sangeet</span><span>Wedding</span><span>Reception</span>
       </div>
       <div class="hero__actions reveal">
-        <a class="btn btn--gold" href="bridal.html">Enter the Bridal World</a>
-        <a class="btn btn--outline-light" href="stores.html#appointment">Book a Bridal Consultation</a>
+        <a class="btn btn--gold" href="bridal">Enter the Bridal World</a>
+        <a class="btn btn--outline-light" href="stores#appointment">Book a Bridal Consultation</a>
       </div>
     </div>
   </section>
@@ -388,7 +388,7 @@
       </article>
     </div>
     <div class="wrap center">
-      <a class="btn btn--outline reveal" href="stores.html#appointment">Speak to a jewellery expert</a>
+      <a class="btn btn--outline reveal" href="stores#appointment">Speak to a jewellery expert</a>
     </div>
   </section>
 
@@ -495,7 +495,7 @@
 <footer class="site-footer">
   <div class="wrap site-footer__top">
     <div class="site-footer__brand">
-      <a class="brand brand--footer" href="index.html" aria-label="Saheli Aurum home">
+      <a class="brand brand--footer" href="/" aria-label="Saheli Aurum home">
         <svg class="brand__mark" viewBox="0 0 44 44" aria-hidden="true">
           <g fill="none" stroke="currentColor" stroke-width="1.1">
             <path d="M22 6 C25 13 31 15 38 15 C31 17 25 21 22 30 C19 21 13 17 6 15 C13 15 19 13 22 6 Z"/>
@@ -519,23 +519,23 @@
     <nav class="site-footer__nav" aria-label="Footer">
       <div>
         <h4>Explore</h4>
-      <a href="collections.html">Collections</a>
-      <a href="bridal.html">The Saheli Bride</a>
-      <a href="bespoke.html">Bespoke</a>
-      <a href="about.html#craft">Craftsmanship</a>
+      <a href="collections">Collections</a>
+      <a href="bridal">The Saheli Bride</a>
+      <a href="bespoke">Bespoke</a>
+      <a href="/#craft">Craftsmanship</a>
       </div>
       <div>
         <h4>The House</h4>
-      <a href="about.html">About Us</a>
-      <a href="about.html#recognition">Heritage &amp; Awards</a>
+      <a href="about">About Us</a>
+      <a href="about#recognition">Heritage &amp; Awards</a>
         <a href="#privileges">Saheli Privileges</a>
         <a href="#promise">Our Promise</a>
       </div>
       <div>
         <h4>Visit</h4>
-      <a href="stores.html#raipur">Raipur</a>
-      <a href="stores.html#durg">Durg</a>
-      <a href="stores.html#appointment">Book an Appointment</a>
+      <a href="stores#raipur">Raipur</a>
+      <a href="stores#durg">Durg</a>
+      <a href="stores#appointment">Book an Appointment</a>
         <a href="tel:+919584411144">+91 958 441 1144</a>
       </div>
     </nav>

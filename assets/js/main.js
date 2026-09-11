@@ -24,6 +24,16 @@
     document.body.appendChild(original);
   }
 
+  /* image-download deterrents (best-effort — web images are always fetchable via devtools) */
+  var mediaSel = ".leaf__media,.hero__media,.bride__media,.world,.colgrid__item,.col-band__featbtn,.gitem,.split__media,.scheme__media,.shop-panel--image,.marquee--gallery,.craft__media,.page-hero,.filmband,.bespoke__img,.mscene";
+  document.addEventListener("contextmenu", function (e) {
+    var t = e.target;
+    if (t && (t.tagName === "IMG" || t.tagName === "VIDEO" || (t.closest && t.closest(mediaSel)))) e.preventDefault();
+  });
+  document.addEventListener("dragstart", function (e) {
+    if (e.target && (e.target.tagName === "IMG" || e.target.tagName === "VIDEO")) e.preventDefault();
+  });
+
   /* year */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();

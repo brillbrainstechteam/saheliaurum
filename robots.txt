@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /$
+Allow: /about
+Allow: /collections
+Allow: /shop
+Allow: /bridal
+Allow: /bespoke
+Allow: /stores
+Allow: /assets/css/
+Disallow: /assets/img/
+Disallow: /assets/video/
+
+Sitemap: https://saheliaurum.vercel.app/sitemap.xml
