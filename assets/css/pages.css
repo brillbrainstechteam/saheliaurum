@@ -31,7 +31,7 @@ body[data-page]{
 .hallmark--light .num{color:var(--gold-3)}
 
 /* ---- leaf hero (numbered register opening) ---- */
-.leaf{position:relative;min-height:clamp(560px,84svh,860px);display:flex;align-items:flex-end;overflow:hidden;color:#fff;isolation:isolate}
+.leaf{position:relative;min-height:clamp(560px,84svh,860px);display:flex;align-items:flex-end;overflow:hidden;color:#fff;isolation:isolate;padding-top:clamp(118px,15vh,152px)}
 .leaf__media{position:absolute;inset:0;z-index:-2}
 .leaf__media img{width:100%;height:100%;object-fit:cover}
 .leaf__scrim{position:absolute;inset:0;z-index:-1;background:
