@@ -550,18 +550,15 @@ section[id]{scroll-margin-top:118px}
   .hero__media img{object-position:64% 54%}
   .hero__copy{width:min(560px,72vw)}
   .nav,.site-header__cta{display:none}
-  /* legibility scrim so the logo + menu button always read over the hero */
+  /* legibility scrim so the logo + menu read clearly over the hero */
   .site-header{position:relative}
   .site-header::before{content:"";position:absolute;left:0;right:0;top:0;height:108px;z-index:-1;pointer-events:none;
-    background:linear-gradient(180deg,rgba(8,6,3,.62),rgba(8,6,3,0));transition:opacity .4s var(--ease)}
+    background:linear-gradient(180deg,rgba(8,6,3,.6),rgba(8,6,3,0));transition:opacity .4s var(--ease)}
   .site-header.scrolled::before,.site-header.nav-open::before{opacity:0}
-  /* hamburger as a clear, always-visible button */
-  .nav-toggle{display:flex;width:44px;height:44px;padding:0;gap:5px;justify-content:center;align-items:center;
-    border-radius:50%;border:1px solid rgba(255,255,255,.36);background:rgba(12,9,5,.3);
-    transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
-  .nav-toggle:active{transform:scale(.94)}
-  .nav-toggle span{width:19px;height:2px}
-  .site-header.scrolled .nav-toggle{border-color:rgba(42,37,28,.3);background:rgba(255,255,255,.6)}
+  /* plain hamburger bars — thicker + a drop-shadow for contrast over any hero */
+  .nav-toggle{display:flex}
+  .nav-toggle span{width:26px;height:2px}
+  .site-header:not(.scrolled):not(.nav-open) .nav-toggle{filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
   /* IMPORTANT: no backdrop-filter on the header on mobile — it would create a
      containing block and collapse the fixed nav overlay into the header strip. */
   .site-header.scrolled{backdrop-filter:none;background:rgba(247,242,232,.98)}
@@ -729,3 +726,10 @@ img{
 .scheme__media,.shop-panel--image,.marquee--gallery .marquee__item,.craft__media,.page-hero{
   -webkit-touch-callout:none;
 }
+
+/* ---- powered-by credit ---- */
+.site-footer__credit{text-align:center;padding:16px 20px 24px}
+.site-footer__credit a{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(236,226,206,.5);transition:color .3s var(--ease)}
+.site-footer__credit a strong{font-weight:400;color:rgba(236,226,206,.74)}
+.site-footer__credit a:hover,.site-footer__credit a:hover strong{color:var(--gold-3)}
