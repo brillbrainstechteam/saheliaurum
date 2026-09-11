@@ -156,6 +156,16 @@
     });
   }
 
+  /* auto-scrolling marquee rails (seamless loop, pause on hover) */
+  document.querySelectorAll(".marquee").forEach(function (m) {
+    var track = m.querySelector(".marquee__track");
+    if (!track) return;
+    if (reduce) return;
+    track.innerHTML = track.innerHTML + track.innerHTML; /* duplicate for seamless -50% loop */
+    var n = track.children.length;
+    track.style.setProperty("--mq-dur", Math.max(26, n * 3.4) + "s");
+  });
+
   /* lightbox for collection galleries */
   var lb = document.getElementById("lightbox");
   if (lb) {
