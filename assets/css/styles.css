@@ -555,10 +555,11 @@ section[id]{scroll-margin-top:118px}
   .site-header::before{content:"";position:absolute;left:0;right:0;top:0;height:108px;z-index:-1;pointer-events:none;
     background:linear-gradient(180deg,rgba(8,6,3,.6),rgba(8,6,3,0));transition:opacity .4s var(--ease)}
   .site-header.scrolled::before,.site-header.nav-open::before{opacity:0}
-  /* plain hamburger bars — thicker + a drop-shadow for contrast over any hero */
-  .nav-toggle{display:flex}
+  /* gold hamburger bars — light gold over the hero, deeper mustard on the cream sticky header */
+  .nav-toggle{display:flex;color:var(--gold-3)}
   .nav-toggle span{width:26px;height:2px}
-  .site-header:not(.scrolled):not(.nav-open) .nav-toggle{filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+  .site-header.scrolled .nav-toggle{color:var(--gold)}
+  .site-header:not(.scrolled):not(.nav-open) .nav-toggle{filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
   /* IMPORTANT: no backdrop-filter on the header on mobile — it would create a
      containing block and collapse the fixed nav overlay into the header strip. */
   .site-header.scrolled{backdrop-filter:none;background:rgba(247,242,232,.98)}
@@ -568,8 +569,7 @@ section[id]{scroll-margin-top:118px}
   .site-header.nav-open .nav a::after{display:none}
   .site-header.nav-open .nav a.is-current{color:var(--gold-3)}
   /* keep the close (X) above the overlay and light-coloured */
-  .site-header.nav-open .nav-toggle{position:relative;z-index:59;color:var(--ivory)}
-  .site-header.nav-open .nav-toggle span{background:var(--ivory)}
+  .site-header.nav-open .nav-toggle{position:relative;z-index:59;color:var(--gold-3)}
   .site-header.nav-open{background:transparent;backdrop-filter:none;border-bottom-color:transparent}
   .discover__grid,.collections__head,.privileges__head,.visit__head,.craft__grid,.bespoke__grid,.visit__grid{grid-template-columns:1fr}
   .split-story,.credo-grid{grid-template-columns:1fr}
