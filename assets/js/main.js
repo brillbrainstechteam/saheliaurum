@@ -154,15 +154,84 @@
   desktop.addEventListener("change", normalizeScenes);
   normalizeScenes();
 
-  /* appointment form (demo — no data leaves the browser) */
+  /* -------------------------------------------------------------------
+     Appointment form.
+     The site is static, so a request is delivered two ways:
+       1. WhatsApp - prefilled and addressed to the store the visitor picked.
+          This is the guaranteed path, so the confirmation copy leads with it.
+       2. A Google Sheet, via an Apps Script web app - the durable record.
+          Paste the /exec URL into SHEET_ENDPOINT below; while it is empty the
+          Sheet step is skipped and WhatsApp still works. See
+          docs/APPOINTMENTS-SETUP.md for the script and the deploy steps.
+     ------------------------------------------------------------------- */
+  var SHEET_ENDPOINT = "";
+
+  var STORE_WHATSAPP = { "Raipur": "919584411144", "Durg": "919244509870" };
+  var FALLBACK_WHATSAPP = "919584411144";
+
+  function apptMessage(d) {
+    return [
+      "New appointment request - Saheli Aurum",
+      "",
+      "Name: " + d.name,
+      "Phone: " + d.phone,
+      "Store: " + d.store,
+      "Consultation: " + d.type,
+      d.note ? "Notes: " + d.note : null
+    ].filter(Boolean).join("\n");
+  }
+
+  /* Best-effort log to the Sheet. text/plain keeps this a CORS-simple request,
+     so Apps Script never sees a preflight it cannot answer. sendBeacon goes
+     first because it survives the navigation to WhatsApp. */
+  function recordAppointment(d) {
+    if (!SHEET_ENDPOINT) return false;
+    var body = JSON.stringify(d);
+    try {
+      if (navigator.sendBeacon &&
+          navigator.sendBeacon(SHEET_ENDPOINT, new Blob([body], { type: "text/plain;charset=utf-8" }))) {
+        return true;
+      }
+    } catch (err) {}
+    try {
+      fetch(SHEET_ENDPOINT, {
+        method: "POST", mode: "no-cors", keepalive: true,
+        headers: { "Content-Type": "text/plain;charset=utf-8" }, body: body
+      });
+      return true;
+    } catch (err) { return false; }
+  }
+
   var form = document.getElementById("apptForm");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var val = function (n) {
+        var el = form.elements[n];
+        return el ? String(el.value || "").trim() : "";
+      };
+      var data = {
+        name: val("name"), phone: val("phone"), store: val("store"),
+        type: val("type"), note: val("note"),
+        page: location.pathname, submittedAt: new Date().toISOString()
+      };
+
+      recordAppointment(data);
+
+      var wa = "https://wa.me/" + (STORE_WHATSAPP[data.store] || FALLBACK_WHATSAPP) +
+               "?text=" + encodeURIComponent(apptMessage(data));
+
+      /* The link inside the confirmation is the fallback for a blocked popup,
+         so the visitor always has a way through. */
+      var link = document.getElementById("apptWa");
+      if (link) link.href = wa;
       var ok = document.getElementById("apptOk");
-      form.querySelector('button[type="submit"]').textContent = "Request Sent";
       if (ok) ok.hidden = false;
+      form.querySelector('button[type="submit"]').textContent = "Continue on WhatsApp";
+
+      window.open(wa, "_blank", "noopener");
     });
   }
 

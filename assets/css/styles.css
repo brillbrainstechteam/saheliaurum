@@ -812,3 +812,36 @@ img{
 .ledger--dark .link-arrow,.ledger--emerald .link-arrow,.ledger--garnet .link-arrow,
 .section--dark button.link-arrow,.ledger--dark button.link-arrow{color:var(--rose)}
 .section--dark button.link-arrow::after,.ledger--dark button.link-arrow::after{background:var(--rose)}
+
+/* ============================================================
+   CALL + WHATSAPP ICONS beside a phone number
+   Kept in the brand palette rather than WhatsApp green so the
+   footer and store cards stay on-palette; the glyph carries the
+   recognition on its own.
+   ============================================================ */
+.contact-icons{display:inline-flex;align-items:center;gap:8px;margin-left:10px;vertical-align:middle}
+.icon-btn{display:inline-grid;place-items:center;width:30px;height:30px;flex:none;
+  border:1px solid currentColor;border-radius:50%;color:var(--gold-deep);
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
+.icon-btn svg{width:15px;height:15px;display:block}
+.icon-btn:hover,.icon-btn:focus-visible{background:var(--mahogany);color:var(--blush);
+  border-color:var(--mahogany);transform:translateY(-1px)}
+
+/* on the deep-brown footer the ring flips to dusty rose */
+.contact-icons--light .icon-btn{color:var(--rose)}
+.contact-icons--light .icon-btn:hover,.contact-icons--light .icon-btn:focus-visible{
+  background:var(--rose);color:#2e1c0f;border-color:var(--rose)}
+
+/* The footer nav column is ~183px wide and the number plus icons need ~212px,
+   so they can never sit inline there. Stack them deliberately instead of
+   letting flex-wrap drop the icons to a second line with a stray indent. */
+.footer-phone{display:block;margin-bottom:.9em}
+.site-footer__nav .footer-phone__num{display:block;margin-bottom:.45em}
+.site-footer__nav .icon-btn{display:inline-grid;margin-bottom:0;opacity:1}
+.site-footer__nav .contact-icons{margin-left:0}
+
+@media (max-width:520px){
+  .contact-icons{margin-left:8px;gap:7px}
+  .icon-btn{width:34px;height:34px}   /* comfortable tap target on a phone */
+  .icon-btn svg{width:16px;height:16px}
+}
