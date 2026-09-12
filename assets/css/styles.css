@@ -520,6 +520,10 @@ section[id]{scroll-margin-top:118px}
 .field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(203,141,118,.25);
   color:var(--ivory);font-family:var(--f-body);font-size:1rem;padding:12px 14px;border-radius:2px;transition:border-color .3s}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold-2)}
+/* The dropdown list is painted by the OS on a white ground, so the options
+   need their own dark colour - otherwise they inherit the field's light
+   text and all but the highlighted row is unreadable. */
+.field select option{background:#fff3ed;color:#2e1c0f}
 .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23cb8d76' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .field textarea{resize:vertical}
 .appt .btn{margin-top:8px}
@@ -819,7 +823,11 @@ img{
    footer and store cards stay on-palette; the glyph carries the
    recognition on its own.
    ============================================================ */
-.contact-icons{display:inline-flex;align-items:center;gap:8px;margin-left:10px;vertical-align:middle}
+.contact-icons{display:inline-flex;align-items:center;gap:8px;margin-left:10px;
+  vertical-align:middle;flex:none;white-space:nowrap}
+/* .store__row span is a 56px label column ("HOURS", "CALL"); the icon pair
+   is also a span in there and must opt out or it gets squeezed and stacks. */
+.store__row .contact-icons{display:inline-flex;width:auto}
 .icon-btn{display:inline-grid;place-items:center;width:30px;height:30px;flex:none;
   border:1px solid currentColor;border-radius:50%;color:var(--gold-deep);
   transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
@@ -832,13 +840,15 @@ img{
 .contact-icons--light .icon-btn:hover,.contact-icons--light .icon-btn:focus-visible{
   background:var(--rose);color:#2e1c0f;border-color:var(--rose)}
 
-/* The footer nav column is ~183px wide and the number plus icons need ~212px,
-   so they can never sit inline there. Stack them deliberately instead of
-   letting flex-wrap drop the icons to a second line with a stray indent. */
-.footer-phone{display:block;margin-bottom:.9em}
-.site-footer__nav .footer-phone__num{display:block;margin-bottom:.45em}
-.site-footer__nav .icon-btn{display:inline-grid;margin-bottom:0;opacity:1}
-.site-footer__nav .contact-icons{margin-left:0}
+/* The contact row sits in the brand block, beside the social links. The
+   footer nav columns are far too narrow to hold it - the Visit column is
+   only ~129px at an 800px viewport and the number alone needs ~134px - so
+   the number and its icons could never share a line there. */
+.footer-phone{display:flex;align-items:center;gap:0;margin-top:1.15em}
+.footer-phone__num{font-size:1rem;color:var(--cream-on-dark);white-space:nowrap}
+.site-footer__brand .icon-btn{width:27px;height:27px}
+.site-footer__brand .icon-btn svg{width:13px;height:13px}
+.site-footer__brand .contact-icons{margin-left:10px;gap:7px}
 
 @media (max-width:520px){
   .contact-icons{margin-left:8px;gap:7px}
