@@ -271,3 +271,6 @@ button.link-arrow:hover span{transform:translateX(6px)}
   object-position:left center;transition:transform .6s var(--ease-out)}
 .col-band:hover .col-logo{transform:translateY(-2px)}
 @media (max-width:760px){.col-logo{max-width:66%;max-height:88px}}
+
+/* the fort arch is a square composition — cropping it to 3:4 loses the pillars that frame it */
+.split__media--arch img{aspect-ratio:1/1}

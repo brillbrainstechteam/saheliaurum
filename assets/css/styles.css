@@ -328,11 +328,16 @@ section[id]{scroll-margin-top:104px}
 .hero__lede{font-size:clamp(1rem,1.35vw,1.18rem);max-width:42ch;margin:1.3rem 0 2.1rem;color:var(--ink-soft)}
 /* Both actions share a width in either state: side by side they split the
    row evenly, and once they wrap each one fills it. */
-.hero__actions{display:flex;flex-wrap:wrap;gap:14px;max-width:532px}
-.hero__actions>.btn{flex:1 1 236px}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;max-width:640px}
+/* nowrap + a basis wide enough for the longer label: side by side they share
+   the row evenly, and when the column is too narrow they stack at full width
+   rather than breaking "Explore the Collections" onto two lines */
+.hero__actions>.btn{flex:1 1 300px;white-space:nowrap}
 
 .hero__media{position:relative;z-index:1;overflow:hidden}
-.hero__media img{width:100%;height:100%;object-fit:cover;object-position:52% 38%;will-change:transform}
+/* hero_model is landscape in a portrait cell: 52% keeps the ringed hand,
+   face, earring and the full emerald set in frame */
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:52% 30%;will-change:transform}
 /* feather the photograph into the opal ground instead of butting it up hard */
 .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:
   linear-gradient(90deg,var(--blush) 0%,rgba(255,243,237,.55) 7%,rgba(255,243,237,0) 22%),
