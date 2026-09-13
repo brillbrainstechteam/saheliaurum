@@ -276,6 +276,43 @@
     track.style.setProperty("--mq-dur", Math.max(26, n * 3.4) + "s");
   });
 
+  /* collection gallery sliders */
+  document.querySelectorAll("[data-gslider]").forEach(function (sl) {
+    var track = sl.querySelector(".gslider__track");
+    var prev = sl.querySelector(".gnav--prev");
+    var next = sl.querySelector(".gnav--next");
+    if (!track || !prev || !next) return;
+
+    function step() {
+      var first = track.querySelector(".gitem");
+      if (!first) return 220;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 12;
+      return first.getBoundingClientRect().width + gap;
+    }
+    // scroll-snap parks the track a few px in and doesn't always fire a
+    // scroll event for that adjustment, so keep a tolerance and re-sync
+    // once the images have laid out.
+    var TOL = 8;
+    function sync() {
+      var max = track.scrollWidth - track.clientWidth;
+      var still = max <= TOL;                     // everything already fits
+      sl.classList.toggle("is-static", still);
+      sl.classList.toggle("is-end", still || track.scrollLeft >= max - TOL);
+      prev.disabled = still || track.scrollLeft <= TOL;
+      next.disabled = still || track.scrollLeft >= max - TOL;
+    }
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: reduce ? "auto" : "smooth" }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: reduce ? "auto" : "smooth" }); });
+    track.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    if ("ResizeObserver" in window) new ResizeObserver(sync).observe(track);
+    track.querySelectorAll("img").forEach(function (im) {
+      if (!im.complete) im.addEventListener("load", sync, { once: true });
+    });
+    window.addEventListener("load", sync);
+    sync();
+  });
+
   /* lightbox for collection galleries */
   var lb = document.getElementById("lightbox");
   if (lb) {

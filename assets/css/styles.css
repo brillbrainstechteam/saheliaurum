@@ -326,7 +326,10 @@ section[id]{scroll-margin-top:104px}
   font-size:clamp(2.3rem,4.35vw,4.05rem);line-height:1.03;letter-spacing:.004em;margin:0}
 .hero__title em{color:var(--mahogany);font-style:italic}
 .hero__lede{font-size:clamp(1rem,1.35vw,1.18rem);max-width:42ch;margin:1.3rem 0 2.1rem;color:var(--ink-soft)}
-.hero__actions{display:flex;flex-wrap:wrap;gap:14px}
+/* Both actions share a width in either state: side by side they split the
+   row evenly, and once they wrap each one fills it. */
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;max-width:532px}
+.hero__actions>.btn{flex:1 1 236px}
 
 .hero__media{position:relative;z-index:1;overflow:hidden}
 .hero__media img{width:100%;height:100%;object-fit:cover;object-position:52% 38%;will-change:transform}
@@ -738,8 +741,9 @@ section[id]{scroll-margin-top:104px}
 .site-footer__legacyline{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;
   color:var(--gold-deep);margin:14px 0 0}
 
+/* first block in the footer now, so it carries no rule above it */
 .site-footer__addresses{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);
-  text-align:center;padding-block:clamp(26px,3.4vw,40px);border-top:1px solid var(--line-strong)}
+  text-align:center;padding-bottom:clamp(26px,3.4vw,40px)}
 .faddr h4{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--gold-deep);margin-bottom:.7em;font-weight:400}
 .faddr p{margin:0 0 .35em;font-size:.95rem;color:var(--ink-soft)}
@@ -935,9 +939,37 @@ section[id]{scroll-margin-top:104px}
 .col-band__tag{font-family:var(--f-display);font-style:italic;color:var(--gold-deep);font-size:1.2rem;margin:.15em 0 .7em}
 .col-band__desc{color:var(--ink-soft);max-width:46ch;font-size:1.08rem;margin:0}
 .col-band__actions{display:flex;align-items:center;gap:22px;margin:1.5rem 0 0}
-.col-band__gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px}
-.gitem img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .7s var(--ease)}
-.gitem:hover img{transform:scale(1.08)}
+/* ---- collection gallery slider ----
+   Four small squares in a row read as contact-sheet filler; a snapping
+   filmstrip of tall plates gives the pieces room and invites a swipe. */
+.gslider{position:relative;margin-top:28px}
+.gslider__track{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:2px 2px 6px;
+  scrollbar-width:none;-ms-overflow-style:none}
+.gslider__track::-webkit-scrollbar{display:none}
+.gslider__track .gitem{flex:0 0 clamp(158px,38%,224px);scroll-snap-align:start}
+.gitem img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .9s var(--ease)}
+.gitem:hover img{transform:scale(1.07)}
+
+/* fade the strip's trailing edge so it reads as continuing */
+.gslider::after{content:"";position:absolute;top:0;right:0;width:46px;height:100%;pointer-events:none;
+  background:linear-gradient(90deg,rgba(255,243,237,0),var(--ivory));opacity:1;transition:opacity .35s var(--ease)}
+.col-band:nth-child(even) .gslider::after{background:linear-gradient(90deg,rgba(255,250,246,0),var(--ivory-2))}
+.gslider.is-end::after,.gslider.is-static::after{opacity:0}
+
+.gnav{position:absolute;top:calc(50% - 4px);transform:translateY(-50%);z-index:3;
+  width:42px;height:42px;border-radius:50%;padding:0;cursor:pointer;
+  background:rgba(255,250,246,.94);border:1px solid var(--line-strong);color:var(--mahogany);
+  display:grid;place-items:center;box-shadow:0 12px 26px -16px rgba(90,50,24,.7);
+  transition:background .3s var(--ease),color .3s var(--ease),opacity .3s var(--ease),transform .3s var(--ease)}
+.gnav svg{width:19px;height:19px}
+.gnav--prev{left:-16px}
+.gnav--next{right:-16px}
+.gnav:hover{background:var(--mahogany);color:var(--blush)}
+.gnav:disabled{opacity:0;pointer-events:none}
+.gslider.is-static .gnav{display:none}
+@media (max-width:860px){.gnav--prev{left:-6px}.gnav--next{right:-6px}}
+@media (hover:none){.gnav{display:none}.gslider::after{width:30px}}
 
 /* ---- Lightbox ---- */
 .lightbox{position:fixed;inset:0;z-index:200;background:rgba(9,8,5,.95);display:none;align-items:center;justify-content:center}
@@ -965,7 +997,8 @@ section[id]{scroll-margin-top:104px}
   .colgrid{grid-template-columns:1fr 1fr;gap:10px}
   .colgrid__item--feature{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
   .colgrid__name{font-size:1.4rem}
-  .col-band__gallery{gap:7px}
+  .gslider__track{gap:9px}
+  .gslider__track .gitem{flex-basis:clamp(140px,46%,180px)}
   .lightbox__nav{font-size:2.2rem;padding:6px 12px}
 }
 

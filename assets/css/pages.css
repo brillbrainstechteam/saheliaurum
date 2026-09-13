@@ -28,9 +28,13 @@ body[data-page]{
 .hallmark--light .num{color:var(--gold-3)}
 
 /* ---- leaf hero (numbered register opening) ---- */
-.leaf{position:relative;min-height:clamp(560px,84svh,860px);display:flex;align-items:flex-end;overflow:hidden;color:#fff;isolation:isolate;padding-top:clamp(118px,15vh,152px)}
+/* The plates are 3:2 and framed on the piece, so the band needs enough
+   height to show them — a short band crops straight through the necklace. */
+.leaf{position:relative;min-height:clamp(660px,94svh,1000px);display:flex;align-items:flex-end;overflow:hidden;color:#fff;isolation:isolate;padding-top:clamp(118px,15vh,152px)}
 .leaf__media{position:absolute;inset:0;z-index:-2}
-.leaf__media img{width:100%;height:100%;object-fit:cover}
+.leaf__media img{width:100%;height:100%;object-fit:cover;object-position:50% 38%}
+/* the showroom render is a wider plate and reads best centred */
+body[data-page="stores"] .leaf__media img{object-position:50% 50%}
 .leaf__scrim{position:absolute;inset:0;z-index:-1;background:
   linear-gradient(90deg,rgba(36,20,10,.84) 0%,rgba(36,20,10,.5) 44%,rgba(36,20,10,.1) 76%),
   linear-gradient(0deg,rgba(36,20,10,.72) 0%,rgba(36,20,10,.04) 48%)}
