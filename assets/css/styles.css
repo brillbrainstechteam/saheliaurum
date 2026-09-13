@@ -35,7 +35,7 @@
   --pearl:#fffaf6;
   --paper:#fdeee6;
   --ink:#2f2724;
-  --ink-soft:#6c5c53;
+  --ink-soft:#584a41;
   --line:#f2ddd1;
   --line-strong:#e7c9b8;
   --nocturne:#241c20;
@@ -742,7 +742,7 @@ section[id]{scroll-margin-top:104px}
 .site-footer__addresses{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);
   text-align:center;padding-block:clamp(26px,3.4vw,40px);border-top:1px solid var(--line-strong)}
 .faddr h4{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--mahogany);margin-bottom:.7em;font-weight:400}
+  color:var(--gold-deep);margin-bottom:.7em;font-weight:400}
 .faddr p{margin:0 0 .35em;font-size:.95rem;color:var(--ink-soft)}
 .faddr a{color:var(--ink);border-bottom:1px solid var(--rose)}
 .faddr a:hover{color:var(--mahogany)}
@@ -751,10 +751,10 @@ section[id]{scroll-margin-top:104px}
   padding-block:clamp(34px,4.5vw,56px);border-top:1px solid var(--line-strong)}
 .site-footer__tag{margin:0 0 1.4em;max-width:38ch;color:var(--ink-soft);font-size:1rem}
 .social{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
-.social a{color:var(--mahogany);border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .3s}
+.social a{color:var(--gold-deep);border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .3s}
 .social a:hover{border-color:var(--mahogany)}
 .site-footer__nav{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.site-footer__nav h4{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:1.1em;font-weight:400}
+.site-footer__nav h4{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.1em;font-weight:400}
 .site-footer__nav a{display:block;font-size:.98rem;color:var(--ink-soft);margin-bottom:.6em;transition:color .3s}
 .site-footer__nav a:hover{color:var(--mahogany)}
 .site-footer__base{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
