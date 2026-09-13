@@ -6,11 +6,8 @@
    ============================================================ */
 
 body[data-page]{
-  --garnet:#5e3516;
-  --garnet-2:#82491f;
-  --emerald-deep:#3b210d;
-  --ledger-line:rgba(130,73,31,.34);
-  --ledger-ink:#2e1c0f;
+  --ledger-line:rgba(130,73,31,.28);
+  --ledger-ink:#2f2724;
 }
 
 /* ---- scribed gold hairline (draws in on reveal) ---- */
@@ -35,8 +32,8 @@ body[data-page]{
 .leaf__media{position:absolute;inset:0;z-index:-2}
 .leaf__media img{width:100%;height:100%;object-fit:cover}
 .leaf__scrim{position:absolute;inset:0;z-index:-1;background:
-  linear-gradient(90deg,rgba(10,9,5,.8) 0%,rgba(10,9,5,.42) 44%,rgba(10,9,5,.08) 74%),
-  linear-gradient(0deg,rgba(10,9,5,.78) 0%,rgba(10,9,5,.05) 46%)}
+  linear-gradient(90deg,rgba(36,20,10,.84) 0%,rgba(36,20,10,.5) 44%,rgba(36,20,10,.1) 76%),
+  linear-gradient(0deg,rgba(36,20,10,.72) 0%,rgba(36,20,10,.04) 48%)}
 .leaf__folio{position:absolute;top:clamp(96px,15vh,150px);left:var(--gutter);z-index:2;display:flex;align-items:center;gap:16px;
   font-family:var(--f-ui);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-3)}
 .leaf__folio .rule{width:clamp(40px,8vw,120px);height:1px;background:var(--gold-3);opacity:.7}
@@ -49,19 +46,33 @@ body[data-page]{
 /* ---- ledger sections ---- */
 .ledger{padding-block:clamp(38px,4.5vw,74px)}
 .ledger--tint{background:var(--ivory-2)}
-.ledger--paper{background:linear-gradient(180deg,var(--ivory),var(--ivory-2))}
-.ledger--dark{background:var(--charcoal);color:var(--cream-on-dark)}
-.ledger--dark .ledger__title,.ledger--dark .reg__title{color:var(--ivory)}
-.ledger--emerald .ledger__title,.ledger--garnet .ledger__title,.ledger--emerald .reg__title,.ledger--garnet .reg__title{color:var(--ivory)}
-.ledger--emerald .ledger__title em,.ledger--garnet .ledger__title em{color:var(--gold-3)}
-.ledger--emerald{background:radial-gradient(120% 120% at 82% 0%,#9b5a28,var(--emerald-deep) 55%,#2a1709);color:#fff3ed}
-.ledger--garnet{background:linear-gradient(140deg,#82491f,var(--garnet) 58%,#1e1006);color:#fff3ed}
+.ledger--paper{background:linear-gradient(180deg,var(--ivory-2),var(--ivory))}
+/* Once deep brown grounds - now the opal field, matching the home page.
+   The drifting plate sits behind the content, never over it. */
+.ledger--dark,.ledger--emerald,.ledger--garnet{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--opal-ground);color:var(--ink)}
+.ledger--dark::before,.ledger--emerald::before,.ledger--garnet::before{
+  content:"";position:absolute;inset:-25%;z-index:0;pointer-events:none;opacity:.5;
+  background:var(--opal-field);will-change:transform;animation:opal-drift 58s linear infinite}
+.ledger--emerald::before{animation-duration:66s;animation-direction:reverse}
+.ledger--garnet::before{animation-duration:74s}
+.ledger--dark>*,.ledger--emerald>*,.ledger--garnet>*{position:relative;z-index:1}
+.ledger--dark .ledger__title,.ledger--dark .reg__title,
+.ledger--emerald .ledger__title,.ledger--garnet .ledger__title,
+.ledger--emerald .reg__title,.ledger--garnet .reg__title{color:var(--ledger-ink)}
+.ledger--dark .ledger__title em,
+.ledger--emerald .ledger__title em,.ledger--garnet .ledger__title em{color:var(--mahogany)}
+.ledger--dark .hallmark,.ledger--emerald .hallmark,.ledger--garnet .hallmark{color:var(--gold-deep)}
+.ledger--dark .hallmark .num,.ledger--emerald .hallmark .num,.ledger--garnet .hallmark .num{color:var(--mahogany)}
+@media (prefers-reduced-motion:reduce){
+  .ledger--dark::before,.ledger--emerald::before,.ledger--garnet::before{animation:none}}
 .ledger__head{max-width:760px;margin-bottom:clamp(18px,3vw,34px)}
 .ledger__head--center{margin-inline:auto;text-align:center}
 .ledger__title{font-family:var(--f-display);font-weight:500;font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.04;letter-spacing:.005em;color:var(--ledger-ink)}
 .ledger__title em{color:var(--gold);font-style:italic}
 .ledger__intro{color:var(--ink-soft);font-size:1.1rem;max-width:56ch;margin-top:1rem}
-.ledger--dark .ledger__intro,.ledger--emerald .ledger__intro,.ledger--garnet .ledger__intro{color:rgba(255,255,255,.82)}
+.ledger--dark .ledger__intro,.ledger--emerald .ledger__intro,.ledger--garnet .ledger__intro{color:var(--ink-soft)}
 
 /* ---- register two-column (sticky title + rows) ---- */
 .reg{display:grid;grid-template-columns:.66fr 1.34fr;gap:clamp(30px,6vw,88px);align-items:start}
@@ -74,7 +85,7 @@ body[data-page]{
 .reg__row h3{font-family:var(--f-display);font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--ledger-ink);margin-bottom:.3em}
 .reg__row p{color:var(--ink-soft);margin:0;max-width:52ch}
 .ledger--dark .reg__row h3{color:var(--ivory)}
-.ledger--dark .reg__row p{color:var(--cream-on-dark);opacity:.8}
+.ledger--dark .reg__row p{color:var(--ink-soft)}
 .ledger--dark .reg__row{border-color:rgba(203,141,118,.2)}
 
 /* ---- plates: bordered editorial cards ---- */
@@ -106,10 +117,10 @@ body[data-page]{
 .ceremony:first-child{border-left:0}
 .ceremony .num{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.16em;color:var(--gold)}
 .ceremony h4{font-family:var(--f-display);font-size:clamp(1.1rem,1.8vw,1.55rem);margin-top:.5em;color:var(--ledger-ink)}
-.ledger--garnet .ceremonies{border-color:rgba(203,141,118,.3)}
-.ledger--garnet .ceremony{border-color:rgba(203,141,118,.22)}
-.ledger--garnet .ceremony h4{color:#fff}
-.ledger--garnet .ceremony .num{color:var(--gold-3)}
+.ledger--garnet .ceremonies{border-color:var(--line-strong)}
+.ledger--garnet .ceremony{border-color:var(--line-strong)}
+.ledger--garnet .ceremony h4{color:var(--ledger-ink)}
+.ledger--garnet .ceremony .num{color:var(--mahogany)}
 
 /* ---- inline list of chips ---- */
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.4rem}
@@ -218,7 +229,7 @@ button.link-arrow:hover span{transform:translateX(6px)}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* collections name ribbon */
-.ribbon{background:var(--charcoal);padding-block:24px;border-block:1px solid rgba(203,141,118,.16)}
+.ribbon{background:var(--nocturne);padding-block:24px;border-block:1px solid rgba(203,141,118,.2)}
 .ribbon .marquee__item{font-family:var(--f-display);font-size:clamp(1.5rem,3.2vw,2.5rem);color:var(--gold-3);
   display:inline-flex;align-items:center;gap:.55em;letter-spacing:.02em}
 .ribbon .aurum-star{width:13px;height:13px;color:var(--gold);opacity:.75}
@@ -235,15 +246,24 @@ button.link-arrow:hover span{transform:translateX(6px)}
   .world img,.marquee--gallery .marquee__item img{transition:none}
 }
 
-/* ---- accents on the deep-brown ledgers (mahogany is dark, so it flips to rose) ---- */
-.ledger--dark .reg__row .num,.ledger--emerald .reg__row .num,.ledger--garnet .reg__row .num{color:var(--rose)}
-.ledger--dark .ceremony .num,.ledger--emerald .ceremony .num{color:var(--rose)}
-.ledger--dark .hallmark,.ledger--emerald .hallmark,.ledger--garnet .hallmark{color:var(--rose)}
-.hallmark--light .aurum-star,.ribbon .aurum-star,
-.ledger--dark .aurum-star,.ledger--emerald .aurum-star,.ledger--garnet .aurum-star{color:var(--rose)}
+/* ---- accents on the ledgers ----
+   These grounds are opal now, so mahogany reads directly; only the
+   photographic leaf hero and the ribbon still need the lighter rose. */
+.ledger--dark .reg__row .num,.ledger--emerald .reg__row .num,.ledger--garnet .reg__row .num{color:var(--mahogany)}
+.ledger--dark .ceremony .num,.ledger--emerald .ceremony .num{color:var(--mahogany)}
+.ledger--dark .aurum-star,.ledger--emerald .aurum-star,.ledger--garnet .aurum-star{color:var(--mahogany)}
+.hallmark--light .aurum-star,.ribbon .aurum-star{color:var(--rose)}
 .ledger--dark .scribe,.ledger--emerald .scribe,.ledger--garnet .scribe{
-  background:linear-gradient(90deg,var(--rose),rgba(203,141,118,0))}
+  background:linear-gradient(90deg,var(--mahogany),rgba(130,73,31,0))}
 .ledger--dark .scribe--center,.ledger--emerald .scribe--center,.ledger--garnet .scribe--center{
-  background:linear-gradient(90deg,rgba(203,141,118,0),var(--rose),rgba(203,141,118,0))}
-.ledger--dark .ledger__title em,.ledger--emerald .ledger__title em,.ledger--garnet .ledger__title em{color:var(--rose)}
-.ledger--dark .world::before,.ledger--emerald .world::before,.ledger--garnet .world::before{background:var(--rose)}
+  background:linear-gradient(90deg,rgba(130,73,31,0),var(--mahogany),rgba(130,73,31,0))}
+
+
+/* ---- collection wordmarks ----
+   Each collection has its own logo in the brand suite, so the band shows
+   the real mark instead of setting the name in the house serif. */
+.col-band__name--logo{margin:0 0 .2em;line-height:0}
+.col-logo{width:auto;height:auto;max-width:min(300px,72%);max-height:112px;object-fit:contain;
+  object-position:left center;transition:transform .6s var(--ease-out)}
+.col-band:hover .col-logo{transform:translateY(-2px)}
+@media (max-width:760px){.col-logo{max-width:66%;max-height:88px}}

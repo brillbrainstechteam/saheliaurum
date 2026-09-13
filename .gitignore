@@ -1,6 +1,10 @@
 # Source materials — large and not part of the deployed site
 images_catalogue/
 assets/new content/
+# Brand source artwork: the campaign PDF is unreleased material and must not
+# be served from the site. The extracted logos live in assets/img and ship.
+docs/*.pdf
+docs/*.png
 assets/img/collections/_check_heroes.jpg
 *.docx
 

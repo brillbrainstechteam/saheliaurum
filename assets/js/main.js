@@ -77,7 +77,7 @@
   }
 
   /* reveal on scroll */
-  var revealEls = document.querySelectorAll(".reveal, .stagger");
+  var revealEls = document.querySelectorAll(".reveal, .stagger, .lines, .unveil");
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -92,6 +92,37 @@
     revealEls.forEach(function (el) { el.classList.add("in"); });
   }
 
+  /* Above-the-fold content sits inside the hero, which never crosses the
+     observer's threshold on load - so play it straight away. */
+  var heroEls = document.querySelectorAll(".hero .reveal, .hero .lines, .hero .stagger");
+  if (heroEls.length) {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        heroEls.forEach(function (el, i) {
+          setTimeout(function () { el.classList.add("in"); }, reduce ? 0 : 90 * i);
+        });
+      });
+    });
+  }
+
+  /* one-shot pearl sheen as cards arrive */
+  var sheenEls = document.querySelectorAll(".sheen");
+  if (sheenEls.length && "IntersectionObserver" in window && !reduce) {
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        var delay = 120 * (+el.dataset.sheenIndex || 0);
+        setTimeout(function () {
+          el.classList.add("is-lit");
+          setTimeout(function () { el.classList.remove("is-lit"); }, 1300);
+        }, delay);
+        sio.unobserve(el);
+      });
+    }, { threshold: 0.3 });
+    sheenEls.forEach(function (el, i) { el.dataset.sheenIndex = i % 5; sio.observe(el); });
+  }
+
   /* hero parallax */
   var parallaxEls = document.querySelectorAll("[data-parallax] img");
   var ticking = false;
@@ -101,7 +132,7 @@
       var rect = host.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
       var offset = (rect.top / window.innerHeight) * -40;
-      var scale = host.classList.contains("hero__media") ? 1.04 : 1.12;
+      var scale = host.classList.contains("hero__media") ? 1.09 : 1.12;
       img.style.transform = "translate3d(0," + offset.toFixed(1) + "px,0) scale(" + scale + ")";
     });
     ticking = false;
