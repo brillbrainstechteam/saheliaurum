@@ -35,6 +35,17 @@ body[data-page]{
 .leaf__media img{width:100%;height:100%;object-fit:cover;object-position:50% 38%}
 /* the showroom render is a wider plate and reads best centred */
 body[data-page="stores"] .leaf__media img{object-position:50% 50%}
+/* Wide screens: `cover` cut the 3:2 plates to barely half their height, and the
+   jewellery went first. Past 17:10 the whole plate stands at full height on the
+   right, its left edge dissolving into a blurred extension of itself. */
+@media (min-aspect-ratio:17/10){
+  .leaf__media{background:#241c20}
+  /* --src is inline and root-relative: custom-property url()s resolve against this stylesheet */
+  .leaf__media::before{content:"";position:absolute;inset:-80px;background:var(--src) 70% 40%/cover no-repeat;
+    filter:blur(44px) brightness(.62) saturate(1.1)}
+  .leaf__media img{position:absolute;top:0;right:0;width:auto;height:100%;max-width:none;aspect-ratio:3/2;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+}
 .leaf__scrim{position:absolute;inset:0;z-index:-1;background:
   linear-gradient(90deg,rgba(36,20,10,.84) 0%,rgba(36,20,10,.5) 44%,rgba(36,20,10,.1) 76%),
   linear-gradient(0deg,rgba(36,20,10,.72) 0%,rgba(36,20,10,.04) 48%)}

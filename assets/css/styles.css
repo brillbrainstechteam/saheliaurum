@@ -523,7 +523,7 @@ section[id]{scroll-margin-top:104px}
 /* Once a 600vh scroll-jacked sequence that held the page until all six
    scenes had played. Now the page scrolls straight past it: the scenes
    advance on their own, and visitors can step, jump, swipe or pause. */
-.moments__carousel{position:relative;height:clamp(520px,88svh,920px);overflow:hidden;outline:none;touch-action:pan-y}
+.moments__carousel{--stage:clamp(520px,88svh,920px);position:relative;height:var(--stage);overflow:hidden;outline:none;touch-action:pan-y}
 .moments__carousel:focus-visible{box-shadow:inset 0 0 0 2px var(--rose)}
 .moments__stage{position:absolute;inset:0}
 .mscene{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;pointer-events:none;
@@ -532,7 +532,9 @@ section[id]{scroll-margin-top:104px}
 /* The plates are 4:5, so on a landscape stage `cover` shows a band of them.
    Biasing the position upward keeps the face and the piece in frame; the
    copy occupies the lower third. */
-.mscene__media{position:absolute;inset:0;background-size:cover;background-position:50% 24%;transform:scale(1.07);
+/* --m is set inline per slide. It must be root-relative: a url() held in a custom
+   property resolves against the stylesheet that reads it (/assets/css/), not the page. */
+.mscene__media{position:absolute;inset:0;background-image:var(--m);background-size:cover;background-position:50% 24%;transform:scale(1.07);
   transition:transform 2s var(--ease)}
 @media (max-aspect-ratio:1/1){.mscene__media{background-position:50% 30%}}
 .mscene.is-active .mscene__media{transform:scale(1)}
@@ -576,6 +578,30 @@ section[id]{scroll-margin-top:104px}
 .moments__toggle .i-play,.moments__toggle[aria-pressed="true"] .i-pause{display:none}
 .moments__toggle[aria-pressed="true"] .i-play{display:block}
 .moments__carousel:not(.is-auto) .moments__toggle{display:none}
+
+/* ---- landscape screens: an editorial spread ----
+   The plates are 4:5 portraits. Spread across a landscape stage with `cover`
+   only a third of their height survived (the faces, never the jewellery). On
+   any screen wider than it is tall, the whole plate now stands at full height
+   on the right over a blurred, darkened extension of itself, and the copy and
+   controls move into the open space on the left. */
+@media (min-aspect-ratio:1/1){
+  .moments__carousel{--plate:calc(var(--stage) * .8);--inset:clamp(20px,6vw,120px)}
+  .mscene__media{background-image:none}
+  .mscene__media::before{content:"";position:absolute;inset:-70px;background:var(--m) center/cover no-repeat;
+    filter:blur(42px) brightness(.46) saturate(1.2)}
+  .mscene__media::after{content:"";position:absolute;top:0;bottom:0;right:var(--inset);width:var(--plate);
+    background:var(--m) 50% 40%/cover no-repeat;box-shadow:0 30px 80px -30px rgba(0,0,0,.75)}
+  .mscene__vin{background:linear-gradient(90deg,rgba(8,6,3,.55) 0%,rgba(8,6,3,.28) 42%,rgba(8,6,3,0) 62%),
+    linear-gradient(0deg,rgba(8,6,3,.42) 0%,rgba(8,6,3,0) 36%)}
+  .mscene__copy{left:var(--gutter);right:auto;bottom:clamp(96px,17vh,170px);text-align:left;padding:0;
+    width:calc(100% - var(--gutter) - var(--inset) - var(--plate) - 48px)}
+  .mscene__copy p{font-size:clamp(1.8rem,3.4vw,3.6rem)}
+  .moments__controls{left:var(--gutter);right:auto;justify-content:flex-start}
+  /* the arrows sit on the plate's edges, clear of the copy */
+  .mnav--prev{left:auto;right:calc(var(--inset) + var(--plate) - 26px)}
+  .mnav--next{right:calc(var(--inset) - 26px)}
+}
 
 /* ============================================================
    CRAFT (dark)
@@ -870,7 +896,7 @@ section[id]{scroll-margin-top:104px}
   .bespoke__visual{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .bespoke__img{position:relative;width:auto;transform:none;border-width:5px}
   .bespoke__steps{grid-template-columns:repeat(3,1fr);gap:18px 24px}
-  .moments__carousel{height:clamp(460px,78svh,720px)}
+  .moments__carousel{--stage:clamp(460px,78svh,720px)}
   .mnav{width:42px;height:42px}
   .mnav svg{width:18px;height:18px}
   .mscene__copy{bottom:calc(clamp(16px,4.5vh,40px) + 44px)}
@@ -930,8 +956,10 @@ section[id]{scroll-margin-top:104px}
 /* The film now reads light and luminous, so the copy sits on a frosted
    blush plate rather than under a heavy black scrim. */
 .filmband{position:relative;background:var(--blush);overflow:hidden;isolation:isolate}
-.filmband__media{position:relative;width:100%;height:clamp(460px,72vh,820px)}
-.filmband__media video{width:100%;height:100%;object-fit:cover;display:block}
+/* height follows the film's own 16:9 frame; a fixed 72vh band cut it to half its height on wide screens */
+.filmband__media{position:relative;width:100%;height:max(460px,min(56.25vw,118svh))}
+/* when the band does crop, take it from the top: the jewellery sits low in every frame */
+.filmband__media video{width:100%;height:100%;object-fit:cover;object-position:50% 72%;display:block}
 .filmband__scrim{position:absolute;inset:0;background:
   linear-gradient(90deg,rgba(255,243,237,.52) 0%,rgba(255,243,237,.18) 40%,rgba(255,243,237,0) 66%),
   linear-gradient(0deg,rgba(255,243,237,.42),rgba(255,243,237,0) 42%)}
@@ -1029,7 +1057,7 @@ section[id]{scroll-margin-top:104px}
 }
 @media (max-width:620px){
   .colgrid{grid-template-columns:1fr 1fr;gap:10px}
-  .colgrid__item--feature{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
+  .colgrid__item--feature{grid-column:span 2;grid-row:auto;aspect-ratio:4/5}
   .colgrid__name{font-size:1.4rem}
   .gslider__track{gap:9px}
   .gslider__track .gitem{flex-basis:clamp(140px,46%,180px)}
