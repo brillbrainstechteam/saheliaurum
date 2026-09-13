@@ -138,52 +138,89 @@
     ticking = false;
   }
 
-  /* moments cinematic sequence */
-  var scroller = document.getElementById("momentScroller");
-  var scenes = scroller ? scroller.querySelectorAll(".mscene") : [];
-  var dots = scroller ? scroller.querySelectorAll(".moments__nav li") : [];
-  var current = 0;
-  function setScene(i) {
-    if (i === current) return;
-    current = i;
-    scenes.forEach(function (s, idx) { s.classList.toggle("is-active", idx === i); });
-    dots.forEach(function (d, idx) { d.classList.toggle("is-active", idx === i); });
-  }
-  function moments() {
-    if (!scroller || !desktop.matches) return;
-    var rect = scroller.getBoundingClientRect();
-    var total = scroller.offsetHeight - window.innerHeight;
-    var progress = Math.min(1, Math.max(0, -rect.top / total));
-    var idx = Math.min(scenes.length - 1, Math.floor(progress * scenes.length));
-    setScene(idx);
-  }
-
   function onScroll() {
     onScrollHeader();
     if (!ticking) {
       window.requestAnimationFrame(function () {
         if (!reduce) parallax();
-        moments();
         ticking = false;
       });
       ticking = true;
     }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", function () { moments(); });
 
-  /* ensure all scenes show if reduced-motion / non-desktop after load */
-  function normalizeScenes() {
-    if (!scroller) return;
-    if (!desktop.matches) {
-      scenes.forEach(function (s) { s.classList.add("is-active"); });
-    } else {
-      scenes.forEach(function (s, idx) { s.classList.toggle("is-active", idx === current); });
-      moments();
+  /* moments carousel.
+     Self-paced: it never holds the page scroll. It advances when the current
+     dot's fill animation ends, so every pause source (hover, keyboard focus,
+     off-screen, the pause button) freezes it by pausing that one animation. */
+  var carousel = document.getElementById("momentCarousel");
+  if (carousel) {
+    var scenes = [].slice.call(carousel.querySelectorAll(".mscene"));
+    var dotBtns = [].slice.call(carousel.querySelectorAll(".moments__dots button"));
+    var toggle = carousel.querySelector(".moments__toggle");
+    var cur = 0, userPaused = false, hovering = false, focusIn = false, inView = false;
+
+    function go(i) {
+      i = (i + scenes.length) % scenes.length;
+      if (i === cur) return;
+      scenes[cur].classList.remove("is-active");
+      scenes[cur].setAttribute("aria-hidden", "true");
+      dotBtns[cur].removeAttribute("aria-current");
+      cur = i;
+      scenes[cur].classList.add("is-active");
+      scenes[cur].removeAttribute("aria-hidden");
+      dotBtns[cur].setAttribute("aria-current", "true");
     }
+    function sync() {
+      carousel.classList.toggle("is-paused", userPaused || hovering || focusIn || !inView);
+    }
+
+    if (!reduce) carousel.classList.add("is-auto");
+    carousel.addEventListener("animationend", function (e) {
+      if (e.animationName === "mfill") go(cur + 1);
+    });
+    carousel.querySelector(".mnav--prev").addEventListener("click", function () { go(cur - 1); });
+    carousel.querySelector(".mnav--next").addEventListener("click", function () { go(cur + 1); });
+    dotBtns.forEach(function (b, idx) { b.addEventListener("click", function () { go(idx); }); });
+    if (toggle) toggle.addEventListener("click", function () {
+      userPaused = !userPaused;
+      toggle.setAttribute("aria-pressed", String(userPaused));
+      toggle.setAttribute("aria-label", userPaused ? "Play the slideshow" : "Pause the slideshow");
+      sync();
+    });
+    carousel.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { go(cur - 1); e.preventDefault(); }
+      if (e.key === "ArrowRight") { go(cur + 1); e.preventDefault(); }
+    });
+    carousel.addEventListener("mouseenter", function () { hovering = true; sync(); });
+    carousel.addEventListener("mouseleave", function () { hovering = false; sync(); });
+    carousel.addEventListener("focusin", function () { focusIn = true; sync(); });
+    carousel.addEventListener("focusout", function (e) {
+      if (!carousel.contains(e.relatedTarget)) { focusIn = false; sync(); }
+    });
+
+    /* horizontal swipe; vertical drags stay with the page (touch-action: pan-y) */
+    var sx = 0, sy = 0, tracking = false;
+    carousel.addEventListener("pointerdown", function (e) {
+      if (e.target.closest("button")) return;
+      tracking = true; sx = e.clientX; sy = e.clientY;
+    });
+    carousel.addEventListener("pointerup", function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.2) go(cur + (dx < 0 ? 1 : -1));
+    });
+    carousel.addEventListener("pointercancel", function () { tracking = false; });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting; sync();
+      }, { threshold: 0.35 }).observe(carousel);
+    } else { inView = true; }
+    sync();
   }
-  desktop.addEventListener("change", normalizeScenes);
-  normalizeScenes();
 
   /* -------------------------------------------------------------------
      Appointment form.

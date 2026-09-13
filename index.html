@@ -11,9 +11,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet" />
 <link rel="preload" as="image" href="assets/img/hero_model.webp" fetchpriority="high" />
-<link rel="stylesheet" href="assets/css/styles.css?v=11" />
-<link rel="stylesheet" href="assets/css/atelier.css?v=11" />
-<script src="assets/js/theme.js?v=11"></script>
+<link rel="stylesheet" href="assets/css/styles.css?v=13" />
+<link rel="stylesheet" href="assets/css/atelier.css?v=13" />
+<script src="assets/js/theme.js?v=13"></script>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
     </button>
 
     <a class="brand" href="/" aria-label="Saheli Aurum home">
-      <img class="brand__logo" src="assets/img/logo-stack.svg?v=11" alt="Saheli Aurum" width="61" height="54" />
+      <img class="brand__logo" src="assets/img/logo-stack.svg?v=13" alt="Saheli Aurum" width="61" height="54" />
       <span class="brand__legacy">A&nbsp;Sunil&nbsp;Jain&nbsp;Legacy</span>
     </a>
 
@@ -98,9 +98,9 @@
   <!-- BRAND FILM -->
   <section class="filmband" id="film" aria-label="The Saheli story in motion">
     <div class="filmband__media">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/video/brand-film-poster.webp?v=11">
-        <source src="assets/video/brand-film.webm?v=11" type="video/webm" />
-        <source src="assets/video/brand-film.mp4?v=11" type="video/mp4" />
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/video/brand-film-poster.webp?v=13">
+        <source src="assets/video/brand-film.webm?v=13" type="video/webm" />
+        <source src="assets/video/brand-film.mp4?v=13" type="video/mp4" />
       </video>
       <div class="filmband__scrim"></div>
     </div>
@@ -165,7 +165,7 @@
         <span class="colgrid__cap"><span class="colgrid__no">10</span><span class="colgrid__name">Glint</span><span class="colgrid__tag">The Diamonds Glam</span></span>
       </a>
       <a class="colgrid__item sheen" href="collections#shubh-ratna">
-        <img src="assets/img/hero_detail.webp" alt="Shubh Ratna gemstone jewellery" loading="lazy" />
+        <img src="assets/img/shubh_ratna.webp" alt="Shubh Ratna gemstone jewellery" loading="lazy" />
         <span class="colgrid__cap"><span class="colgrid__no">11</span><span class="colgrid__name">Shubh Ratna</span><span class="colgrid__tag">The Right Gemstone</span></span>
       </a>
     </div>
@@ -184,44 +184,44 @@
       </div>
     </div>
 
-    <div class="moments__scroller" id="momentScroller" data-count="6">
-      <div class="moments__sticky">
-        <div class="moments__stage">
-          <article class="mscene is-active">
-            <div class="mscene__media" style="background-image:url('assets/img/moment_bride.webp')"></div>
+    <div class="moments__carousel" id="momentCarousel" role="region" aria-roledescription="carousel" aria-label="Jewellery for every moment" tabindex="0">
+      <div class="moments__stage">
+          <article class="mscene is-active" role="group" aria-roledescription="slide" aria-label="1 of 6: The Bride">
+            <div class="mscene__media" style="background-image:url('assets/img/moment_bride_riva.webp')"></div>
             <div class="mscene__vin"></div>
             <div class="mscene__copy"><span class="mscene__no">01 — The Bride</span><p>For the day that <em>changes everything.</em></p></div>
           </article>
-          <article class="mscene">
+          <article class="mscene" role="group" aria-roledescription="slide" aria-label="2 of 6: The Engagement" aria-hidden="true">
             <div class="mscene__media" style="background-image:url('assets/img/moment_couple.webp')"></div>
             <div class="mscene__vin"></div>
             <div class="mscene__copy"><span class="mscene__no">02 — The Engagement</span><p>For the “yes” that <em>begins forever.</em></p></div>
           </article>
-          <article class="mscene">
-            <div class="mscene__media" style="background-image:url('assets/img/moment_family.webp')"></div>
+          <article class="mscene" role="group" aria-roledescription="slide" aria-label="3 of 6: Family &amp; Festival" aria-hidden="true">
+            <div class="mscene__media" style="background-image:url('assets/img/moment_family_saheli.webp')"></div>
             <div class="mscene__vin"></div>
             <div class="mscene__copy"><span class="mscene__no">03 — Family &amp; Festival</span><p>For the moments that <em>bring everyone home.</em></p></div>
           </article>
-          <article class="mscene">
+          <article class="mscene" role="group" aria-roledescription="slide" aria-label="4 of 6: The Achievement" aria-hidden="true">
             <div class="mscene__media" style="background-image:url('assets/img/moment_achieve.webp')"></div>
             <div class="mscene__vin"></div>
             <div class="mscene__copy"><span class="mscene__no">04 — The Achievement</span><p>For the milestone <em>you worked for.</em></p></div>
           </article>
-          <article class="mscene">
+          <article class="mscene" role="group" aria-roledescription="slide" aria-label="5 of 6: Gifting" aria-hidden="true">
             <div class="mscene__media" style="background-image:url('assets/img/moment_gift.webp')"></div>
             <div class="mscene__vin"></div>
             <div class="mscene__copy"><span class="mscene__no">05 — Gifting</span><p>For what words <em>cannot say.</em></p></div>
           </article>
-          <article class="mscene">
+          <article class="mscene" role="group" aria-roledescription="slide" aria-label="6 of 6: For Yourself" aria-hidden="true">
             <div class="mscene__media" style="background-image:url('assets/img/moment_self.webp')"></div>
             <div class="mscene__vin"></div>
             <div class="mscene__copy"><span class="mscene__no">06 — For Yourself</span><p>And sometimes, <em>just because you want to.</em></p></div>
           </article>
-        </div>
-
-        <ol class="moments__nav" aria-hidden="true">
-          <li class="is-active"></li><li></li><li></li><li></li><li></li><li></li>
-        </ol>
+      </div>
+      <button class="mnav mnav--prev" type="button" aria-label="Previous moment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="mnav mnav--next" type="button" aria-label="Next moment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="moments__controls">
+        <ol class="moments__dots"><li><button type="button" aria-label="The Bride" aria-current="true"><span></span></button></li><li><button type="button" aria-label="The Engagement"><span></span></button></li><li><button type="button" aria-label="Family &amp; Festival"><span></span></button></li><li><button type="button" aria-label="The Achievement"><span></span></button></li><li><button type="button" aria-label="Gifting"><span></span></button></li><li><button type="button" aria-label="For Yourself"><span></span></button></li></ol>
+        <button class="moments__toggle" type="button" aria-pressed="false" aria-label="Pause the slideshow"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></button>
       </div>
     </div>
 
@@ -267,8 +267,8 @@
         <a class="btn btn--gold" href="bespoke#consultation">Begin a Bespoke Consultation</a>
       </div>
       <div class="bespoke__visual reveal reveal--scale">
-        <figure class="bespoke__img bespoke__img--sketch"><img src="assets/img/bespoke_sketch.jpg" alt="Hand-drawn design sketch of a necklace" loading="lazy" /><figcaption>The sketch</figcaption></figure>
-        <figure class="bespoke__img bespoke__img--final"><img src="assets/img/bespoke_necklace.webp" alt="The finished bespoke necklace" loading="lazy" /><figcaption>The creation</figcaption></figure>
+        <figure class="bespoke__img bespoke__img--sketch"><img src="assets/img/bespoke_sketch.webp" alt="Hand-drawn design sketch of a necklace" loading="lazy" /><figcaption>The sketch</figcaption></figure>
+        <figure class="bespoke__img bespoke__img--final"><img src="assets/img/bespoke_creation.webp" alt="The finished bespoke necklace" loading="lazy" /><figcaption>The creation</figcaption></figure>
       </div>
     </div>
     <ol class="wrap bespoke__steps stagger">
@@ -354,7 +354,7 @@
         </div>
       </article>
       <article class="scheme">
-        <div class="scheme__media"><img src="assets/img/scheme_ruby.webp" alt="Saheli Golden Club scheme" loading="lazy" /></div>
+        <div class="scheme__media"><img src="assets/img/scheme_golden_club.webp" alt="Saheli Golden Club scheme: a heritage gold temple necklace" loading="lazy" /></div>
         <div class="scheme__body">
           <span class="scheme__no">02</span>
           <h3>Saheli Golden Club</h3>
@@ -549,6 +549,6 @@
   <div class="site-footer__credit"><a href="https://brillbrainsconsultants.com/" target="_blank" rel="noopener">Powered by <strong>BrillBrains</strong></a></div>
 </footer>
 
-<script src="assets/js/main.js?v=11"></script>
+<script src="assets/js/main.js?v=13"></script>
 </body>
 </html>

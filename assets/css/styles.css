@@ -512,7 +512,7 @@ section[id]{scroll-margin-top:104px}
 .collections .center{margin-top:clamp(18px,3vw,34px)}
 
 /* ============================================================
-   MOMENTS — cinematic sticky sequence
+   MOMENTS — self-paced carousel
    ============================================================ */
 .moments{background:var(--nocturne)}
 .moments__intro,.moments__outro{background:var(--nocturne);color:var(--ivory)}
@@ -520,11 +520,15 @@ section[id]{scroll-margin-top:104px}
 .moments__intro .display{color:var(--ivory);margin-top:.15em}
 .moments__outro .lede{font-family:var(--f-display);color:var(--cream-on-dark);max-width:36ch;margin:0 auto;font-style:italic}
 
-.moments__scroller{position:relative;height:600vh}
-.moments__sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+/* Once a 600vh scroll-jacked sequence that held the page until all six
+   scenes had played. Now the page scrolls straight past it: the scenes
+   advance on their own, and visitors can step, jump, swipe or pause. */
+.moments__carousel{position:relative;height:clamp(520px,88svh,920px);overflow:hidden;outline:none;touch-action:pan-y}
+.moments__carousel:focus-visible{box-shadow:inset 0 0 0 2px var(--rose)}
 .moments__stage{position:absolute;inset:0}
-.mscene{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1s var(--ease);pointer-events:none}
-.mscene.is-active{opacity:1;pointer-events:auto}
+.mscene{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity 1s var(--ease),visibility 0s linear 1s}
+.mscene.is-active{opacity:1;visibility:visible;pointer-events:auto;transition:opacity 1s var(--ease),visibility 0s}
 /* The plates are 4:5, so on a landscape stage `cover` shows a band of them.
    Biasing the position upward keeps the face and the piece in frame; the
    copy occupies the lower third. */
@@ -542,9 +546,36 @@ section[id]{scroll-margin-top:104px}
 .mscene__copy p{font-family:var(--f-display);font-size:clamp(2rem,5.5vw,4rem);color:#fff;line-height:1.08;margin:0;text-shadow:0 2px 24px rgba(0,0,0,.4)}
 .mscene__copy em{color:var(--gold-3)}
 
-.moments__nav{position:absolute;left:50%;bottom:6vh;transform:translateX(-50%);z-index:4;display:flex;gap:12px;list-style:none;margin:0;padding:0}
-.moments__nav li{width:26px;height:2px;background:rgba(255,255,255,.25);transition:background .4s}
-.moments__nav li.is-active{background:var(--gold-3)}
+.mnav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;padding:0;
+  cursor:pointer;display:grid;place-items:center;color:#fff;background:rgba(20,14,12,.3);
+  border:1px solid rgba(255,255,255,.38);backdrop-filter:blur(6px);
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+.mnav svg{width:22px;height:22px}
+.mnav--prev{left:clamp(12px,3vw,40px)}
+.mnav--next{right:clamp(12px,3vw,40px)}
+.mnav:hover,.mnav:focus-visible{background:rgba(255,243,237,.94);color:var(--mahogany);border-color:transparent;outline:none}
+.moments__controls{position:absolute;left:0;right:0;bottom:clamp(16px,4.5vh,40px);z-index:5;
+  display:flex;justify-content:center;align-items:center;gap:16px}
+.moments__dots{display:flex;gap:8px;list-style:none;margin:0;padding:0}
+.moments__dots button{display:block;width:38px;padding:11px 0;background:none;border:0;cursor:pointer}
+.moments__dots span{display:block;height:2px;background:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.moments__dots span::after{content:"";position:absolute;inset:0;background:var(--gold-3);transform:scaleX(0);transform-origin:left}
+.moments__dots button[aria-current="true"] span::after{transform:scaleX(1)}
+.moments__dots button:hover span{background:rgba(255,255,255,.6)}
+.moments__dots button:focus-visible{outline:1px solid var(--rose);outline-offset:3px}
+/* the current dot fills over the dwell time; main.js advances on animationend,
+   so pausing the animation pauses the carousel at exactly the same point */
+.moments__carousel.is-auto .moments__dots button[aria-current="true"] span::after{animation:mfill 6.5s linear forwards}
+/* must out-rank the rule above: its `animation` shorthand resets play-state to running */
+.moments__carousel.is-auto.is-paused .moments__dots button[aria-current="true"] span::after{animation-play-state:paused}
+@keyframes mfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.moments__toggle{width:34px;height:34px;border-radius:50%;padding:0;cursor:pointer;display:grid;place-items:center;
+  color:#fff;background:rgba(20,14,12,.3);border:1px solid rgba(255,255,255,.38)}
+.moments__toggle:hover,.moments__toggle:focus-visible{background:rgba(255,243,237,.94);color:var(--mahogany);outline:none}
+.moments__toggle svg{width:14px;height:14px}
+.moments__toggle .i-play,.moments__toggle[aria-pressed="true"] .i-pause{display:none}
+.moments__toggle[aria-pressed="true"] .i-play{display:block}
+.moments__carousel:not(.is-auto) .moments__toggle{display:none}
 
 /* ============================================================
    CRAFT (dark)
@@ -839,13 +870,11 @@ section[id]{scroll-margin-top:104px}
   .bespoke__visual{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .bespoke__img{position:relative;width:auto;transform:none;border-width:5px}
   .bespoke__steps{grid-template-columns:repeat(3,1fr);gap:18px 24px}
-  .moments__scroller{height:auto}
-  .moments__sticky{position:static;height:auto}
-  .moments__stage{position:static}
-  .mscene{position:relative;inset:auto;opacity:1;height:82vh;min-height:440px;pointer-events:auto}
-  .mscene__media{transform:none}
-  .mscene__copy{transform:none;bottom:9vh}
-  .moments__nav{display:none}
+  .moments__carousel{height:clamp(460px,78svh,720px)}
+  .mnav{width:42px;height:42px}
+  .mnav svg{width:18px;height:18px}
+  .mscene__copy{bottom:calc(clamp(16px,4.5vh,40px) + 44px)}
+  .mscene__copy p{font-size:clamp(1.7rem,7.2vw,2.4rem)}
 }
 @media (max-width:520px){
   :root{--gutter:20px}
