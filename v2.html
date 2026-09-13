@@ -3,21 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Saheli Aurum — Pure &amp; Promising Forever</title>
-<meta name="description" content="Saheli Aurum is a modern jewellery house rooted in a legacy since 1984 — where Indian craftsmanship meets contemporary luxury. Polki, diamond, gold, gemstone and bespoke jewellery. Raipur, Durg &amp; Utai." />
+<title>Saheli Aurum &#8212; Pure &amp; Promising Forever</title>
+<meta name="description" content="Saheli Aurum is a modern jewellery house rooted in a legacy since 1984 &#8212; where Indian craftsmanship meets contemporary luxury. Raipur, Durg &amp; Utai." />
+<meta name="robots" content="noindex" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23fff3ed'/%3E%3Cpath fill='%2382491f' d='M50 3C52.5 28 56 44 72 48C80 49.4 88 49.8 97 50C88 50.2 80 50.6 72 52C56 56 52.5 72 50 97C47.5 72 44 56 28 52C20 50.6 12 50.2 3 50C12 49.8 20 49.4 28 48C44 44 47.5 28 50 3Z'/%3E%3C/svg%3E" />
 <meta name="theme-color" content="#fff3ed" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet" />
-<link rel="preload" as="image" href="assets/img/hero_model.webp" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/img/v2/hero-arch.webp?v=17" fetchpriority="high" />
 <link rel="stylesheet" href="assets/css/styles.css?v=17" />
-<link rel="stylesheet" href="assets/css/atelier.css?v=17" />
-<script src="assets/js/theme.js?v=17"></script>
+<link rel="stylesheet" href="assets/css/v2.css?v=17" />
 </head>
-<body>
+<body class="v2">
 
-<!-- TOP BAR (fixed) -->
 <div class="topbar" id="topbar">
 <!-- HEADER -->
 <header class="site-header" id="siteHeader">
@@ -26,7 +25,7 @@
       <span></span><span></span><span></span>
     </button>
 
-    <a class="brand" href="/" aria-label="Saheli Aurum home">
+    <a class="brand" href="v2" aria-label="Saheli Aurum home">
       <img class="brand__logo" src="assets/img/logo-stack.svg?v=17" alt="Saheli Aurum" width="61" height="54" />
       <span class="brand__legacy">A&nbsp;Sunil&nbsp;Jain&nbsp;Legacy</span>
     </a>
@@ -49,133 +48,90 @@
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero__copy">
-      <p class="eyebrow hero__eyebrow reveal">Pure &amp; Promising Forever</p>
-      <h1 class="hero__title lines">
-        <span class="ln"><span>Indian craftsmanship,</span></span>
-        <span class="ln"><span><em>contemporary</em> luxury.</span></span>
-      </h1>
-      <p class="hero__lede reveal">From a single room in Chhattisgarh to a modern jewellery house — pieces worthy of life's most meaningful moments.</p>
-      <div class="hero__actions reveal">
+  <!-- HERO: the mirror hall -->
+  <section class="mh" id="hero">
+    <div class="mh__lattice" aria-hidden="true"></div>
+    <span class="mh__disc mh__disc--l" aria-hidden="true"></span>
+    <span class="mh__disc mh__disc--r" aria-hidden="true"></span>
+    <p class="eyebrow mh__eyebrow reveal">Pure &amp; Promising Forever</p>
+    <div class="mh__grid">
+      <figure class="mh__arch arch-win reveal reveal--scale"><img src="assets/img/v2/hero-arch.webp?v=17" alt="A Saheli Aurum model wearing a diamond and emerald bridal necklace set" width="1188" height="1584" fetchpriority="high" /></figure>
+      <h1 class="mh__title"><span class="mh__half mh__half--l lines"><span class="ln"><span>Indian</span></span><span class="ln"><span>craftsmanship,</span></span></span><span class="mh__gap" aria-hidden="true"></span><span class="mh__half mh__half--r lines"><span class="ln"><span><em>contemporary</em></span></span><span class="ln"><span>luxury.</span></span></span></h1>
+      <p class="mh__lede reveal">From a single room in Chhattisgarh to a modern jewellery house &#8212; pieces worthy of life&#8217;s most meaningful moments.</p>
+      <div class="mh__cta reveal">
         <a class="btn btn--gold" href="collections">Explore the Collections</a>
         <a class="btn btn--outline" href="stores#appointment">Book an Appointment</a>
       </div>
     </div>
-    <div class="hero__media" data-parallax>
-      <img src="assets/img/hero_model.webp" alt="A Saheli Aurum model wearing a diamond and emerald bridal necklace set" fetchpriority="high" width="2400" height="1584" />
-    </div>
-    <a class="hero__scroll" href="#discover" aria-label="Scroll to discover">
-      <span class="hero__scroll-line" aria-hidden="true"></span>
-      <span>Discover</span>
-    </a>
+    <a class="mh__cue" href="#discover"><span>Discover</span><i aria-hidden="true"></i></a>
   </section>
 
-  <!-- DISCOVER / BRAND ESSENCE -->
-  <section class="discover section" id="discover">
-    <div class="wrap discover__grid">
-      <div class="discover__intro reveal reveal--left">
+  <!-- FOREVER + DISCOVER -->
+  <section class="dv section" id="discover">
+    <div class="forever reveal" aria-hidden="true"><svg viewBox="44 4 152 72"><path pathLength="1" d="M120 40 C 100 10, 50 10, 50 40 C 50 70, 100 70, 120 40 C 140 10, 190 10, 190 40 C 190 70, 140 70, 120 40 Z"/></svg><span>Since 1984</span></div>
+    <div class="wrap dv__grid">
+      <div class="dv__story reveal reveal--left">
         <p class="eyebrow">Discover Saheli Aurum</p>
         <h2 class="display">Rooted in heritage.<br />Refined for today.</h2>
-      </div>
-      <div class="discover__body reveal reveal--right">
-        <p class="lede">In 1984, Mr. Sunil Jain began with a simple belief — to offer jewellery of exceptional design, with uncompromising purity and honest value. What began in a single room grew, through generations of trust, into a name cherished across Chhattisgarh.</p>
+        <p class="lede">In 1984, Mr. Sunil Jain began with a simple belief &#8212; to offer jewellery of exceptional design, with uncompromising purity and honest value. What began in a single room grew, through generations of trust, into a name cherished across Chhattisgarh.</p>
         <p>Today, Saheli Aurum carries that legacy forward: more refined, more contemporary, yet deeply rooted in everything that made Saheli what it is.</p>
-        <a class="link-arrow" href="about">Read our story <span aria-hidden="true">→</span></a>
+        <a class="link-arrow" href="about">Read our story <span aria-hidden="true">&#8594;</span></a>
       </div>
-    </div>
-    <div class="wrap">
-      <ul class="essence stagger">
-        <li><span class="essence__k">Est.</span><span class="essence__v">1984</span><span class="essence__l">Four decades of trust</span></li>
-        <li><span class="essence__k">5 Lakh+</span><span class="essence__v">Families</span><span class="essence__l">Across Chhattisgarh</span></li>
-        <li><span class="essence__k">11</span><span class="essence__v">Collections</span><span class="essence__l">A world for every story</span></li>
-        <li><span class="essence__k">3</span><span class="essence__v">Showrooms</span><span class="essence__l">Raipur, Durg &amp; Utai</span></li>
+      <ul class="dv__facts stagger">
+        <li><span class="dv__n">1984</span><span class="dv__k">Established</span><span class="dv__l">Four decades of trust</span></li>
+        <li><span class="dv__n">5L+</span><span class="dv__k">Families</span><span class="dv__l">Across Chhattisgarh</span></li>
+        <li><span class="dv__n">11</span><span class="dv__k">Collections</span><span class="dv__l">A world for every story</span></li>
+        <li><span class="dv__n">3</span><span class="dv__k">Showrooms</span><span class="dv__l">Raipur, Durg &amp; Utai</span></li>
       </ul>
     </div>
   </section>
 
-  <!-- BRAND FILM -->
-  <section class="filmband" id="film" aria-label="The Saheli story in motion">
-    <div class="filmband__media">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/video/brand-film-poster.webp?v=17">
-        <source src="assets/video/brand-film.webm?v=17" type="video/webm" />
-        <source src="assets/video/brand-film.mp4?v=17" type="video/mp4" />
-      </video>
-      <div class="filmband__scrim"></div>
-    </div>
-    <div class="filmband__inner">
-      <div class="filmband__plate reveal reveal--left">
-        <p class="eyebrow">The Saheli Story</p>
-        <h2 class="display">Four decades of<br /><em>light, worn.</em></h2>
-        <p>From Saheli Jewellers to Saheli Aurum — a legacy of trust, carried into a new era of Indian luxury.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- COLLECTIONS -->
-  <section class="collections section section--tint" id="collections">
-    <div class="wrap collections__head">
+  <!-- ELEVEN NICHES -->
+  <section class="nc section" id="collections">
+    <div class="wrap nc__head">
       <div class="reveal">
         <p class="eyebrow">Signature Collections</p>
         <h2 class="display">Eleven worlds,<br />one master craft.</h2>
       </div>
-      <p class="collections__sub reveal">Each collection carries its own character — from open polki elegance to the quiet brilliance of handcrafted diamonds — while remaining unmistakably Saheli Aurum.</p>
+      <p class="reveal">Each collection carries its own character &#8212; from open polki elegance to the quiet brilliance of handcrafted diamonds &#8212; while remaining unmistakably Saheli Aurum.</p>
     </div>
-
-    <div class="wrap colgrid stagger">
-      <a class="colgrid__item colgrid__item--feature sheen" href="collections#inara">
-        <img src="assets/img/collections/inara-hero.webp" alt="Inara open polki jewellery" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">01</span><span class="colgrid__name">Inara</span><span class="colgrid__tag">Open Polki Elegance</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#riva">
-        <img src="assets/img/collections/riva-hero.webp" alt="Riva polki classics" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">02</span><span class="colgrid__name">Riva</span><span class="colgrid__tag">Polki Classics</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#royalis">
-        <img src="assets/img/collections/royalis-hero.webp" alt="Royalis heritage gold" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">03</span><span class="colgrid__name">Royalis</span><span class="colgrid__tag">Timeless Heritage Art</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#bomat">
-        <img src="assets/img/collections/bomat-hero.webp" alt="Bomat antique artistry" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">04</span><span class="colgrid__name">Bomat</span><span class="colgrid__tag">The Antique Artistry</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#rajsa">
-        <img src="assets/img/collections/rajasa-hero.webp" alt="Rajsa royal gold" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">05</span><span class="colgrid__name">Rajsa</span><span class="colgrid__tag">The Royal Touch</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#rosette">
-        <img src="assets/img/collections/rosette-hero.webp" alt="Rosette rose gold" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">06</span><span class="colgrid__name">Rosette</span><span class="colgrid__tag">Rose Gold Affair</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#nia">
-        <img src="assets/img/collections/nia-hero.webp" alt="Nia light diamonds" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">07</span><span class="colgrid__name">Nia</span><span class="colgrid__tag">It's Lite. It's a Delight.</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#etern">
-        <img src="assets/img/collections/etern-hero.webp" alt="Etern handcrafted diamonds" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">08</span><span class="colgrid__name">Etern</span><span class="colgrid__tag">Handcraft Diamonds</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#ekam">
-        <img src="assets/img/collections/ekam-hero.webp" alt="Ekam limited masterpieces" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">09</span><span class="colgrid__name">Ekam</span><span class="colgrid__tag">Limited Masterpieces</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#glint">
-        <img src="assets/img/collections/glint-hero.webp" alt="Glint diamond glam" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">10</span><span class="colgrid__name">Glint</span><span class="colgrid__tag">The Diamonds Glam</span></span>
-      </a>
-      <a class="colgrid__item sheen" href="collections#shubh-ratna">
-        <img src="assets/img/shubh_ratna.webp" alt="Shubh Ratna gemstone jewellery" loading="lazy" />
-        <span class="colgrid__cap"><span class="colgrid__no">11</span><span class="colgrid__name">Shubh Ratna</span><span class="colgrid__tag">The Right Gemstone</span></span>
-      </a>
+    <div class="gslider" data-gslider>
+      <div class="gslider__track">
+        <a class="gitem niche sheen" href="collections#inara"><span class="niche__no">01</span><span class="niche__arch"><img src="assets/img/collections/inara-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/inara.webp?v=17" alt="Inara &#8212; Open Polki Elegance" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#riva"><span class="niche__no">02</span><span class="niche__arch"><img src="assets/img/collections/riva-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/riva.webp?v=17" alt="Riva &#8212; Polki Classics" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#royalis"><span class="niche__no">03</span><span class="niche__arch"><img src="assets/img/collections/royalis-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/royalis.webp?v=17" alt="Royalis &#8212; Timeless Heritage Art" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#bomat"><span class="niche__no">04</span><span class="niche__arch"><img src="assets/img/collections/bomat-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/bomat.webp?v=17" alt="Bomat &#8212; The Antique Artistry" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#rajsa"><span class="niche__no">05</span><span class="niche__arch"><img src="assets/img/collections/rajasa-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/rajasa.webp?v=17" alt="Rajsa &#8212; The Royal Touch" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#rosette"><span class="niche__no">06</span><span class="niche__arch"><img src="assets/img/collections/rosette-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/rosette.webp?v=17" alt="Rosette &#8212; Rose Gold Affair" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#nia"><span class="niche__no">07</span><span class="niche__arch"><img src="assets/img/collections/nia-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/nia.webp?v=17" alt="Nia &#8212; It&#8217;s Lite. It&#8217;s a Delight." loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#etern"><span class="niche__no">08</span><span class="niche__arch"><img src="assets/img/collections/etern-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/etern.webp?v=17" alt="Etern &#8212; Handcraft Diamonds" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#ekam"><span class="niche__no">09</span><span class="niche__arch"><img src="assets/img/collections/ekam-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/ekam.webp?v=17" alt="Ekam &#8212; Limited Masterpieces" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#glint"><span class="niche__no">10</span><span class="niche__arch"><img src="assets/img/collections/glint-hero.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/glint.webp?v=17" alt="Glint &#8212; The Diamonds Glam" loading="lazy" /></a>
+        <a class="gitem niche sheen" href="collections#shubh-ratna"><span class="niche__no">11</span><span class="niche__arch"><img src="assets/img/shubh_ratna.webp" alt="" loading="lazy" /></span><img class="niche__logo" src="assets/img/collections/logos/shubh-ratna.webp?v=17" alt="Shubh Ratna &#8212; The Right Gemstone" loading="lazy" /></a>
+      </div>
+      <button class="gnav gnav--prev" type="button" aria-label="Previous collections"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="gnav gnav--next" type="button" aria-label="Next collections"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
+    <div class="wrap center"><a class="btn btn--outline reveal" href="collections">View all collections</a></div>
+  </section>
 
-    <div class="wrap center">
-      <a class="btn btn--outline reveal" href="collections">View all collections</a>
+  <!-- FILM -->
+  <section class="fm section" id="film" aria-label="The Saheli story in motion">
+    <div class="wrap fm__grid">
+      <div class="fm__copy reveal reveal--left">
+        <p class="eyebrow">The Saheli Story</p>
+        <h2 class="display">Four decades of<br /><em>light, worn.</em></h2>
+        <p>From Saheli Jewellers to Saheli Aurum &#8212; a legacy of trust, carried into a new era of Indian luxury.</p>
+      </div>
+      <figure class="fm__frame reveal reveal--scale">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/video/brand-film-poster.webp?v=17">
+          <source src="assets/video/brand-film.webm?v=17" type="video/webm" />
+          <source src="assets/video/brand-film.mp4?v=17" type="video/mp4" />
+        </video>
+      </figure>
     </div>
   </section>
 
-  <!-- JEWELLERY FOR EVERY MOMENT (cinematic sticky sequence) -->
   <section class="moments" id="moments" aria-label="Jewellery for every moment">
     <div class="moments__intro section">
       <div class="wrap center">
@@ -232,55 +188,50 @@
     </div>
   </section>
 
-  <!-- CRAFTSMANSHIP -->
-  <section class="craft section--dark" id="craft">
-    <div class="wrap craft__grid">
-      <div class="craft__media unveil">
-        <img src="assets/img/craft_necklace.webp" alt="Close detail of a hand-crafted Saheli Aurum necklace" loading="lazy" />
-      </div>
-      <div class="craft__intro reveal reveal--right">
+  <!-- CRAFT -->
+  <section class="cf section" id="craft">
+    <div class="wrap cf__grid">
+      <figure class="cf__img unveil"><img src="assets/img/craft_necklace.webp" alt="Close detail of a hand-crafted Saheli Aurum necklace" loading="lazy" /></figure>
+      <div class="cf__copy reveal reveal--right">
         <p class="eyebrow">Our Craft</p>
         <h2 class="display">Before it reaches your hands, it passes through <em>the finest ones.</em></h2>
-        <p class="craft__lede">Behind every Saheli Aurum creation are skilled hands, trained eyes and countless considered details. Traditional artistry meets modern technique — from the first sketch to the final polish, every detail has a purpose.</p>
+        <p class="cf__lede">Behind every Saheli Aurum creation are skilled hands, trained eyes and countless considered details. Traditional artistry meets modern technique &#8212; from the first sketch to the final polish, every detail has a purpose.</p>
+        <ol class="cf__steps stagger">
+          <li><b>01</b><h3>Stone Setting</h3><p>Each stone is hand-set with precision and care for brilliance that lasts.</p></li>
+          <li><b>02</b><h3>Intricate Detailing</h3><p>Skilled artisans craft every curve and motif to perfection.</p></li>
+          <li><b>03</b><h3>Strong Foundation</h3><p>A well-crafted back ensures durability, comfort and balance.</p></li>
+          <li><b>04</b><h3>Flawless Finish</h3><p>Every piece is polished to a shine that speaks of luxury.</p></li>
+        </ol>
+        <p class="cf__sign">One masterpiece. Many masters.</p>
       </div>
-    </div>
-
-    <div class="wrap craft__steps stagger">
-      <article class="cstep"><span class="cstep__no">01</span><h3>Stone Setting</h3><p>Each stone is hand-set with precision and care for brilliance that lasts.</p></article>
-      <article class="cstep"><span class="cstep__no">02</span><h3>Intricate Detailing</h3><p>Skilled artisans craft every curve and motif to perfection.</p></article>
-      <article class="cstep"><span class="cstep__no">03</span><h3>Strong Foundation</h3><p>A well-crafted back ensures durability, comfort and balance.</p></article>
-      <article class="cstep"><span class="cstep__no">04</span><h3>Flawless Finish</h3><p>Every piece is polished to a shine that speaks of luxury.</p></article>
-    </div>
-    <div class="wrap center">
-      <p class="craft__sign reveal">One masterpiece. Many masters.</p>
     </div>
   </section>
 
-  <!-- BESPOKE -->
-  <section class="bespoke section--emerald" id="bespoke">
-    <div class="wrap bespoke__grid">
-      <div class="bespoke__intro reveal reveal--left">
-        <p class="eyebrow">The Bespoke Experience</p>
-        <h2 class="display">Your story.<br /><em>Your jewellery.</em></h2>
-        <p class="bespoke__lede">Some stories deserve something that belongs to no one else. Our bespoke experience transforms your ideas, inspirations and emotions into jewellery created especially for you.</p>
-        <p class="bespoke__oneofone">One story. One creation. One of one.</p>
-        <a class="btn btn--gold" href="bespoke#consultation">Begin a Bespoke Consultation</a>
-      </div>
-      <div class="bespoke__visual reveal reveal--scale">
-        <figure class="bespoke__img bespoke__img--sketch"><img src="assets/img/bespoke_sketch.webp" alt="Hand-drawn design sketch of a necklace" loading="lazy" /><figcaption>The sketch</figcaption></figure>
-        <figure class="bespoke__img bespoke__img--final"><img src="assets/img/bespoke_creation.webp" alt="The finished bespoke necklace" loading="lazy" /><figcaption>The creation</figcaption></figure>
-      </div>
+  <!-- BESPOKE: sketch and creation, reflected -->
+  <section class="bm section" id="bespoke">
+    <div class="wrap center bm__head reveal">
+      <p class="eyebrow">The Bespoke Experience</p>
+      <h2 class="display">Your story. <em>Your jewellery.</em></h2>
+      <p>Some stories deserve something that belongs to no one else. Our bespoke experience transforms your ideas, inspirations and emotions into jewellery created especially for you.</p>
     </div>
-    <ol class="wrap bespoke__steps stagger">
+    <div class="wrap bm__mirror">
+      <figure class="bm__pane reveal reveal--left"><span class="arch-win"><img src="assets/img/bespoke_sketch.webp" alt="Hand-drawn design sketch of a polki and emerald necklace" loading="lazy" /></span><figcaption>The sketch</figcaption></figure>
+      <div class="bm__axis" aria-hidden="true"><span></span></div>
+      <figure class="bm__pane reveal reveal--right"><span class="arch-win"><img src="assets/img/bespoke_creation.webp" alt="The finished polki and emerald necklace" loading="lazy" /></span><figcaption>The creation</figcaption></figure>
+    </div>
+    <ol class="wrap bm__steps stagger">
       <li><span>1</span>You Imagine</li>
       <li><span>2</span>We Listen</li>
       <li><span>3</span>We Sketch</li>
       <li><span>4</span>We Craft</li>
       <li><span>5</span>You Make It Yours</li>
     </ol>
+    <div class="wrap center">
+      <p class="bm__one reveal">One story. One creation. One of one.</p>
+      <a class="btn btn--gold reveal" href="bespoke#consultation">Begin a Bespoke Consultation</a>
+    </div>
   </section>
 
-  <!-- THE SAHELI BRIDE -->
   <section class="bride" id="bride">
     <div class="bride__media" data-parallax>
       <img src="assets/img/bride_wide.webp" alt="A Saheli Aurum bride in a gold polki bridal set" loading="lazy" decoding="async" />
@@ -303,37 +254,26 @@
     </div>
   </section>
 
-  <!-- TRUST / PROMISE -->
-  <section class="promise section" id="promise">
+  <!-- PROMISE -->
+  <section class="pr section" id="promise">
     <div class="wrap center">
       <p class="eyebrow reveal">Our Promise</p>
       <h2 class="display reveal">Trust, worn every day since 1984.</h2>
     </div>
-    <ul class="wrap promise__list stagger">
-      <li>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 4.6L19 8.3l-3.5 3.4.9 4.9L12 14.3 7.6 16.6l.9-4.9L5 8.3l4.8-.7z"/></svg>
-        <h3>Purity</h3><p>Hallmarked metal and honest value on every creation.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l7 3v6c0 5-3 8-7 11-4-3-7-6-7-11V5z"/></svg>
-        <h3>Authenticity</h3><p>Genuine stones, transparently sourced and disclosed.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg>
-        <h3>Certified Quality</h3><p>Independently certified diamonds and gemstones.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v3H4zm0 5h16v3H4zm0 5h10v3H4z"/></svg>
-        <h3>Transparent Practices</h3><p>Clear pricing, clear paperwork, no surprises.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1.5 3 4 4 7 4-1 6-4 9-7 11-3-2-6-5-7-11 3 0 5.5-1 7-4z"/></svg>
-        <h3>Exceptional Craftsmanship</h3><p>Finished by hand, checked at every stage.</p>
-      </li>
+    <ul class="wrap pr__five stagger">
+      <li><span class="pr__star" style="--r:0deg" aria-hidden="true"></span><h3>Purity</h3><p>Hallmarked metal and honest value on every creation.</p></li>
+      <li><span class="pr__star" style="--r:72deg" aria-hidden="true"></span><h3>Authenticity</h3><p>Genuine stones, transparently sourced and disclosed.</p></li>
+      <li><span class="pr__star" style="--r:144deg" aria-hidden="true"></span><h3>Certified Quality</h3><p>Independently certified diamonds and gemstones.</p></li>
+      <li><span class="pr__star" style="--r:216deg" aria-hidden="true"></span><h3>Transparent Practices</h3><p>Clear pricing, clear paperwork, no surprises.</p></li>
+      <li><span class="pr__star" style="--r:288deg" aria-hidden="true"></span><h3>Exceptional Craftsmanship</h3><p>Finished by hand, checked at every stage.</p></li>
     </ul>
+    <div class="wrap pr__trust stagger">
+      <div class="tf"><span class="tf__n">100%</span><span class="tf__l">HUID Hallmark</span><span class="tf__s">Hallmarked jewellery</span></div>
+      <div class="tf"><span class="tf__n">100%</span><span class="tf__l">IGI Certified</span><span class="tf__s">Certified diamond jewellery</span></div>
+      <div class="tf"><span class="tf__n">100%</span><span class="tf__l">Value on Old Gold</span><span class="tf__s">On old gold jewellery bought from any jeweller</span></div>
+    </div>
   </section>
 
-  <!-- SAHELI PRIVILEGES / SAVING SCHEMES -->
   <section class="privileges section section--tint" id="privileges">
     <div class="wrap privileges__head">
       <div class="reveal">
@@ -379,7 +319,6 @@
     </div>
   </section>
 
-  <!-- LEGACY / RECOGNITION -->
   <section class="legacy section--dark" id="legacy">
     <div class="wrap center legacy__head">
       <p class="eyebrow reveal">Heritage &amp; Recognition</p>
@@ -415,7 +354,6 @@
     </ol>
   </section>
 
-  <!-- VISIT / STORES & APPOINTMENTS -->
   <section class="visit section" id="visit">
     <div class="wrap visit__head">
       <div class="reveal">
@@ -488,7 +426,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="wrap site-footer__addresses stagger">
     <div class="faddr">
@@ -550,5 +487,6 @@
 </footer>
 
 <script src="assets/js/main.js?v=17"></script>
+<script src="assets/js/v2.js?v=17"></script>
 </body>
 </html>

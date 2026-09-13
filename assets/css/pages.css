@@ -30,8 +30,10 @@ body[data-page]{
 /* ---- leaf hero (numbered register opening) ---- */
 /* The plates are 3:2 and framed on the piece, so the band needs enough
    height to show them — a short band crops straight through the necklace. */
-.leaf{position:relative;min-height:clamp(660px,94svh,1000px);display:flex;align-items:flex-end;overflow:hidden;color:#fff;isolation:isolate;padding-top:clamp(118px,15vh,152px)}
-.leaf__media{position:absolute;inset:0;z-index:-2}
+/* The band is one screen tall at most (a 660px floor pushed the jewellery below the fold on
+   short laptops), and the photograph starts under the fixed header instead of behind it. */
+.leaf{--hdr:79px;position:relative;min-height:clamp(480px,100svh,1000px);display:flex;align-items:flex-end;overflow:hidden;color:#fff;isolation:isolate;padding-top:clamp(96px,15vh,152px)}
+.leaf__media{position:absolute;inset:var(--hdr) 0 0 0;z-index:-2}
 .leaf__media img{width:100%;height:100%;object-fit:cover;object-position:50% 38%}
 /* the showroom render is a wider plate and reads best centred */
 body[data-page="stores"] .leaf__media img{object-position:50% 50%}
@@ -46,14 +48,14 @@ body[data-page="stores"] .leaf__media img{object-position:50% 50%}
   .leaf__media img{position:absolute;top:0;right:0;width:auto;height:100%;max-width:none;aspect-ratio:3/2;
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
 }
-.leaf__scrim{position:absolute;inset:0;z-index:-1;background:
+.leaf__scrim{position:absolute;inset:var(--hdr) 0 0 0;z-index:-1;background:
   linear-gradient(90deg,rgba(36,20,10,.84) 0%,rgba(36,20,10,.5) 44%,rgba(36,20,10,.1) 76%),
   linear-gradient(0deg,rgba(36,20,10,.72) 0%,rgba(36,20,10,.04) 48%)}
 .leaf__folio{position:absolute;top:clamp(96px,15vh,150px);left:var(--gutter);z-index:2;display:flex;align-items:center;gap:16px;
   font-family:var(--f-ui);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-3)}
 .leaf__folio .rule{width:clamp(40px,8vw,120px);height:1px;background:var(--gold-3);opacity:.7}
 .leaf__inner{position:relative;z-index:2;padding-block:clamp(48px,8vh,96px);max-width:min(720px,92%);margin-inline:0}
-.leaf__title{font-family:var(--f-display);font-weight:500;font-size:clamp(2.6rem,6.6vw,5.4rem);line-height:1.0;letter-spacing:.004em;
+.leaf__title{font-family:var(--f-display);font-weight:500;font-size:clamp(2.2rem,min(6.6vw,9.5vh),5.4rem);line-height:1.0;letter-spacing:.004em;
   text-shadow:0 2px 30px rgba(0,0,0,.4)}
 .leaf__title em{color:var(--gold-3)}
 .leaf__lede{font-size:clamp(1.05rem,1.8vw,1.32rem);max-width:52ch;color:rgba(255,255,255,.9);margin:1.3rem 0 0}

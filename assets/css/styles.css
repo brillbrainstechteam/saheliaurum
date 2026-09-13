@@ -523,7 +523,7 @@ section[id]{scroll-margin-top:104px}
 /* Once a 600vh scroll-jacked sequence that held the page until all six
    scenes had played. Now the page scrolls straight past it: the scenes
    advance on their own, and visitors can step, jump, swipe or pause. */
-.moments__carousel{--stage:clamp(520px,88svh,920px);position:relative;height:var(--stage);overflow:hidden;outline:none;touch-action:pan-y}
+.moments__carousel{--stage:clamp(440px,calc(100svh - 80px),900px);position:relative;height:var(--stage);overflow:hidden;outline:none;touch-action:pan-y}
 .moments__carousel:focus-visible{box-shadow:inset 0 0 0 2px var(--rose)}
 .moments__stage{position:absolute;inset:0}
 .mscene{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;pointer-events:none;
