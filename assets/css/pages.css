@@ -37,6 +37,18 @@ body[data-page]{
 .leaf__media img{width:100%;height:100%;object-fit:cover;object-position:50% 38%}
 /* the showroom render is a wider plate and reads best centred */
 body[data-page="stores"] .leaf__media img{object-position:50% 50%}
+/* shop's plate is a taller 6:5 cut (brows to pendant); when it must crop, keep the earring and pendant */
+body[data-page="shop"] .leaf__media img{object-position:50% 72%}
+/* 16:10 laptops too: the title ends before the ring, so the whole 6:5 plate can stand at full height */
+@media (min-aspect-ratio:29/20) and (min-width:1100px){
+  body[data-page="shop"] .leaf__media{background:#241c20}
+  body[data-page="shop"] .leaf__media::before{content:"";position:absolute;inset:-80px;background:var(--src) 70% 40%/cover no-repeat;
+    filter:blur(44px) brightness(.62) saturate(1.1)}
+  body[data-page="shop"] .leaf__media img{position:absolute;top:0;right:0;width:auto;height:100%;max-width:none;aspect-ratio:var(--ar,3/2);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--leaf-fade,30%));mask-image:linear-gradient(90deg,transparent 0,#000 var(--leaf-fade,30%))}
+}
+/* phones: lean left so the earring stays in with the pendant */
+@media (max-width:620px){body[data-page="shop"] .leaf__media img{object-position:40% 72%}}
 /* Wide screens: `cover` cut the 3:2 plates to barely half their height, and the
    jewellery went first. Past 17:10 the whole plate stands at full height on the
    right, its left edge dissolving into a blurred extension of itself. */
@@ -45,8 +57,8 @@ body[data-page="stores"] .leaf__media img{object-position:50% 50%}
   /* --src is inline and root-relative: custom-property url()s resolve against this stylesheet */
   .leaf__media::before{content:"";position:absolute;inset:-80px;background:var(--src) 70% 40%/cover no-repeat;
     filter:blur(44px) brightness(.62) saturate(1.1)}
-  .leaf__media img{position:absolute;top:0;right:0;width:auto;height:100%;max-width:none;aspect-ratio:3/2;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+  .leaf__media img{position:absolute;top:0;right:0;width:auto;height:100%;max-width:none;aspect-ratio:var(--ar,3/2);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--leaf-fade,30%));mask-image:linear-gradient(90deg,transparent 0,#000 var(--leaf-fade,30%))}
 }
 .leaf__scrim{position:absolute;inset:var(--hdr) 0 0 0;z-index:-1;background:
   linear-gradient(90deg,rgba(36,20,10,.84) 0%,rgba(36,20,10,.5) 44%,rgba(36,20,10,.1) 76%),
@@ -246,11 +258,12 @@ button.link-arrow:hover span{transform:translateX(6px)}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* collections name ribbon */
-.ribbon{background:var(--nocturne);padding-block:24px;border-block:1px solid rgba(203,141,118,.2)}
+.ribbon{background:var(--ivory-2);padding-block:24px;border-block:1px solid var(--line-strong)}
 .ribbon .marquee__item{font-family:var(--f-display);font-size:clamp(1.5rem,3.2vw,2.5rem);color:var(--gold-3);
   display:inline-flex;align-items:center;gap:.55em;letter-spacing:.02em}
 .ribbon .aurum-star{width:13px;height:13px;color:var(--gold);opacity:.75}
-/* the collections' own wordmarks, in one tone of rose gold, each sized to the same visual weight */
+/* the collections' own wordmarks in their original colours (so the band is light), each sized to the same visual weight */
+.ribbon .marquee__item .aurum-star{color:var(--mahogany);opacity:.45}
 .ribbon .ribbon__logo{display:block;width:auto;height:calc(var(--h) * var(--lg,1))}
 .ribbon .marquee__item{gap:.9em}
 @media (max-width:620px){.ribbon{--lg:.66;padding-block:18px}}
