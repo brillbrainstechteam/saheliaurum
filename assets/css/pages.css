@@ -258,7 +258,11 @@ button.link-arrow:hover span{transform:translateX(6px)}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* collections name ribbon */
-.ribbon{background:var(--nocturne);padding-block:24px;border-block:1px solid rgba(203,141,118,.2)}
+/* deep plum at the ends, warming to mahogany-rose at the centre, with a soft rose-gold glow along the top */
+.ribbon{--ribbon-edge:#1b1316;padding-block:24px;border-block:1px solid rgba(203,141,118,.3);background:
+  radial-gradient(55% 150% at 50% 0%,rgba(203,141,118,.26),rgba(203,141,118,0) 70%),
+  radial-gradient(40% 120% at 50% 100%,rgba(243,193,202,.10),rgba(243,193,202,0) 70%),
+  linear-gradient(90deg,#1b1316 0%,#301d24 24%,#47272b 50%,#301d24 76%,#1b1316 100%)}
 .ribbon .marquee__item{font-family:var(--f-display);font-size:clamp(1.5rem,3.2vw,2.5rem);color:var(--gold-3);
   display:inline-flex;align-items:center;gap:.55em;letter-spacing:.02em}
 .ribbon .aurum-star{width:13px;height:13px;color:var(--gold);opacity:.75}
@@ -273,8 +277,8 @@ button.link-arrow:hover span{transform:translateX(6px)}
 /* the band stays solid dark to its edges; the cards dissolve into it instead of into the page */
 .ribbon.marquee{-webkit-mask-image:none;mask-image:none}
 .ribbon::before,.ribbon::after{content:"";position:absolute;top:0;bottom:0;width:9%;z-index:2;pointer-events:none}
-.ribbon::before{left:0;background:linear-gradient(90deg,var(--nocturne),rgba(36,28,32,0))}
-.ribbon::after{right:0;background:linear-gradient(270deg,var(--nocturne),rgba(36,28,32,0))}
+.ribbon::before{left:0;background:linear-gradient(90deg,var(--ribbon-edge),rgba(27,19,22,0))}
+.ribbon::after{right:0;background:linear-gradient(270deg,var(--ribbon-edge),rgba(27,19,22,0))}
 
 /* moving image gallery */
 .marquee--gallery{padding-block:6px}
