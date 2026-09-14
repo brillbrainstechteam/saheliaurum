@@ -223,17 +223,15 @@
   }
 
   /* hero slideshow.
-     Same clock as the moments carousel: the active marker's fill animation
-     paces the slides, so every pause source (hover, keyboard focus, the hero
-     scrolled away, a hidden tab, the pause button) just pauses that one
-     animation. Slides cross-fade in place and each re-plays its copy. */
+     No controls: the slides simply move on, one after another, every 7s.
+     It holds only while a keyboard user is inside the hero, the hero is
+     scrolled away or the tab is hidden, and never runs for reduced motion.
+     Slides cross-fade in place and each re-plays its copy. */
   var hero = document.querySelector("[data-hero-slider]");
   if (hero) {
     var hSlides = [].slice.call(hero.querySelectorAll(".hero__slide"));
-    var hDots = [].slice.call(hero.querySelectorAll(".hero__dots button"));
-    var hToggle = hero.querySelector(".hero__toggle");
-    var hLive = hero.querySelector(".hero__slides");
-    var hCur = 0, hUser = false, hHover = false, hFocus = false, hSeen = true;
+    var hCur = 0, hFocus = false, hSeen = true, hTimer = 0;
+    var HOLD = 7000;
 
     // later slides fetch their photographs only once the page has loaded,
     // so the first slide keeps the bandwidth to itself
@@ -263,52 +261,30 @@
       from.classList.remove("is-active");
       from.setAttribute("aria-hidden", "true");
       from.inert = true;
-      hDots[hCur].removeAttribute("aria-current");
       hCur = i;
       to.classList.add("is-active");
       to.removeAttribute("aria-hidden");
       to.inert = false;
-      hDots[hCur].setAttribute("aria-current", "true");
       hReplay(to);
+      hSchedule();
     }
-    function hSync() {
-      var paused = hUser || hHover || hFocus || !hSeen || document.hidden;
-      hero.classList.toggle("is-paused", paused);
-      if (hLive) hLive.setAttribute("aria-live", paused || reduce ? "polite" : "off");
+    // each move books the next one; a held moment just re-books
+    function hSchedule() {
+      clearTimeout(hTimer);
+      if (reduce) return;
+      hTimer = setTimeout(function () {
+        if (hFocus || !hSeen || document.hidden) hSchedule();
+        else hGo(hCur + 1);
+      }, HOLD);
     }
 
     hSlides.forEach(function (s, idx) {
       if (idx !== hCur) { s.setAttribute("aria-hidden", "true"); s.inert = true; }
     });
-    if (!reduce) hero.classList.add("is-auto");
-    else if (hToggle) hToggle.hidden = true;   // nothing moves on its own, so there is nothing to pause
-
-    hero.addEventListener("animationend", function (e) {
-      if (e.animationName === "hfill") hGo(hCur + 1);
-    });
-    var hPrev = hero.querySelector(".hnav--prev");
-    var hNext = hero.querySelector(".hnav--next");
-    if (hPrev) hPrev.addEventListener("click", function () { hGo(hCur - 1); });
-    if (hNext) hNext.addEventListener("click", function () { hGo(hCur + 1); });
-    hDots.forEach(function (b, idx) { b.addEventListener("click", function () { hGo(idx); }); });
-    if (hToggle) hToggle.addEventListener("click", function () {
-      hUser = !hUser;
-      hToggle.setAttribute("aria-pressed", String(hUser));
-      hToggle.setAttribute("aria-label", hUser ? "Play the slideshow" : "Pause the slideshow");
-      hSync();
-    });
-    hero.addEventListener("keydown", function (e) {
-      if (!e.target.closest(".hero__controls")) return;
-      if (e.key === "ArrowLeft") { hGo(hCur - 1); e.preventDefault(); }
-      if (e.key === "ArrowRight") { hGo(hCur + 1); e.preventDefault(); }
-    });
-    hero.addEventListener("mouseenter", function () { hHover = true; hSync(); });
-    hero.addEventListener("mouseleave", function () { hHover = false; hSync(); });
-    hero.addEventListener("focusin", function () { hFocus = true; hSync(); });
+    hero.addEventListener("focusin", function () { hFocus = true; });
     hero.addEventListener("focusout", function (e) {
-      if (!hero.contains(e.relatedTarget)) { hFocus = false; hSync(); }
+      if (!hero.contains(e.relatedTarget)) hFocus = false;
     });
-    document.addEventListener("visibilitychange", hSync);
 
     /* horizontal swipe on the photograph; vertical drags stay with the page */
     var hsx = 0, hsy = 0, hTrack = false;
@@ -326,10 +302,10 @@
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
-        hSeen = entries[0].isIntersecting; hSync();
+        hSeen = entries[0].isIntersecting;
       }, { threshold: 0.3 }).observe(hero);
     }
-    hSync();
+    hSchedule();
   }
 
   /* -------------------------------------------------------------------

@@ -342,46 +342,13 @@ section[id]{scroll-margin-top:104px}
 .hero .hero__actions{display:inline-grid;grid-auto-flow:row;gap:12px;max-width:none}
 .hero .hero__actions>.btn{--pad:14px 30px}
 
-/* slideshow controls: a numbered mark per slide whose line fills while that
-   slide is shown, with pause and prev/next - bottom-left, under the copy */
-.hero__controls{position:absolute;z-index:3;left:var(--gutter);bottom:clamp(14px,3vh,30px);display:flex;align-items:center;gap:12px}
-.hero__dots{display:flex;gap:14px;list-style:none;margin:0 4px;padding:0}
-.hero__dots button{display:flex;flex-direction:column;gap:7px;min-width:46px;padding:8px 0;background:none;border:0;cursor:pointer;text-align:left;
-  font-family:var(--f-ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
-.hero__dots b{font-weight:600;color:var(--mahogany);font-variant-numeric:tabular-nums}
-.hero__dots em{display:none;font-style:normal;margin-left:8px}
-.hero__bar{display:block;height:2px;background:rgba(130,73,31,.2);position:relative;overflow:hidden}
-.hero__bar::after{content:"";position:absolute;inset:0;background:var(--mahogany);transform:scaleX(0);transform-origin:left}
-.hero__dots button[aria-current="true"]{color:var(--ink)}
-.hero__dots button[aria-current="true"] .hero__bar::after{transform:scaleX(1)}
-.hero.is-auto .hero__dots button[aria-current="true"] .hero__bar::after{animation:hfill 7s linear forwards}
-.hero.is-auto.is-paused .hero__dots button[aria-current="true"] .hero__bar::after{animation-play-state:paused}
-@keyframes hfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.hero__toggle,.hnav{flex:none;width:34px;height:34px;border-radius:50%;padding:0;display:grid;place-items:center;cursor:pointer;
-  background:rgba(255,250,246,.86);border:1px solid var(--line-strong);color:var(--mahogany);transition:background .3s var(--ease),color .3s var(--ease)}
-.hnav svg{width:15px;height:15px}
-.hero__toggle::before{content:"";box-sizing:border-box;width:9px;height:11px;border-left:3px solid currentColor;border-right:3px solid currentColor}
-.hero__toggle[aria-pressed="true"]::before{width:0;height:0;margin-left:3px;border-left:9px solid currentColor;border-right:0;border-top:6px solid transparent;border-bottom:6px solid transparent}
-.hero__toggle:hover,.hnav:hover{background:var(--mahogany);color:var(--blush)}
-.hero__dots button:focus-visible,.hero__toggle:focus-visible,.hnav:focus-visible{outline:2px solid var(--mahogany);outline-offset:3px}
-@media (min-width:1500px){.hero__dots em{display:inline}.hero__dots button{min-width:92px}}
 @media (prefers-reduced-motion:reduce){.hero__slide,.hero__slide.is-active{transition:none}}
 
 @media (max-width:1023px){
   .hero__slide{display:flex;flex-direction:column}
   .hero__media{order:-1;width:100%;height:auto;aspect-ratio:var(--hr);margin:var(--hdr) 0 0}
   .hero__media img{-webkit-mask-image:none;mask-image:none}
-  .hero__copy{position:relative;left:auto;top:auto;width:auto;padding:calc(clamp(18px,4vw,36px) + 46px) var(--gutter) clamp(40px,7vw,64px)}
-  /* on a stacked screen the controls sit in the gap under the photograph */
-  .hero__controls{bottom:auto;top:calc(var(--hdr) + 100cqw / var(--hr) + 10px)}
-}
-/* phones swipe, so the arrows go and the marks share the row */
-@media (max-width:599px){
-  .hero__controls{right:var(--gutter)}
-  .hero__controls .hnav{display:none}
-  .hero__dots{flex:1}
-  .hero__dots li{flex:1}
-  .hero__dots button{min-width:0;width:100%}
+  .hero__copy{position:relative;left:auto;top:auto;width:auto;padding:clamp(18px,4vw,36px) var(--gutter) clamp(40px,7vw,64px)}
 }
 @media (min-width:600px) and (max-width:1023px){.hero .hero__actions{grid-auto-flow:column;grid-auto-columns:1fr}}
 @media (max-width:900px){.topbar .site-header{background:rgba(255,243,237,.92)}}
