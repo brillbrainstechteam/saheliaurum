@@ -199,7 +199,8 @@ html.np-hdr-hidden .np-sticky{top:0 !important}
 .lb-chip:disabled:hover{border-color:var(--line-strong)}
 
 /* bridal: facts, the seven-ceremony strip, the trousseau list and the appointment steps */
-.bride-facts{list-style:none;margin:1.6rem 0 1.9rem;padding:0;display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,44px)}
+.bride-facts{list-style:none;margin:1.6rem 0 1.9rem;padding:0;display:flex;gap:clamp(16px,2.6vw,40px)}
+.bride-facts li{max-width:9.5em}
 .bride-facts li{display:flex;flex-direction:column;gap:3px}
 .bride-facts b{font-family:var(--f-display);font-weight:500;font-size:2.7rem;line-height:1;color:var(--mahogany)}
 .bride-facts span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
@@ -221,7 +222,7 @@ html.np-hdr-hidden .np-sticky{top:0 !important}
 .bride-list li:last-child{border-bottom:1px solid var(--line-strong)}
 .bride-list h3{font-family:var(--f-display);font-weight:500;font-size:1.45rem;margin-bottom:.2em}
 .bride-list p{margin:0;font-size:.98rem;color:var(--ink-soft)}
-.bride-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,30px)}
+.bride-steps{list-style:none;margin-block:0;padding-block:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,30px)}
 .bride-steps li{padding:26px 22px 24px;border:1px solid var(--line-strong);border-radius:2px;background:var(--ivory-2)}
 .bride-steps span{font-family:var(--f-display);font-size:2.3rem;line-height:1;color:var(--mahogany)}
 .bride-steps h3{font-family:var(--f-display);font-weight:500;font-size:1.4rem;margin:.5em 0 .3em}
