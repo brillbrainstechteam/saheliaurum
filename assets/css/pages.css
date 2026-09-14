@@ -250,6 +250,10 @@ button.link-arrow:hover span{transform:translateX(6px)}
 .ribbon .marquee__item{font-family:var(--f-display);font-size:clamp(1.5rem,3.2vw,2.5rem);color:var(--gold-3);
   display:inline-flex;align-items:center;gap:.55em;letter-spacing:.02em}
 .ribbon .aurum-star{width:13px;height:13px;color:var(--gold);opacity:.75}
+/* the collections' own wordmarks, in one tone of rose gold, each sized to the same visual weight */
+.ribbon .ribbon__logo{display:block;width:auto;height:calc(var(--h) * var(--lg,1))}
+.ribbon .marquee__item{gap:.9em}
+@media (max-width:620px){.ribbon{--lg:.66;padding-block:18px}}
 
 /* moving image gallery */
 .marquee--gallery{padding-block:6px}
