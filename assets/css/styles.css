@@ -322,6 +322,11 @@ section[id]{scroll-margin-top:104px}
   --fade:linear-gradient(90deg,transparent 0,rgba(0,0,0,.2) 7%,rgba(0,0,0,.58) 16%,rgba(0,0,0,.9) 23%,#000 28%);
   opacity:0;visibility:hidden;transition:opacity 1.2s var(--ease),visibility 0s linear 1.2s}
 .hero__slide.is-active{opacity:1;visibility:visible;transition:opacity 1.2s var(--ease),visibility 0s}
+/* photographs cross-fade, words never do: the outgoing copy leaves quickly
+   and the incoming copy waits for it, so two headlines never overlap */
+.hero__slide .hero__copy{opacity:0;transition:opacity .3s var(--ease)}
+.hero__slide.is-active .hero__copy{opacity:1;transition:opacity .6s var(--ease) .4s}
+@media (prefers-reduced-motion:reduce){.hero__slide .hero__copy,.hero__slide.is-active .hero__copy{transition:none}}
 /* a dark backdrop (the Rajsa roses) dissolves further, so the copy never sits on it */
 .hero__slide--deep{--fade:linear-gradient(90deg,transparent 0,rgba(0,0,0,.06) 12%,rgba(0,0,0,.28) 24%,rgba(0,0,0,.75) 33%,#000 40%)}
 .hero__media{position:relative;z-index:0;margin:var(--hdr) 0 0 auto;width:var(--iw);height:var(--ih)}
