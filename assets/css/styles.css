@@ -306,61 +306,44 @@ section[id]{scroll-margin-top:104px}
 /* ============================================================
    HERO
    ============================================================ */
-/* A split editorial: the brand on an opal ground, the shoot alongside —
-   the same composition as the Saheli Aurum invitation suite. */
-.hero{position:relative;min-height:clamp(680px,100svh,1020px);display:grid;
-  grid-template-columns:1.02fr .98fr;align-items:stretch;overflow:hidden;
-  background:var(--opal-ground);isolation:isolate}
-.hero::before,.hero::after{
-  content:"";position:absolute;inset:-25%;z-index:0;pointer-events:none;
-  background:var(--opal-field);will-change:transform;
-}
-.hero::before{opacity:.5;animation:opal-drift 52s linear infinite}
-.hero::after{opacity:.3;filter:blur(12px);animation:opal-drift 76s linear infinite reverse}
-
-.hero__copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(120px,15vh,170px) clamp(24px,5vw,86px) clamp(56px,8vh,90px) var(--gutter);
-  max-width:none}
-.hero__eyebrow{margin-bottom:clamp(14px,2.4vh,26px)}
+/* The entire landscape photograph, never cropped. It is anchored right and
+   sized to fit on screen under the header (while always leaving a 240px panel);
+   the copy sits on the left over a soft pink-and-blue tinge, and the photo's
+   left edge fades into it - stopping before the hand, so the ring stays clear. */
+.hero{--hdr:79px;position:relative;display:block;min-height:0;overflow:hidden;isolation:isolate;container-type:inline-size;
+  background:
+    radial-gradient(62% 78% at 0% 6%,rgba(243,193,202,.72) 0%,rgba(243,193,202,0) 72%),
+    radial-gradient(58% 72% at 2% 100%,rgba(163,201,218,.62) 0%,rgba(163,201,218,0) 72%),
+    linear-gradient(180deg,#fff8f4,var(--blush))}
+.hero__copy,.hero__media{--ih:min(calc(100svh - var(--hdr)),calc((100cqw - 240px) / 1.5152));--iw:calc(var(--ih) * 1.5152)}
+.hero__media{position:relative;z-index:0;margin:var(--hdr) 0 0 auto;width:var(--iw);height:var(--ih)}
+/* the photo's left edge dissolves into the tinge itself (no painted veil, so no seam) */
+.hero__media img{display:block;width:100%;height:100%;object-fit:cover;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.2) 7%,rgba(0,0,0,.58) 16%,rgba(0,0,0,.9) 23%,#000 28%);
+          mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.2) 7%,rgba(0,0,0,.58) 16%,rgba(0,0,0,.9) 23%,#000 28%)}
+.hero__copy{position:absolute;z-index:2;left:var(--gutter);top:calc(var(--hdr) + var(--ih) * .07);
+  width:clamp(300px,calc(100cqw - var(--iw) * .77 - var(--gutter) - 16px),560px);text-align:left}
+.hero__eyebrow{margin-bottom:clamp(12px,2vh,22px)}
 .hero__title{font-family:var(--f-display);font-weight:500;color:var(--ink);
-  font-size:clamp(2.3rem,4.35vw,4.05rem);line-height:1.03;letter-spacing:.004em;margin:0}
+  font-size:clamp(2.1rem,3.3vw,3.7rem);line-height:1.04;letter-spacing:.004em;margin:0}
 .hero__title em{color:var(--mahogany);font-style:italic}
-.hero__lede{font-size:clamp(1rem,1.35vw,1.18rem);max-width:42ch;margin:1.3rem 0 2.1rem;color:var(--ink-soft)}
-/* Both actions share a width in either state: side by side they split the
-   row evenly, and once they wrap each one fills it. */
+.hero__lede{font-size:clamp(1rem,1.2vw,1.12rem);max-width:34ch;margin:1.1rem 0 1.8rem;color:var(--ink-soft)}
+
+/* the bride band shares this action row */
 .hero__actions{display:flex;flex-wrap:wrap;gap:14px;max-width:640px}
-/* nowrap + a basis wide enough for the longer label: side by side they share
-   the row evenly, and when the column is too narrow they stack at full width
-   rather than breaking "Explore the Collections" onto two lines */
 .hero__actions>.btn{flex:1 1 300px;white-space:nowrap}
+/* hero buttons: compact and equal - as wide as the longer label, not the whole column */
+.hero .hero__actions{display:inline-grid;grid-auto-flow:row;gap:12px;max-width:none}
+.hero .hero__actions>.btn{--pad:14px 30px}
 
-.hero__media{position:relative;z-index:1;overflow:hidden}
-/* hero_model is landscape in a portrait cell: 52% keeps the ringed hand,
-   face, earring and the full emerald set in frame */
-.hero__media img{width:100%;height:100%;object-fit:cover;object-position:52% 30%;will-change:transform}
-/* feather the photograph into the opal ground instead of butting it up hard */
-.hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:
-  linear-gradient(90deg,var(--blush) 0%,rgba(255,243,237,.55) 7%,rgba(255,243,237,0) 22%),
-  linear-gradient(0deg,rgba(255,243,237,.5),rgba(255,243,237,0) 30%)}
-
-.hero__scroll{position:absolute;left:var(--gutter);bottom:26px;z-index:3;display:flex;align-items:center;gap:12px;
-  font-family:var(--f-ui);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep)}
-.hero__scroll-line{width:54px;height:1px;background:linear-gradient(90deg,var(--mahogany),transparent);
-  animation:scrolldrop 2.4s var(--ease) infinite}
-@keyframes scrolldrop{0%{transform:scaleX(0);transform-origin:left}45%{transform:scaleX(1);transform-origin:left}
-  55%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
-
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr;min-height:0}
-  .hero__media{order:-1;aspect-ratio:4/5;max-height:62svh}
-  .hero__media img{object-position:52% 30%}
-  .hero__media::after{background:linear-gradient(0deg,var(--blush) 0%,rgba(255,243,237,.5) 12%,rgba(255,243,237,0) 34%)}
-  .hero__copy{padding:clamp(10px,2vh,24px) var(--gutter) clamp(46px,7vh,70px);text-align:left}
-  .hero__logo{width:clamp(168px,46vw,230px)}
-  .hero__scroll{display:none}
+@media (max-width:1023px){
+  .hero{display:flex;flex-direction:column}
+  .hero__media{order:-1;width:100%;height:auto;aspect-ratio:1.5152;margin:var(--hdr) 0 0}
+  .hero__media img{-webkit-mask-image:none;mask-image:none}
+  .hero__copy{position:relative;left:auto;top:auto;width:auto;padding:clamp(18px,4vw,36px) var(--gutter) clamp(40px,7vw,64px)}
 }
+@media (min-width:600px) and (max-width:1023px){.hero .hero__actions{grid-auto-flow:column;grid-auto-columns:1fr}}
 @media (max-width:900px){.topbar .site-header{background:rgba(255,243,237,.92)}}
-@media (prefers-reduced-motion:reduce){.hero__scroll-line{animation:none}.hero::before,.hero::after{animation:none}}
 
 /* ============================================================
    INNER PAGES
@@ -906,15 +889,6 @@ section[id]{scroll-margin-top:104px}
   :root{--gutter:20px}
   .announce__inner{font-size:.6rem;letter-spacing:.16em;gap:.7em}
   .announce__dot,.announce a{display:none}
-  .hero{min-height:980px;align-items:flex-end}
-  .hero__media img{object-position:60% 48%}
-  .hero__scrim{background:
-    linear-gradient(90deg,rgba(10,8,4,.74),rgba(10,8,4,.18) 72%),
-    linear-gradient(0deg,rgba(10,8,4,.88) 0%,rgba(10,8,4,.48) 45%,rgba(10,8,4,.1) 72%)}
-  .hero__inner{padding-top:138px;padding-bottom:44px}
-  .hero__copy{width:100%}
-  .hero__title{font-size:clamp(2.65rem,13vw,4rem)}
-  .hero__actions{width:100%;grid-template-columns:1fr}
   .essence{grid-template-columns:1fr 1fr}
   .promise__list{grid-template-columns:1fr}
   .bespoke__steps{grid-template-columns:1fr 1fr;gap:16px}
@@ -926,7 +900,6 @@ section[id]{scroll-margin-top:104px}
   .collection-line img,.gem-swatch{width:100%}
   .collection-line .link-arrow{grid-column:auto}
   .service-strip .btn{width:100%}
-  .hero__scroll{display:none}
 }
 
 /* ============================================================
