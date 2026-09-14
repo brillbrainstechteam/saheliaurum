@@ -320,8 +320,22 @@ section[id]{scroll-margin-top:104px}
 .hero__slide{grid-area:1/1;position:relative;min-width:0;
   --ih:min(calc(100svh - var(--hdr)),calc((100cqw - 240px) / var(--hr)));--iw:calc(var(--ih) * var(--hr));
   --fade:linear-gradient(90deg,transparent 0,rgba(0,0,0,.2) 7%,rgba(0,0,0,.58) 16%,rgba(0,0,0,.9) 23%,#000 28%);
-  opacity:0;visibility:hidden;transition:opacity 1.2s var(--ease),visibility 0s linear 1.2s}
-.hero__slide.is-active{opacity:1;visibility:visible;transition:opacity 1.2s var(--ease),visibility 0s}
+  opacity:0;visibility:hidden;transition:opacity 1s var(--ease),visibility 0s linear 1s}
+.hero__slide.is-active{opacity:1;visibility:visible;transition:opacity 1s var(--ease),visibility 0s}
+/* one dot per slide - the current one stretches into a short bar */
+.hero__dots{position:absolute;z-index:3;left:calc(var(--gutter) - 5px);bottom:clamp(16px,3.2vh,30px);display:flex;align-items:center}
+.hero__dots button{padding:10px 5px;border:0;background:none;cursor:pointer;line-height:0}
+.hero__dots button::before{content:"";display:block;width:8px;height:8px;border-radius:999px;background:rgba(130,73,31,.3);
+  transition:width .5s var(--ease),background .5s var(--ease)}
+.hero__dots button:hover::before{background:rgba(130,73,31,.6)}
+.hero__dots button[aria-current="true"]::before{width:28px;background:var(--mahogany)}
+.hero__dots button:focus-visible{outline:2px solid var(--mahogany);outline-offset:0;border-radius:999px}
+@media (prefers-reduced-motion:reduce){.hero__dots button::before{transition:none}}
+@media (max-width:1023px){
+  /* stacked: the dots sit in the gap under the photograph */
+  .hero__dots{bottom:auto;top:calc(var(--hdr) + 100cqw / var(--hr) + 6px)}
+  .hero .hero__copy{padding-top:calc(clamp(18px,4vw,36px) + 22px)}
+}
 /* photographs cross-fade, words never do: the outgoing copy leaves quickly
    and the incoming copy waits for it, so two headlines never overlap */
 .hero__slide .hero__copy{opacity:0;transition:opacity .3s var(--ease)}

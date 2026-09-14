@@ -223,18 +223,20 @@
   }
 
   /* hero slideshow.
-     No controls: the slides simply move on, one after another, every 7s.
-     It holds only while a keyboard user is inside the hero, the hero is
-     scrolled away or the tab is hidden, and never runs for reduced motion.
-     Slides cross-fade in place and each re-plays its copy. */
+     The slides move on by themselves, one after another, every 5s; a dot
+     per slide shows where you are and jumps there. It holds only while a
+     keyboard user is inside the hero, the hero is scrolled away or the tab
+     is hidden, and never runs for reduced motion. Slides cross-fade in
+     place and each re-plays its copy. */
   var hero = document.querySelector("[data-hero-slider]");
   if (hero) {
     var hSlides = [].slice.call(hero.querySelectorAll(".hero__slide"));
+    var hDots = [].slice.call(hero.querySelectorAll(".hero__dots button"));
     var hCur = 0, hFocus = false, hSeen = true, hTimer = 0;
-    var HOLD = 7000;
+    var HOLD = 5000;
 
-    // later slides fetch their photographs only once the page has loaded,
-    // so the first slide keeps the bandwidth to itself
+    // the later slides' photographs start as soon as the first one is in
+    // (not after the whole page), so each is ready well before its turn
     function hLoad() {
       hero.querySelectorAll("img[data-src]").forEach(function (im) {
         if (im.getAttribute("data-srcset")) im.srcset = im.getAttribute("data-srcset");
@@ -242,8 +244,12 @@
         im.removeAttribute("data-src");
       });
     }
-    if (document.readyState === "complete") hLoad();
-    else window.addEventListener("load", hLoad);
+    var hFirst = hSlides[0] && hSlides[0].querySelector("img");
+    if (!hFirst || hFirst.complete) setTimeout(hLoad, 200);
+    else {
+      hFirst.addEventListener("load", function () { setTimeout(hLoad, 200); }, { once: true });
+      window.addEventListener("load", hLoad);
+    }
 
     function hReplay(slide) {
       var els = [].slice.call(slide.querySelectorAll(".reveal, .lines"));
@@ -261,10 +267,12 @@
       from.classList.remove("is-active");
       from.setAttribute("aria-hidden", "true");
       from.inert = true;
+      if (hDots[hCur]) hDots[hCur].removeAttribute("aria-current");
       hCur = i;
       to.classList.add("is-active");
       to.removeAttribute("aria-hidden");
       to.inert = false;
+      if (hDots[hCur]) hDots[hCur].setAttribute("aria-current", "true");
       hReplay(to);
       hSchedule();
     }
@@ -281,7 +289,13 @@
     hSlides.forEach(function (s, idx) {
       if (idx !== hCur) { s.setAttribute("aria-hidden", "true"); s.inert = true; }
     });
-    hero.addEventListener("focusin", function () { hFocus = true; });
+    hDots.forEach(function (b, idx) {
+      b.addEventListener("click", function () { hGo(idx); });
+    });
+    // only keyboard focus holds the show - a mouse click on a dot must not stop it
+    hero.addEventListener("focusin", function (e) {
+      try { hFocus = e.target.matches(":focus-visible"); } catch (x) { hFocus = true; }
+    });
     hero.addEventListener("focusout", function (e) {
       if (!hero.contains(e.relatedTarget)) hFocus = false;
     });
