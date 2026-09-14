@@ -53,22 +53,46 @@
     counters.forEach(function (c) { c.textContent = c.getAttribute("data-from") || "0"; cio.observe(c); });
   }
 
-  /* shop lookbook: filter by piece and by material */
+  /* shop lookbook: filter by piece and by material. Each chip shows how many
+     pieces it would leave, chips that would leave none step back, and the
+     choice is kept in the address - so links (and the home "View all")
+     land already filtered. */
   var grid = document.querySelector("[data-lookbook]");
   if (grid) {
     var cards = [].slice.call(grid.querySelectorAll(".lb-card"));
-    var state = { cat: "all", mat: "all" };
+    var groups = [].slice.call(document.querySelectorAll("[data-lb-group]"));
     var countEl = document.querySelector("[data-lb-count]");
     var emptyEl = document.querySelector("[data-lb-empty]");
-    var apply = function () {
+    var q0 = new URLSearchParams(window.location.search);
+    var state = { cat: "all", mat: "all" };
+    groups.forEach(function (g) {
+      var key = g.getAttribute("data-lb-group"), want = q0.get(key);
+      if (want && g.querySelector('button[data-value="' + want + '"]')) state[key] = want;
+    });
+    var matches = function (c, cat, mat) {
+      return (cat === "all" || c.getAttribute("data-cat") === cat) && (mat === "all" || c.getAttribute("data-mat") === mat);
+    };
+    var paint = function () {
+      groups.forEach(function (g) {
+        var key = g.getAttribute("data-lb-group");
+        g.querySelectorAll("button[data-value]").forEach(function (b) {
+          var v = b.getAttribute("data-value");
+          var n = cards.filter(function (c) { return key === "cat" ? matches(c, v, state.mat) : matches(c, state.cat, v); }).length;
+          var tag = b.querySelector(".lb-chip__n");
+          if (!tag) { tag = document.createElement("span"); tag.className = "lb-chip__n"; b.appendChild(tag); }
+          tag.textContent = n;
+          b.setAttribute("aria-pressed", String(v === state[key]));
+          b.disabled = n === 0 && v !== state[key];
+        });
+      });
+    };
+    var apply = function (animate) {
       var shown = 0;
       cards.forEach(function (c) {
-        var ok = (state.cat === "all" || c.getAttribute("data-cat") === state.cat) &&
-                 (state.mat === "all" || c.getAttribute("data-mat") === state.mat);
-        if (ok) {
+        if (matches(c, state.cat, state.mat)) {
           if (c.hidden) {
             c.hidden = false;
-            if (!reduce) {
+            if (animate && !reduce) {
               c.classList.add("is-entering");
               (function (card, delay) {
                 setTimeout(function () { card.classList.remove("is-entering"); }, 30 + delay);
@@ -82,18 +106,25 @@
       });
       if (countEl) countEl.textContent = shown + (shown === 1 ? " piece" : " pieces");
       if (emptyEl) emptyEl.hidden = shown > 0;
+      paint();
     };
-    document.querySelectorAll("[data-lb-group]").forEach(function (g) {
+    var syncUrl = function () {
+      var p = new URLSearchParams(window.location.search);
+      ["cat", "mat"].forEach(function (k) { if (state[k] === "all") p.delete(k); else p.set(k, state[k]); });
+      var qs = p.toString();
+      history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : "") + window.location.hash);
+    };
+    groups.forEach(function (g) {
       var key = g.getAttribute("data-lb-group");
       g.addEventListener("click", function (e) {
         var b = e.target.closest("button[data-value]");
-        if (!b) return;
-        g.querySelectorAll("button[data-value]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+        if (!b || b.disabled) return;
         state[key] = b.getAttribute("data-value");
-        apply();
+        apply(true);
+        syncUrl();
       });
     });
-    apply();
+    apply(false);
   }
 
   /* collections: the sticky index follows along and marks where you are */

@@ -322,6 +322,48 @@
     hSchedule();
   }
 
+  /* brand film: start it as soon as it is on screen. Where a browser or a
+     power setting will not autoplay video, the band shows the film's own
+     scenes instead, cross-fading one after another. */
+  document.querySelectorAll(".filmband").forEach(function (band) {
+    var v = band.querySelector("video");
+    var stills = [].slice.call(band.querySelectorAll(".filmband__stills img"));
+    if (!v) return;
+    v.muted = true;
+    v.playsInline = true;
+    var started = false, cur = 0;
+    function slideshow() {
+      if (band.classList.contains("is-stills") || !stills.length) return;
+      stills.forEach(function (im) {
+        if (im.getAttribute("data-src")) { im.src = im.getAttribute("data-src"); im.removeAttribute("data-src"); }
+      });
+      band.classList.add("is-stills");
+      stills[0].classList.add("is-on");
+      setInterval(function () {
+        if (document.hidden) return;
+        stills[cur].classList.remove("is-on");
+        cur = (cur + 1) % stills.length;
+        stills[cur].classList.add("is-on");
+      }, 3600);
+    }
+    function attempt() {
+      try {
+        var p = v.play();
+        if (p && p.catch) p.catch(slideshow);
+      } catch (err) { slideshow(); }
+      setTimeout(function () { if (v.paused || v.readyState < 3) slideshow(); }, 3500);
+    }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return;
+        if (!started) { started = true; attempt(); }
+        else if (!band.classList.contains("is-stills") && v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      }, { threshold: 0.2 }).observe(band);
+    } else {
+      attempt();
+    }
+  });
+
   /* -------------------------------------------------------------------
      Appointment form.
      The site is static, so a request is delivered two ways:
