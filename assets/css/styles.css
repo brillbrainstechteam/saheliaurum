@@ -876,6 +876,10 @@ section[id]{scroll-margin-top:104px}
      old legibility scrim and light-gold bars are no longer needed. */
   .nav-toggle{display:flex;color:var(--mahogany)}
   .nav-toggle span{width:26px;height:2px}
+  /* phones and small tablets: the mark sits in the middle of the header, the menu button stays left */
+  .site-header__inner{display:grid;grid-template-columns:44px 1fr 44px;gap:0}
+  .nav-toggle{grid-column:1;justify-self:start}
+  .brand{grid-column:2;justify-self:center}
   /* IMPORTANT: no backdrop-filter on the header on mobile — it would create a
      containing block and collapse the fixed nav overlay into the header strip. */
   .site-header{backdrop-filter:none;background:rgba(255,243,237,.9)}
