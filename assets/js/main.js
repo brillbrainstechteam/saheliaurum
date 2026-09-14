@@ -350,6 +350,70 @@
     sync();
   });
 
+  /* home "shop by piece" sliders: each strip moves on its own beat. A second,
+     inert copy of the cards lets a strip wrap without rewinding. Motion stops
+     for reduced motion, off-screen strips, hidden tabs, hover or keyboard
+     focus, a swipe or the arrows (for a few seconds), and the pause button. */
+  var rails = [].slice.call(document.querySelectorAll("[data-prail]"));
+  var railsOff = false;
+  rails.forEach(function (rail, ri) {
+    var track = rail.querySelector(".prail__track");
+    if (!track) return;
+    var n = track.children.length;
+    if (n < 2) return;
+    [].slice.call(track.children).forEach(function (li) {
+      var c = li.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      c.querySelectorAll("a").forEach(function (a) { a.tabIndex = -1; });
+      track.appendChild(c);
+    });
+    var dir = rail.getAttribute("data-dir") === "-1" ? -1 : 1;
+    function step() { return track.children[1].offsetLeft - track.children[0].offsetLeft; }
+    function loopW() { return track.children[n].offsetLeft - track.children[0].offsetLeft; }
+    function go(d) {
+      var w = loopW(), x = track.scrollLeft;
+      // hop an exact copy-width first, so the next move always has room
+      if (d > 0 && x >= w - 2) track.scrollLeft = x - w;
+      else if (d < 0 && x <= 2) track.scrollLeft = x + w;
+      track.scrollBy({ left: d * step(), behavior: reduce ? "auto" : "smooth" });
+    }
+    if (dir < 0) track.scrollLeft = loopW();
+
+    var hover = false, seen = false, holdUntil = 0;
+    function hold() { holdUntil = Date.now() + 7000; }
+    var prev = rail.querySelector(".gnav--prev");
+    var next = rail.querySelector(".gnav--next");
+    if (prev) prev.addEventListener("click", function () { hold(); go(-1); });
+    if (next) next.addEventListener("click", function () { hold(); go(1); });
+    rail.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hover = true; });
+    rail.addEventListener("pointerleave", function () { hover = false; });
+    rail.addEventListener("focusin", function () { hover = true; });
+    rail.addEventListener("focusout", function (e) { if (!rail.contains(e.relatedTarget)) hover = false; });
+    track.addEventListener("touchstart", hold, { passive: true });
+    track.addEventListener("wheel", function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) hold(); }, { passive: true });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { seen = es[0].isIntersecting; }, { threshold: 0.35 }).observe(rail);
+    } else {
+      seen = true;
+    }
+    if (reduce) return;
+    setTimeout(function () {
+      setInterval(function () {
+        if (railsOff || hover || !seen || document.hidden || Date.now() < holdUntil) return;
+        go(dir);
+      }, 3600);
+    }, 700 + ri * 900);
+  });
+  var railToggle = document.querySelector("[data-pieces-toggle]");
+  if (railToggle && rails.length && !reduce) {
+    railToggle.hidden = false;
+    railToggle.addEventListener("click", function () {
+      railsOff = !railsOff;
+      railToggle.setAttribute("aria-pressed", String(railsOff));
+      railToggle.textContent = railsOff ? "Play the sliders" : "Pause the sliders";
+    });
+  }
+
   /* lightbox for collection galleries */
   var lb = document.getElementById("lightbox");
   if (lb) {

@@ -11,9 +11,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet" />
 <link rel="preload" as="image" href="assets/img/hero_model.webp" fetchpriority="high" />
-<link rel="stylesheet" href="assets/css/styles.css?v=18" />
-<link rel="stylesheet" href="assets/css/atelier.css?v=18" />
-<script src="assets/js/theme.js?v=18"></script>
+<link rel="stylesheet" href="assets/css/styles.css?v=19" />
+<link rel="stylesheet" href="assets/css/atelier.css?v=19" />
+<script src="assets/js/theme.js?v=19"></script>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
     </button>
 
     <a class="brand" href="/" aria-label="Saheli Aurum home">
-      <img class="brand__logo" src="assets/img/logo-stack.svg?v=18" alt="Saheli Aurum" width="61" height="54" />
+      <img class="brand__logo" src="assets/img/logo-stack.svg?v=19" alt="Saheli Aurum" width="61" height="54" />
       <span class="brand__legacy">A&nbsp;Sunil&nbsp;Jain&nbsp;Legacy</span>
     </a>
 
@@ -94,9 +94,9 @@
   <!-- BRAND FILM -->
   <section class="filmband" id="film" aria-label="The Saheli story in motion">
     <div class="filmband__media">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/video/brand-film-poster.webp?v=18">
-        <source src="assets/video/brand-film.webm?v=18" type="video/webm" />
-        <source src="assets/video/brand-film.mp4?v=18" type="video/mp4" />
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/video/brand-film-poster.webp?v=19">
+        <source src="assets/video/brand-film.webm?v=19" type="video/webm" />
+        <source src="assets/video/brand-film.mp4?v=19" type="video/mp4" />
       </video>
       <div class="filmband__scrim"></div>
     </div>
@@ -168,6 +168,95 @@
 
     <div class="wrap center">
       <a class="btn btn--outline reveal" href="collections">View all collections</a>
+    </div>
+  </section>
+
+  <!-- SHOP BY PIECE: four self-running sliders, one per kind of piece, pieces drawn from across the collections -->
+  <section class="pieces section" id="pieces" aria-labelledby="piecesTitle">
+    <div class="wrap collections__head">
+      <div class="reveal">
+        <p class="eyebrow">Shop by Piece</p>
+        <h2 class="display" id="piecesTitle">Find it by<br /><em>what you'll wear.</em></h2>
+      </div>
+      <div class="reveal">
+        <p class="collections__sub">Necklaces, haars, earrings, rings and bangles — gold, polki and diamond pieces from across the house, each slider moving at its own pace.</p>
+        <button class="pieces__toggle" type="button" aria-pressed="false" data-pieces-toggle hidden>Pause the sliders</button>
+      </div>
+    </div>
+
+    <div class="wrap pieces__grid">
+      <div class="prail" data-prail data-dir="1" role="region" aria-roledescription="carousel" aria-label="Necklaces and chokers">
+        <div class="prail__head"><h3 class="prail__title">Necklaces &amp; Chokers</h3><a class="prail__all" href="shop#jewellery">View all</a></div>
+        <div class="prail__view">
+          <button class="gnav gnav--prev" type="button" aria-label="Previous necklaces"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="prail__track">
+            <li class="pcard"><a href="collections#inara"><span class="pcard__img"><img src="assets/img/pieces/neck-inara.webp" alt="Emerald open-polki choker from the Inara collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Inara</span><span class="pcard__name">Emerald open-polki choker</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/neck-glint-velvet.webp" alt="Emerald and diamond necklace from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Emerald &amp; diamond necklace</span></span></a></li>
+            <li class="pcard"><a href="collections#rajsa"><span class="pcard__img"><img src="assets/img/pieces/neck-rajsa-choker.webp" alt="Temple gold choker from the Rajsa collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rajsa</span><span class="pcard__name">Temple gold choker</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/neck-glint-layered.webp" alt="Layered diamond necklace from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Layered diamond necklace</span></span></a></li>
+            <li class="pcard"><a href="collections#riva"><span class="pcard__img"><img src="assets/img/pieces/neck-riva.webp" alt="Polki bridal choker from the Riva collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Riva</span><span class="pcard__name">Polki bridal choker</span></span></a></li>
+            <li class="pcard"><a href="shop#jewellery"><span class="pcard__img"><img src="assets/img/pieces/neck-yellow.webp" alt="Filigree yellow gold necklace" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Yellow Gold</span><span class="pcard__name">Filigree necklace</span></span></a></li>
+            <li class="pcard"><a href="collections#bomat"><span class="pcard__img"><img src="assets/img/pieces/neck-bomat.webp" alt="Gemstone antique gold necklace from the Bomat collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Bomat</span><span class="pcard__name">Gemstone antique necklace</span></span></a></li>
+            <li class="pcard"><a href="collections#rajsa"><span class="pcard__img"><img src="assets/img/pieces/neck-rajsa-bridal.webp" alt="Bridal gold necklace from the Rajsa collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rajsa</span><span class="pcard__name">Bridal gold necklace</span></span></a></li>
+          </ul>
+          <button class="gnav gnav--next" type="button" aria-label="Next necklaces"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+
+      <div class="prail" data-prail data-dir="-1" role="region" aria-roledescription="carousel" aria-label="Long necklaces and pendants">
+        <div class="prail__head"><h3 class="prail__title">Long Necklaces &amp; Pendants</h3><a class="prail__all" href="shop#jewellery">View all</a></div>
+        <div class="prail__view">
+          <button class="gnav gnav--prev" type="button" aria-label="Previous long necklaces"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="prail__track">
+            <li class="pcard"><a href="collections#royalis"><span class="pcard__img"><img src="assets/img/pieces/long-royalis-haar.webp" alt="Long temple gold haar from the Royalis collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Royalis</span><span class="pcard__name">Long temple haar</span></span></a></li>
+            <li class="pcard"><a href="collections#rosette"><span class="pcard__img"><img src="assets/img/pieces/long-rosette-tassel.webp" alt="Rose gold leaf tassel pendant from the Rosette collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rosette</span><span class="pcard__name">Leaf tassel pendant</span></span></a></li>
+            <li class="pcard"><a href="collections#bomat"><span class="pcard__img"><img src="assets/img/pieces/long-bomat-rani.webp" alt="Layered gold rani haar from the Bomat collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Bomat</span><span class="pcard__name">Layered rani haar</span></span></a></li>
+            <li class="pcard"><a href="collections#ekam"><span class="pcard__img"><img src="assets/img/pieces/long-ekam-peacock.webp" alt="Pink stone pendant necklace from the Ekam collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Ekam</span><span class="pcard__name">Pink stone pendant</span></span></a></li>
+            <li class="pcard"><a href="collections#royalis"><span class="pcard__img"><img src="assets/img/pieces/long-royalis-temple.webp" alt="Temple pendant haar from the Royalis collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Royalis</span><span class="pcard__name">Temple pendant haar</span></span></a></li>
+            <li class="pcard"><a href="collections#rosette"><span class="pcard__img"><img src="assets/img/pieces/long-rosette-knot.webp" alt="Rose gold knot pendant from the Rosette collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rosette</span><span class="pcard__name">Knot pendant</span></span></a></li>
+            <li class="pcard"><a href="collections#ekam"><span class="pcard__img"><img src="assets/img/pieces/long-ekam-haar.webp" alt="Emerald bead haar from the Ekam collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Ekam</span><span class="pcard__name">Emerald bead haar</span></span></a></li>
+            <li class="pcard"><a href="collections#bomat"><span class="pcard__img"><img src="assets/img/pieces/long-bomat-chain.webp" alt="Beaded antique gold chain from the Bomat collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Bomat</span><span class="pcard__name">Beaded gold chain</span></span></a></li>
+          </ul>
+          <button class="gnav gnav--next" type="button" aria-label="Next long necklaces"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+
+      <div class="prail" data-prail data-dir="-1" role="region" aria-roledescription="carousel" aria-label="Earrings">
+        <div class="prail__head"><h3 class="prail__title">Earrings</h3><a class="prail__all" href="shop#jewellery">View all</a></div>
+        <div class="prail__view">
+          <button class="gnav gnav--prev" type="button" aria-label="Previous earrings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="prail__track">
+            <li class="pcard"><a href="collections#rajsa"><span class="pcard__img"><img src="assets/img/pieces/ear-rajsa.webp" alt="Gold drop earrings from the Rajsa collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rajsa</span><span class="pcard__name">Gold drop earrings</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/ear-glint-box.webp" alt="Emerald drop earrings from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Emerald drop earrings</span></span></a></li>
+            <li class="pcard"><a href="collections#rosette"><span class="pcard__img"><img src="assets/img/pieces/ear-rosette-drop.webp" alt="Rose gold teardrop earrings from the Rosette collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rosette</span><span class="pcard__name">Rose-gold teardrops</span></span></a></li>
+            <li class="pcard"><a href="collections#inara"><span class="pcard__img"><img src="assets/img/pieces/ear-inara.webp" alt="Open-polki drop earrings from the Inara collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Inara</span><span class="pcard__name">Open-polki drops</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/ear-glint-baguette.webp" alt="Emerald baguette earrings from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Emerald baguette earrings</span></span></a></li>
+            <li class="pcard"><a href="collections#bomat"><span class="pcard__img"><img src="assets/img/pieces/ear-bomat.webp" alt="Gemstone antique gold earrings from the Bomat collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Bomat</span><span class="pcard__name">Gemstone antique earrings</span></span></a></li>
+            <li class="pcard"><a href="collections#rosette"><span class="pcard__img"><img src="assets/img/pieces/ear-rosette-leaf.webp" alt="Rose gold leaf tassel earrings from the Rosette collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rosette</span><span class="pcard__name">Leaf tassel earrings</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/ear-glint-pear.webp" alt="Emerald pear earrings from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Emerald pear earrings</span></span></a></li>
+            <li class="pcard"><a href="shop#jewellery"><span class="pcard__img"><img src="assets/img/pieces/ear-yellow.webp" alt="Filigree yellow gold earrings" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Yellow Gold</span><span class="pcard__name">Filigree earrings</span></span></a></li>
+          </ul>
+          <button class="gnav gnav--next" type="button" aria-label="Next earrings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+
+      <div class="prail" data-prail data-dir="1" role="region" aria-roledescription="carousel" aria-label="Rings and bangles">
+        <div class="prail__head"><h3 class="prail__title">Rings &amp; Bangles</h3><a class="prail__all" href="shop#jewellery">View all</a></div>
+        <div class="prail__view">
+          <button class="gnav gnav--prev" type="button" aria-label="Previous rings and bangles"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="prail__track">
+            <li class="pcard"><a href="collections#bomat"><span class="pcard__img"><img src="assets/img/pieces/hand-bomat-ring.webp" alt="Cocktail ring and bracelet from the Bomat collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Bomat</span><span class="pcard__name">Cocktail ring &amp; bracelet</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/hand-glint-lily.webp" alt="Floral diamond ring from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Floral diamond ring</span></span></a></li>
+            <li class="pcard"><a href="collections#rajsa"><span class="pcard__img"><img src="assets/img/pieces/hand-rajsa-kada.webp" alt="Polki kadas from the Rajsa collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Rajsa</span><span class="pcard__name">Polki kadas</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/hand-glint-bangle.webp" alt="Emerald eternity bangle from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Emerald eternity bangle</span></span></a></li>
+            <li class="pcard"><a href="collections#riva"><span class="pcard__img"><img src="assets/img/pieces/hand-riva-bangles.webp" alt="Polki bangles from the Riva collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Riva</span><span class="pcard__name">Polki bangles</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/hand-glint-solitaire.webp" alt="Solitaire diamond ring from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Solitaire ring</span></span></a></li>
+            <li class="pcard"><a href="shop#jewellery"><span class="pcard__img"><img src="assets/img/pieces/hand-yellow-ring.webp" alt="Filigree yellow gold ring" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Yellow Gold</span><span class="pcard__name">Filigree ring</span></span></a></li>
+            <li class="pcard"><a href="collections#glint"><span class="pcard__img"><img src="assets/img/pieces/hand-glint-cocktail.webp" alt="Diamond cocktail ring from the Glint collection" loading="lazy" width="600" height="800" /></span><span class="pcard__meta"><span class="pcard__col">Glint</span><span class="pcard__name">Diamond cocktail ring</span></span></a></li>
+          </ul>
+          <button class="gnav gnav--next" type="button" aria-label="Next rings and bangles"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -545,6 +634,6 @@
   <div class="site-footer__credit"><a href="https://brillbrainsconsultants.com/" target="_blank" rel="noopener">Powered by <strong>BrillBrains</strong></a></div>
 </footer>
 
-<script src="assets/js/main.js?v=18"></script>
+<script src="assets/js/main.js?v=19"></script>
 </body>
 </html>
