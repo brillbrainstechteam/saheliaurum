@@ -222,6 +222,116 @@
     sync();
   }
 
+  /* hero slideshow.
+     Same clock as the moments carousel: the active marker's fill animation
+     paces the slides, so every pause source (hover, keyboard focus, the hero
+     scrolled away, a hidden tab, the pause button) just pauses that one
+     animation. Slides cross-fade in place and each re-plays its copy. */
+  var hero = document.querySelector("[data-hero-slider]");
+  if (hero) {
+    var hSlides = [].slice.call(hero.querySelectorAll(".hero__slide"));
+    var hDots = [].slice.call(hero.querySelectorAll(".hero__dots button"));
+    var hToggle = hero.querySelector(".hero__toggle");
+    var hLive = hero.querySelector(".hero__slides");
+    var hCur = 0, hUser = false, hHover = false, hFocus = false, hSeen = true;
+
+    // later slides fetch their photographs only once the page has loaded,
+    // so the first slide keeps the bandwidth to itself
+    function hLoad() {
+      hero.querySelectorAll("img[data-src]").forEach(function (im) {
+        if (im.getAttribute("data-srcset")) im.srcset = im.getAttribute("data-srcset");
+        im.src = im.getAttribute("data-src");
+        im.removeAttribute("data-src");
+      });
+    }
+    if (document.readyState === "complete") hLoad();
+    else window.addEventListener("load", hLoad);
+
+    function hReplay(slide) {
+      var els = [].slice.call(slide.querySelectorAll(".reveal, .lines"));
+      els.forEach(function (el) { el.classList.remove("in"); });
+      void slide.offsetWidth;
+      els.forEach(function (el, i) {
+        setTimeout(function () { el.classList.add("in"); }, reduce ? 0 : 160 + 90 * i);
+      });
+    }
+    function hGo(i) {
+      i = (i + hSlides.length) % hSlides.length;
+      if (i === hCur) return;
+      hLoad();
+      var from = hSlides[hCur], to = hSlides[i];
+      from.classList.remove("is-active");
+      from.setAttribute("aria-hidden", "true");
+      from.inert = true;
+      hDots[hCur].removeAttribute("aria-current");
+      hCur = i;
+      to.classList.add("is-active");
+      to.removeAttribute("aria-hidden");
+      to.inert = false;
+      hDots[hCur].setAttribute("aria-current", "true");
+      hReplay(to);
+    }
+    function hSync() {
+      var paused = hUser || hHover || hFocus || !hSeen || document.hidden;
+      hero.classList.toggle("is-paused", paused);
+      if (hLive) hLive.setAttribute("aria-live", paused || reduce ? "polite" : "off");
+    }
+
+    hSlides.forEach(function (s, idx) {
+      if (idx !== hCur) { s.setAttribute("aria-hidden", "true"); s.inert = true; }
+    });
+    if (!reduce) hero.classList.add("is-auto");
+    else if (hToggle) hToggle.hidden = true;   // nothing moves on its own, so there is nothing to pause
+
+    hero.addEventListener("animationend", function (e) {
+      if (e.animationName === "hfill") hGo(hCur + 1);
+    });
+    var hPrev = hero.querySelector(".hnav--prev");
+    var hNext = hero.querySelector(".hnav--next");
+    if (hPrev) hPrev.addEventListener("click", function () { hGo(hCur - 1); });
+    if (hNext) hNext.addEventListener("click", function () { hGo(hCur + 1); });
+    hDots.forEach(function (b, idx) { b.addEventListener("click", function () { hGo(idx); }); });
+    if (hToggle) hToggle.addEventListener("click", function () {
+      hUser = !hUser;
+      hToggle.setAttribute("aria-pressed", String(hUser));
+      hToggle.setAttribute("aria-label", hUser ? "Play the slideshow" : "Pause the slideshow");
+      hSync();
+    });
+    hero.addEventListener("keydown", function (e) {
+      if (!e.target.closest(".hero__controls")) return;
+      if (e.key === "ArrowLeft") { hGo(hCur - 1); e.preventDefault(); }
+      if (e.key === "ArrowRight") { hGo(hCur + 1); e.preventDefault(); }
+    });
+    hero.addEventListener("mouseenter", function () { hHover = true; hSync(); });
+    hero.addEventListener("mouseleave", function () { hHover = false; hSync(); });
+    hero.addEventListener("focusin", function () { hFocus = true; hSync(); });
+    hero.addEventListener("focusout", function (e) {
+      if (!hero.contains(e.relatedTarget)) { hFocus = false; hSync(); }
+    });
+    document.addEventListener("visibilitychange", hSync);
+
+    /* horizontal swipe on the photograph; vertical drags stay with the page */
+    var hsx = 0, hsy = 0, hTrack = false;
+    hero.addEventListener("pointerdown", function (e) {
+      if (e.target.closest("a, button")) return;
+      hTrack = true; hsx = e.clientX; hsy = e.clientY;
+    });
+    hero.addEventListener("pointerup", function (e) {
+      if (!hTrack) return;
+      hTrack = false;
+      var dx = e.clientX - hsx, dy = e.clientY - hsy;
+      if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.2) hGo(hCur + (dx < 0 ? 1 : -1));
+    });
+    hero.addEventListener("pointercancel", function () { hTrack = false; });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        hSeen = entries[0].isIntersecting; hSync();
+      }, { threshold: 0.3 }).observe(hero);
+    }
+    hSync();
+  }
+
   /* -------------------------------------------------------------------
      Appointment form.
      The site is static, so a request is delivered two ways:
