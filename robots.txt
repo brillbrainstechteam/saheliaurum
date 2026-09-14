@@ -11,3 +11,4 @@ Disallow: /assets/img/
 Disallow: /assets/video/
 
 Sitemap: https://saheliaurum.vercel.app/sitemap.xml
+Disallow: /new/

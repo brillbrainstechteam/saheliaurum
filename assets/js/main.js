@@ -334,7 +334,7 @@
      ------------------------------------------------------------------- */
   var SHEET_ENDPOINT = "";
 
-  var STORE_WHATSAPP = { "Raipur": "919584411144", "Durg": "919244509870" };
+  var STORE_WHATSAPP = { "Raipur": "919584411144", "Durg": "919244509870", "Utai": "917647072145" };
   var FALLBACK_WHATSAPP = "919584411144";
 
   function apptMessage(d) {

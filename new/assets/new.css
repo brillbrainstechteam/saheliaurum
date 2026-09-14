@@ -1,0 +1,214 @@
+/* ============================================================
+   SAHELI AURUM — NEW DESIGN PREVIEW (/new)
+   Sits on the live system (styles.css + pages.css) and adds the site
+   review's structural changes plus a richer, calmer motion layer.
+   Everything here is scoped to the /new pages, which alone load it.
+   ============================================================ */
+
+/* ---- page-to-page cross-fade (cross-document View Transitions) ---- */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:np-out .36s var(--ease) both}
+::view-transition-new(root){animation:np-in .6s var(--ease-out) both}
+.topbar{view-transition-name:np-header}
+@keyframes np-out{to{opacity:0;transform:translateY(-10px)}}
+@keyframes np-in{from{opacity:0;transform:translateY(12px)}}
+
+/* ---- header tucks away on the way down, returns on the way up ---- */
+.topbar{transition:transform .55s var(--ease-out)}
+html.np-hdr-hidden .topbar{transform:translateY(-100%)}
+.np-sticky{transition:top .55s var(--ease-out)}
+html.np-hdr-hidden .np-sticky{top:0 !important}
+
+/* ---- reading progress: a hairline of rose gold under the header ---- */
+.np-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;pointer-events:none;
+  background:linear-gradient(90deg,var(--rose),var(--mahogany));transform:scaleX(var(--np-p,0));transform-origin:left}
+
+/* ---- preview switch ---- */
+.np-compare{position:fixed;right:14px;bottom:14px;z-index:90;display:inline-flex;align-items:center;gap:9px;
+  padding:9px 16px 9px 12px;border-radius:40px;background:rgba(36,28,32,.86);color:#fff3ed;
+  font-family:var(--f-ui);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 14px 30px -18px rgba(0,0,0,.7);transition:background .3s var(--ease)}
+.np-compare::before{content:"";width:7px;height:7px;border-radius:50%;background:#9fd6a6;box-shadow:0 0 0 3px rgba(159,214,166,.25)}
+.np-compare b{font-weight:600;color:var(--rose-soft)}
+.np-compare:hover{background:var(--mahogany)}
+@media (max-width:600px){.np-compare{font-size:.62rem;padding:8px 13px 8px 10px}}
+
+/* ---- buttons: a slow gold-leaf sheen crosses on hover ---- */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:-75%;width:55%;z-index:1;pointer-events:none;
+  background:linear-gradient(105deg,rgba(255,255,255,0),rgba(255,255,255,.34),rgba(255,255,255,0));
+  transform:skewX(-18deg);transition:left .9s var(--ease-out)}
+.btn:hover::after{left:125%}
+
+/* ---- images that rise into their frame as they arrive ---- */
+.reveal.np-rise{opacity:1;transform:none;clip-path:inset(14% 0 0 0);transition:clip-path 1.3s var(--ease-out)}
+.reveal.np-rise.in{clip-path:inset(0 0 0 0)}
+
+/* ---- hero: a single soft light-sweep across each photograph as its slide arrives ---- */
+.hero__slide.is-active .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.26) 50%,rgba(255,255,255,0) 62%);
+  background-size:260% 100%;animation:np-sweep 2.6s var(--ease-out) .45s both}
+@keyframes np-sweep{from{background-position:120% 0}to{background-position:-60% 0}}
+
+/* ---- slightly larger floor for small uppercase labels ---- */
+.world__cap p,.world__cap .num,.colgrid__tag,.colgrid__no,.scheme__flow,.store__row span,.ceremony .num,.field label,.plate__no{font-size:.74rem}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+/* heritage: one line of story, four figures */
+.hx{position:relative;isolation:isolate;overflow:hidden;padding-block:clamp(60px,8vw,124px)}
+.hx::before{content:"";position:absolute;left:-10%;right:-10%;bottom:-35%;height:75%;z-index:-1;pointer-events:none;
+  background:radial-gradient(48% 60% at 28% 60%,rgba(243,193,202,.34),rgba(243,193,202,0) 70%),
+             radial-gradient(44% 56% at 76% 56%,rgba(163,201,218,.30),rgba(163,201,218,0) 70%)}
+.hx__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,6vw,96px);align-items:end}
+.hx__title{font-size:clamp(2.6rem,5.4vw,4.9rem);line-height:1.02}
+.hx__title em{color:var(--mahogany)}
+.hx__body{border-left:1px solid var(--line-strong);padding-left:clamp(18px,3vw,44px)}
+.hx__lede{font-family:var(--f-display);font-size:clamp(1.35rem,2vw,1.8rem);line-height:1.35;color:var(--ink);max-width:30ch;margin:0 0 1.3rem}
+.hx__figs{list-style:none;margin:clamp(44px,6vw,86px) 0 0;padding:clamp(28px,3vw,42px) 0 0;display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line-strong);position:relative}
+.hx__figs::before{content:"✦";position:absolute;top:0;left:50%;transform:translate(-50%,-56%);padding:0 16px;background:var(--ivory);color:var(--mahogany);font-size:.9rem}
+.hx__figs li{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border-left:1px solid var(--line);padding:0 10px}
+.hx__figs li:first-child{border-left:0}
+.hx__n{font-family:var(--f-display);font-weight:500;font-size:clamp(2.7rem,5vw,4.5rem);line-height:.95;color:var(--mahogany);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+.hx__n small{font-size:.4em;letter-spacing:.04em;margin-left:.14em}
+.hx__l{font-family:var(--f-ui);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+@media (max-width:860px){
+  .hx__grid{grid-template-columns:1fr}
+  .hx__body{border-left:0;padding-left:0;border-top:1px solid var(--line-strong);padding-top:20px}
+  .hx__figs{grid-template-columns:1fr 1fr;row-gap:32px}
+  .hx__figs li:nth-child(3){border-left:0}
+}
+
+/* a slow band of words - the house's materials, in the display serif */
+.wordband{padding-block:clamp(16px,2.2vw,28px);border-block:1px solid var(--line-strong);
+  background:linear-gradient(90deg,#fdf0f1 0%,var(--ivory-2) 42%,var(--ivory-2) 58%,#f0f5f8 100%)}
+.wordband .marquee__item{display:inline-flex;align-items:center;gap:.55em;font-family:var(--f-display);font-style:italic;
+  font-size:clamp(2rem,4.8vw,4.1rem);line-height:1.1;color:var(--ink);white-space:nowrap}
+.wordband .marquee__item:nth-child(even){color:var(--mahogany)}
+.wordband .aurum-star{width:.28em;height:.28em;color:var(--rose)}
+
+/* three doors: bridal, bespoke, craft - arched plates, the middle one set lower */
+.doors__head{max-width:760px;margin:0 auto clamp(30px,4vw,56px);text-align:center}
+.doors__head .display em{color:var(--mahogany)}
+.doors__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,36px);align-items:start}
+.door{display:flex;flex-direction:column;gap:10px;color:var(--ink)}
+.door:nth-child(2){margin-top:clamp(0px,5vw,76px)}
+.door__img{position:relative;display:block;overflow:hidden;aspect-ratio:4/5;border-radius:50% 50% 3px 3px/30% 30% 3px 3px;
+  box-shadow:0 34px 60px -40px rgba(90,50,24,.6)}
+.door__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease-out)}
+.door__img::after{content:"";position:absolute;inset:10px;border:1px solid rgba(255,250,246,.7);border-radius:inherit;
+  opacity:0;transform:scale(1.04);transition:opacity .6s var(--ease),transform .9s var(--ease-out);pointer-events:none}
+.door:hover .door__img img{transform:scale(1.05)}
+.door:hover .door__img::after{opacity:1;transform:none}
+.door__k{margin-top:10px;font-family:var(--f-ui);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mahogany)}
+.door__t{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,2.4vw,2.2rem);line-height:1.1}
+.door__t em{color:var(--mahogany)}
+.door__cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-ui);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.door__cta span{transition:transform .4s var(--ease)}
+.door:hover .door__cta span{transform:translateX(6px)}
+.door:focus-visible{outline:2px solid var(--mahogany);outline-offset:6px}
+@media (max-width:860px){.doors__grid{grid-template-columns:1fr;gap:40px}.door:nth-child(2){margin-top:0}}
+
+/* buying with Saheli: the guarantees, then the saving plans */
+.buy .promise__list{margin-bottom:clamp(34px,4vw,58px);padding-bottom:clamp(30px,3.6vw,50px);border-bottom:1px solid var(--line-strong)}
+.buy .privileges__head .display em{color:var(--mahogany)}
+
+/* visit: three showrooms in a row */
+.visit__stores--row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px)}
+.visit .display em{color:var(--mahogany)}
+.visit__cta{margin-top:clamp(26px,3.4vw,44px)}
+@media (max-width:980px){.visit__stores--row{grid-template-columns:1fr}}
+
+/* ============================================================
+   INNER PAGES
+   ============================================================ */
+.leaf__title{text-wrap:balance}
+.leaf__inner{max-width:min(860px,92%)}
+
+/* about: the story framed in an arch; wider creed labels */
+.arch-frame{margin:0;position:relative;padding:14px}
+.arch-frame img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:50% 50% 3px 3px/30% 30% 3px 3px;display:block}
+.arch-frame::after{content:"";position:absolute;inset:0;border:1px solid var(--line-strong);border-radius:50% 50% 4px 4px/31% 31% 4px 4px;pointer-events:none}
+.reg--labels .reg__row{grid-template-columns:120px 1fr}
+@media (max-width:620px){.reg--labels .reg__row{grid-template-columns:1fr;gap:6px}}
+.np-timeline{margin-top:clamp(20px,3vw,34px)}
+
+/* collections: a sticky, self-highlighting index; even wordmarks; grand bands */
+.np-collections .col-index{position:sticky;top:79px;z-index:30;background:rgba(255,250,246,.95);backdrop-filter:blur(8px)}
+.col-index a[aria-current="true"]{background:var(--mahogany);color:#fff3ed;border-color:var(--mahogany)}
+@media (max-width:760px){
+  .np-collections .col-index__inner{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-block:12px;scrollbar-width:none}
+  .np-collections .col-index__inner::-webkit-scrollbar{display:none}
+}
+.col-logo--even{height:calc(var(--h) * var(--lg,1));width:auto;max-width:none;max-height:none}
+@media (max-width:760px){.col-logo--even{--lg:.8}}
+.ledger__title,.reg__title,.display{text-wrap:balance}
+.ratnas__intro{margin:1.2rem 0 .8rem;color:var(--ink-soft);font-size:.98rem;max-width:44ch}
+.ratnas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px}
+.ratnas li{border:1px solid var(--line-strong);border-radius:3px;padding:11px 13px;background:var(--ivory-2);display:flex;flex-direction:column;gap:2px}
+.ratnas b{font-family:var(--f-display);font-weight:500;font-size:1.12rem;color:var(--ink);display:flex;align-items:center;gap:8px}
+.ratnas b i{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.8),0 0 0 3px var(--line-strong);flex:none}
+.ratnas span{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mahogany)}
+@media (max-width:520px){.ratnas{grid-template-columns:1fr 1fr}}
+
+/* shop: the lookbook, filtered by piece and by material */
+.lb-bar{position:sticky;top:79px;z-index:30;background:rgba(255,250,246,.95);backdrop-filter:blur(8px);
+  border-block:1px solid var(--line);padding-block:14px;margin-bottom:clamp(20px,3vw,34px)}
+.lb-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.lb-row+.lb-row{margin-top:10px}
+.lb-row__k{min-width:84px;margin-right:6px;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.lb-chip{font-family:var(--f-ui);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);background:none;
+  border:1px solid var(--line-strong);padding:8px 15px;border-radius:30px;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.lb-chip:hover{border-color:var(--mahogany)}
+.lb-chip[aria-pressed="true"]{background:var(--mahogany);border-color:var(--mahogany);color:#fff3ed}
+.lb-chip:focus-visible{outline:2px solid var(--mahogany);outline-offset:2px}
+.lb-count{margin-left:auto;font-family:var(--f-display);font-size:1.25rem;color:var(--ink-soft)}
+.lb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,28px)}
+.lb-card{display:flex;flex-direction:column;gap:11px;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.lb-card.is-entering{opacity:0;transform:translateY(16px)}
+.lb-card__img{position:relative;display:block;overflow:hidden;aspect-ratio:3/4;background:var(--ivory-2)}
+.lb-card__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s var(--ease-out)}
+.lb-card:hover .lb-card__img img{transform:scale(1.05)}
+.lb-card__meta{display:flex;flex-direction:column;gap:3px}
+.lb-card__col{font-family:var(--f-ui);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mahogany)}
+.lb-card__name{font-family:var(--f-display);font-weight:500;font-size:1.22rem;line-height:1.2;color:var(--ink)}
+.lb-card__act{display:flex;gap:16px;margin-top:5px;font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.lb-card__act a{color:var(--ink-soft);border-bottom:1px solid var(--line-strong);padding-bottom:2px;transition:color .3s,border-color .3s}
+.lb-card__act a:hover{color:var(--mahogany);border-color:var(--mahogany)}
+.lb-empty{margin:30px 0 0;text-align:center;font-family:var(--f-display);font-size:1.3rem;color:var(--ink-soft)}
+@media (max-width:1080px){.lb-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:700px){
+  .lb-grid{grid-template-columns:1fr 1fr}
+  .lb-bar{position:static}
+  .lb-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .lb-row::-webkit-scrollbar{display:none}
+  .lb-row__k{min-width:auto}
+  .lb-chip{white-space:nowrap}
+  .lb-count{margin-left:12px;white-space:nowrap}
+}
+
+/* bridal: a line of guidance under each ceremony */
+.ceremony p{font-size:.9rem;line-height:1.45;color:var(--ink-soft);margin:.55em 0 0}
+
+/* bespoke: the real sketch beside the real piece */
+.bs-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(18px,3vw,44px);max-width:900px;margin-inline:auto}
+.bs-pair figure{margin:0;display:flex;flex-direction:column;gap:14px}
+.bs-pair img{width:100%;max-width:400px;margin-inline:auto;aspect-ratio:430/560;object-fit:cover;border:8px solid #fff;box-shadow:0 30px 60px -34px rgba(90,50,24,.55)}
+.bs-pair figcaption{font-family:var(--f-ui);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mahogany);text-align:center}
+.bs-pair__arrow{font-family:var(--f-display);font-size:2.6rem;line-height:1;color:var(--mahogany)}
+.bs-pair figure:first-child img{transform:rotate(-2.5deg)}
+@media (max-width:700px){.bs-pair{grid-template-columns:1fr}.bs-pair__arrow{transform:rotate(90deg);justify-self:center}}
+
+/* stores: the spam trap stays off-screen for people, visible to bots */
+.hp{position:absolute !important;left:-10000px;width:1px;height:1px;overflow:hidden}
+
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  .topbar,.np-sticky{transition:none}
+  .reveal.np-rise{clip-path:none;transition:none}
+  .hero__slide.is-active .hero__media::after{animation:none;display:none}
+  .btn::after{display:none}
+  .lb-card{transition:none}
+}
