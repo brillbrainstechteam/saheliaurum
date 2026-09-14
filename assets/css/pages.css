@@ -258,15 +258,23 @@ button.link-arrow:hover span{transform:translateX(6px)}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* collections name ribbon */
-.ribbon{background:var(--ivory-2);padding-block:24px;border-block:1px solid var(--line-strong)}
+.ribbon{background:var(--nocturne);padding-block:24px;border-block:1px solid rgba(203,141,118,.2)}
 .ribbon .marquee__item{font-family:var(--f-display);font-size:clamp(1.5rem,3.2vw,2.5rem);color:var(--gold-3);
   display:inline-flex;align-items:center;gap:.55em;letter-spacing:.02em}
 .ribbon .aurum-star{width:13px;height:13px;color:var(--gold);opacity:.75}
-/* the collections' own wordmarks in their original colours (so the band is light), each sized to the same visual weight */
-.ribbon .marquee__item .aurum-star{color:var(--mahogany);opacity:.45}
+/* each collection's own wordmark in its original colours, set on a card tinted with a whisper of that
+   colour and framed by a rose-gold hairline - so every logo holds on the dark band */
+.ribbon .ribbon__tile{display:inline-flex;align-items:center;justify-content:center;height:calc(88px * var(--lg,1));
+  padding:0 calc(30px * var(--lg,1));background:var(--tile,#faf3ec);border-radius:4px;
+  box-shadow:inset 0 0 0 5px var(--tile,#faf3ec),inset 0 0 0 6px rgba(130,73,31,.3),0 12px 26px -16px rgba(0,0,0,.7)}
 .ribbon .ribbon__logo{display:block;width:auto;height:calc(var(--h) * var(--lg,1))}
 .ribbon .marquee__item{gap:.9em}
 @media (max-width:620px){.ribbon{--lg:.66;padding-block:18px}}
+/* the band stays solid dark to its edges; the cards dissolve into it instead of into the page */
+.ribbon.marquee{-webkit-mask-image:none;mask-image:none}
+.ribbon::before,.ribbon::after{content:"";position:absolute;top:0;bottom:0;width:9%;z-index:2;pointer-events:none}
+.ribbon::before{left:0;background:linear-gradient(90deg,var(--nocturne),rgba(36,28,32,0))}
+.ribbon::after{right:0;background:linear-gradient(270deg,var(--nocturne),rgba(36,28,32,0))}
 
 /* moving image gallery */
 .marquee--gallery{padding-block:6px}
